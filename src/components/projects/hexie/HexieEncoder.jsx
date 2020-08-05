@@ -1,38 +1,71 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import Button from '../../common/Button';
 import { encode, decode } from 'hexie-encode';
+import { useHistory } from 'react-router-dom';
 
-const HexieEncoder = props => {
+const HexieEncoder = ({ location }) => {
 	const [input, setInput] = useState('');
 	const [customDict, setCustomDict] = useState('');
 	const [output, setOutput] = useState('');
+	const history = useHistory();
 
-	const dict = useMemo(() => {
-		if (customDict) {
-			return customDict.split(/[,，]/).map(e => e.trim());
+	const search = new URLSearchParams(location?.search ?? '');
+	const act = search.get('act') || 'decode';
+	const dict = decodeURI(search.get('dict') || '');
+	const txt = decodeURI(search.get('txt') || '');
+
+	const dictArr = useMemo(() => {
+		const d = customDict || dict;
+		if (d) {
+			return d.split(/[,，]/).map(e => e.trim());
 		}
-	}, [customDict]);
+	}, [customDict, dict]);
 
 	const onClickEncode = useCallback(() => {
-		try {
-			const result = dict && dict.length > 2 ? encode(input, dict) : encode(input);
-			setOutput(result);
-		} catch (ex) {
-			setOutput('');
-		}
-	}, [input, dict, setOutput]);
+		history.replace(location.pathname + '?' + ('act=encode') + (customDict ? `&dict=${encodeURI(customDict)}` : '') + (input ? `&txt=${encodeURI(input)}` : ''));
+	}, [input, dictArr, setOutput]);
 
 	const onClickDecode = useCallback(() => {
+		history.replace(location.pathname + '?' + ('act=decode') + (customDict ? `&dict=${encodeURI(customDict)}` : '') + (input ? `&txt=${encodeURI(input)}` : ''));
+	}, [input, dictArr, setOutput]);
+
+	const doEncode = useCallback((txt, dict) => {
 		try {
-			const result = dict && dict.length > 2 ? decode(input, dict) : decode(input);
+			const result = dict && dict.length > 2 ? encode(txt, dict) : encode(txt);
 			setOutput(result);
 		} catch (ex) {
 			setOutput('');
 		}
-	}, [input, dict, setOutput]);
+	}, [input, dictArr, setOutput]);
+
+	const doDecode = useCallback((txt, dict) => {
+		console.log('decode', txt);
+		try {
+			const result = dict && dict.length > 2 ? decode(txt, dict) : decode(txt);
+			setOutput(result);
+		} catch (ex) {
+			setOutput('');
+		}
+	}, [input, dictArr, setOutput]);
 
 
+	useEffect(() => {
+		if (txt) {
+			setInput(txt);
+		}
 
+		if (dict) {
+			setCustomDict(dict);
+		}
+
+		if (act) {
+			if (act === 'decode') {
+				doDecode(txt, dictArr);
+			} else {
+				doEncode(txt, dictArr);
+			}
+		}
+	}, [act, txt, dict]);
 
 	return (
 		<div className="HexieEncoder">

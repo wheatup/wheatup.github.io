@@ -19,12 +19,8 @@ const App = () => {
 				</nav>
 				<main>
 					<Switch>
-						<Route path="/hexie">
-							<HexieEncoder />
-						</Route>
-						<Route path="/" exact>
-							<Home />
-						</Route>
+						<Route path="/hexie" component={HexieEncoder} />
+						<Route path="/" component={Home} exact />
 					</Switch>
 				</main>
 				<footer>
