@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/hexie/static/css/main.9acd50cb.chunk.css",
+    "main.js": "/hexie/static/js/main.3880b5e7.chunk.js",
+    "main.js.map": "/hexie/static/js/main.3880b5e7.chunk.js.map",
+    "runtime-main.js": "/hexie/static/js/runtime-main.60c8d1c7.js",
+    "runtime-main.js.map": "/hexie/static/js/runtime-main.60c8d1c7.js.map",
+    "static/js/2.144f3687.chunk.js": "/hexie/static/js/2.144f3687.chunk.js",
+    "static/js/2.144f3687.chunk.js.map": "/hexie/static/js/2.144f3687.chunk.js.map",
+    "index.html": "/hexie/index.html",
+    "precache-manifest.e9ca9e1d31e65ea02cb33bba97c28522.js": "/hexie/precache-manifest.e9ca9e1d31e65ea02cb33bba97c28522.js",
+    "service-worker.js": "/hexie/service-worker.js",
+    "static/css/main.9acd50cb.chunk.css.map": "/hexie/static/css/main.9acd50cb.chunk.css.map",
+    "static/js/2.144f3687.chunk.js.LICENSE.txt": "/hexie/static/js/2.144f3687.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.60c8d1c7.js",
+    "static/js/2.144f3687.chunk.js",
+    "static/css/main.9acd50cb.chunk.css",
+    "static/js/main.3880b5e7.chunk.js"
+  ]
+}
