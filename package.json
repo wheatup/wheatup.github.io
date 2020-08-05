@@ -1,8 +1,8 @@
 {
-  "name": "hexie",
+  "name": "homepage",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://wheatup.github.io/hexie",
+  "homepage": "https://wheatup.github.io/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -10,6 +10,7 @@
     "hexie-encode": "^1.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "wherehouse": "^1.0.3"
   },
