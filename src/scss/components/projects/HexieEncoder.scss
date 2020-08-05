@@ -1,0 +1,45 @@
+.HexieEncoder {
+	text-align: center;
+	padding: 1rem;
+
+	& > * {
+		&:not(:first-child) {
+			margin-top: 1rem;
+		}
+	}
+
+	h1 {
+		font-size: 3rem;
+	}
+
+	textarea,
+	input[type='text'] {
+		padding: 1rem;
+		font-size: 1.6rem;
+		outline: none;
+		max-width: 100%;
+		width: 60rem;
+
+		color: #333;
+		background-color: #aaa;
+		border: none;
+		border-radius: 0.5rem;
+
+		&::placeholder {
+			color: #888;
+		}
+	}
+
+	textarea {
+		resize: none;
+		height: 24rem;
+	}
+
+	.button-area {
+		.Button {
+			&:not(:first-of-type) {
+				margin-left: 1rem;
+			}
+		}
+	}
+}
