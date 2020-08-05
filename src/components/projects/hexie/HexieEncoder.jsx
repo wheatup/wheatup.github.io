@@ -7,6 +7,7 @@ const HexieEncoder = ({ location }) => {
 	const [input, setInput] = useState('');
 	const [customDict, setCustomDict] = useState('');
 	const [output, setOutput] = useState('');
+	const [copied, setCopied] = useState(false);
 	const history = useHistory();
 	const outputComp = useRef(null);
 	const inputComp = useRef(null);
@@ -72,9 +73,9 @@ const HexieEncoder = ({ location }) => {
 		outputComp.current.select();
 		outputComp.current.setSelectionRange(0, 999999);
 		document.execCommand("copy");
-		setOutput('已复制');
+		setCopied(true);
 
-		setTimeout(() => setOutput(output), 700);
+		setTimeout(() => setCopied(false), 700);
 	}, [output, outputComp]);
 
 	const onFocusInput = useCallback(() => {
@@ -93,7 +94,7 @@ const HexieEncoder = ({ location }) => {
 				<Button onClick={onClickEncode}>加密</Button>
 				<Button onClick={onClickDecode}>解密</Button>
 			</div>
-			<textarea value={output} readOnly={true} onClick={onClickOutput} ref={outputComp}></textarea>
+			<textarea value={copied ? '已复制' : output} readOnly={true} onClick={onClickOutput} ref={outputComp}></textarea>
 			<h2>自定义字典</h2>
 			<input type="text" placeholder="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善" onChange={({ target: { value } }) => {
 				setOutput('');
