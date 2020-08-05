@@ -1,6 +1,6 @@
 .HexieEncoder {
 	text-align: center;
-	padding: 1rem;
+	padding: 2rem 1rem;
 
 	& > * {
 		&:not(:first-child) {
@@ -15,15 +15,17 @@
 	textarea,
 	input[type='text'] {
 		padding: 1rem;
+		padding-top: calc(1rem + 0.5rem);
 		font-size: 1.6rem;
 		outline: none;
 		max-width: 100%;
 		width: 60rem;
 
 		color: #333;
-		background-color: #aaa;
+		background-color: #eee;
+		box-shadow: 0px 0.5rem 0px inset rgba(0, 0, 0, 0.15);
 		border: none;
-		border-radius: 0.5rem;
+		border-radius: 0.2rem;
 
 		&::placeholder {
 			color: #888;
@@ -36,7 +38,14 @@
 	}
 
 	.button-area {
+		width: 60rem;
+		max-width: 100%;
+		display: flex;
+		margin-left: auto;;
+		margin-right: auto;;
+
 		.Button {
+			flex: 1;
 			&:not(:first-of-type) {
 				margin-left: 1rem;
 			}

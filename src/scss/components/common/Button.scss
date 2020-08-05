@@ -4,4 +4,21 @@
 	padding: 1rem 2rem;
 	border-radius: 0.5rem;
 	display: inline-block;
+	box-shadow: 0px 0.5rem 0rem desaturate(darken($clrTheme2, 10%), 20%);
+	transform: translateY(-0.25rem);
+	transition: all 0.1s;
+
+	&:hover {
+		box-shadow: 0px 0.6rem 0rem desaturate(darken($clrTheme2, 10%), 20%);
+		transform: translateY(-0.35rem);
+		filter: brightness(1.2);
+		color: $clrTitle;
+	}
+
+	&:active {
+		box-shadow: 0px 0.1rem 0rem desaturate(darken($clrTheme2, 10%), 20%);
+		transform: translateY(0.15rem);
+		color: $clrTitle;
+		transition-duration: 0.02s;
+	}
 }

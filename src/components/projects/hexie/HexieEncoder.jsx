@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import Button from '../../common/Button';
 import { encode, decode } from 'hexie-encode';
 import { useHistory } from 'react-router-dom';
@@ -8,6 +8,8 @@ const HexieEncoder = ({ location }) => {
 	const [customDict, setCustomDict] = useState('');
 	const [output, setOutput] = useState('');
 	const history = useHistory();
+	const outputComp = useRef(null);
+	const inputComp = useRef(null);
 
 	const search = new URLSearchParams(location?.search ?? '');
 	const act = search.get('act') || 'decode';
@@ -22,12 +24,12 @@ const HexieEncoder = ({ location }) => {
 	}, [customDict, dict]);
 
 	const onClickEncode = useCallback(() => {
-		history.replace(location.pathname + '?' + ('act=encode') + (customDict ? `&dict=${encodeURI(customDict)}` : '') + (input ? `&txt=${encodeURI(input)}` : ''));
-	}, [input, dictArr, setOutput]);
+		history.replace(location.pathname + '?act=encode' + (customDict ? `&dict=${encodeURI(customDict)}` : '') + (input ? `&txt=${encodeURI(input)}` : ''));
+	}, [input, customDict, history, location]);
 
 	const onClickDecode = useCallback(() => {
-		history.replace(location.pathname + '?' + ('act=decode') + (customDict ? `&dict=${encodeURI(customDict)}` : '') + (input ? `&txt=${encodeURI(input)}` : ''));
-	}, [input, dictArr, setOutput]);
+		history.replace(location.pathname + '?act=decode' + (customDict ? `&dict=${encodeURI(customDict)}` : '') + (input ? `&txt=${encodeURI(input)}` : ''));
+	}, [input, customDict, history, location]);
 
 	const doEncode = useCallback((txt, dict) => {
 		try {
@@ -36,17 +38,16 @@ const HexieEncoder = ({ location }) => {
 		} catch (ex) {
 			setOutput('');
 		}
-	}, [input, dictArr, setOutput]);
+	}, [setOutput]);
 
 	const doDecode = useCallback((txt, dict) => {
-		console.log('decode', txt);
 		try {
 			const result = dict && dict.length > 2 ? decode(txt, dict) : decode(txt);
 			setOutput(result);
 		} catch (ex) {
 			setOutput('');
 		}
-	}, [input, dictArr, setOutput]);
+	}, [setOutput]);
 
 
 	useEffect(() => {
@@ -67,18 +68,32 @@ const HexieEncoder = ({ location }) => {
 		}
 	}, [act, txt, dict]);
 
+	const onClickOutput = useCallback(() => {
+		outputComp.current.select();
+		outputComp.current.setSelectionRange(0, 999999);
+		document.execCommand("copy");
+		setOutput('已复制');
+
+		setTimeout(() => setOutput(output), 700);
+	}, [output, outputComp]);
+
+	const onFocusInput = useCallback(() => {
+		inputComp.current.select();
+		inputComp.current.setSelectionRange(0, 999999);
+	}, [inputComp])
+
 	return (
 		<div className="HexieEncoder">
 			<h1>和谐加密器</h1>
 			<textarea onChange={({ target: { value } }) => {
 				setOutput('');
 				setInput(value);
-			}} value={input}></textarea>
+			}} value={input} ref={inputComp} onFocus={onFocusInput}></textarea>
 			<div className="button-area">
 				<Button onClick={onClickEncode}>加密</Button>
 				<Button onClick={onClickDecode}>解密</Button>
 			</div>
-			<textarea value={output} readOnly={true}></textarea>
+			<textarea value={output} readOnly={true} onClick={onClickOutput} ref={outputComp}></textarea>
 			<h2>自定义字典</h2>
 			<input type="text" placeholder="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善" onChange={({ target: { value } }) => {
 				setOutput('');

@@ -24,7 +24,7 @@ const App = () => {
 					</Switch>
 				</main>
 				<footer>
-					&copy;&nbsp;<a href="https://github.com/wheatup/" target="_blank">wheatup</a>&nbsp;@{new Date().getFullYear()} All rights reserved.
+					&copy;&nbsp;<a href="https://github.com/wheatup/" target="_blank" rel="noopener noreferrer">wheatup</a>&nbsp;@{new Date().getFullYear()} All rights reserved.
 				</footer>
 			</div>
 		</Router>
