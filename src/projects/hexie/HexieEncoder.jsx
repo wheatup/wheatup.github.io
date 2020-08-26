@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
-import Button from '../../common/Button';
+import Button from '../../components/common/Button';
 import { encode, decode } from 'hexie-encode';
 import { useHistory } from 'react-router-dom';
 

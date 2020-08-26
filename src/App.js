@@ -1,14 +1,18 @@
 import React from 'react';
-import HexieEncoder from './components/projects/hexie/HexieEncoder';
+import HexieEncoder from './projects/hexie/HexieEncoder';
 import {
 	HashRouter as Router,
 	Switch,
 	Route,
 	Link
 } from "react-router-dom";
-import Home from './components/projects/home/Home';
+import Home from './projects/home/Home';
+import { useMaxHeight } from './hooks/height';
 
 const App = () => {
+
+	useMaxHeight();
+
 	return (
 		<Router>
 			<div className="App">
