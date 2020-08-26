@@ -7,7 +7,7 @@ import {
 	Link
 } from "react-router-dom";
 import Home from './projects/home/Home';
-import { useMaxHeight } from './hooks/height';
+import { useMaxHeight } from './hooks/misc';
 
 const App = () => {
 
