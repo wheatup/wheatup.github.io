@@ -10,6 +10,9 @@ import Home from './projects/home/Home';
 import { useMaxHeight } from './hooks/misc';
 import Forum from './projects/forum/components/Forum';
 import User from './components/common/User';
+import { setup } from './utils/store';
+
+setup();
 
 const App = () => {
 

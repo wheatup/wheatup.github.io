@@ -6,10 +6,7 @@ import Comments from './Comments';
 
 const Post = props => {
 	const { id } = useParams();
-
-	// console.log(props);
 	const [post, comments] = usePostDetail(id);
-	console.log(post, comments);
 
 	return (
 		<div className="Post">

@@ -1,104 +1,181 @@
 .Forum {
+	max-width: 72rem;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+
 	.PostList {
 		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		flex: 1;
 
-		.PostEntry {
-			display: flex;
-			background-color: #ccc;
-			padding: 1rem;
-			padding-right: 2rem;
-			color: $clrText;
-			border-radius: 0.5rem;
-			align-items: center;
-			box-shadow: 0px 2px 0 rgba(0, 0, 0, 0.3);
+		.list-wrapper {
+			flex: 1;
+			position: relative;
 
+			.list {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				overflow-y: auto;
 
-			&:not(:first-of-type) {
-				margin-top: 1rem;
-			}
-
-			.avatar {
-				width: 6.4rem;
-				height: 6.4rem;
-				position: relative;
-				border-radius: 0.5rem;
-				overflow: hidden;
-
-				&:hover {
-					filter: brightness(1.2);
-				}
-
-				img {
-					width: 100%;
-					height: 100%;
-				}
-
-				h2 {
-					position: absolute;
-					display: block;
-					white-space: nowrap;
-					bottom: 0;
-					left: 0;
-					width: 100%;
+				.PostEntry {
 					display: flex;
+					background-color: #ccc;
+					padding: 1rem;
+					padding-right: 2rem;
+					color: $clrText;
+					border-radius: 0.5rem;
 					align-items: center;
-					justify-content: center;
-					font-size: 1.2rem;
-					font-weight: normal;
-					background-color: rgba(0, 0, 0, 0.5);
-					padding: 0.5rem 0.5rem;
-					color: white;
-					transition: transform 0.2s;
-					transform: translateY(100%);
-				}
-			}
+					box-shadow: 0px 2px 0 rgba(0, 0, 0, 0.3);
 
-			&:hover {
-				transform: translateY(calc(-0.5rem + 2px));
-				box-shadow: 0px 0.5rem 0 rgba(175, 139, 10, 0.8);
-				background-color: $clrTheme1;
-				color: #694000;
-
-				.avatar {
-					h2 {
-						transform: translateY(0);
+					&:not(:first-of-type) {
+						margin-top: 1rem;
 					}
-				}
-			}
 
-			.summary {
-				margin-left: 1rem;
+					&:hover {
+						transform: translateY(calc(-0.5rem + 2px));
+						box-shadow: 0px 0.5rem 0 rgba(175, 139, 10, 0.8);
+						background-color: $clrTheme1;
+						color: #694000;
 
-				h2 {
-					font-weight: normal;
-					font-size: 1.8rem;
-					margin-bottom: 0.5rem;
-				}
-
-				.create {
-					font-size: 1.4rem;
-					opacity: 0.6;
-					&::before {
-						content: '发布于 ';
+						.UserAvatar {
+							h2 {
+								transform: translateY(0);
+							}
+						}
 					}
-				}
-			}
 
-			.details {
-				margin-left: auto;
-				.comments {
-					display: flex;
-					align-items: center;
-					font-size: 2rem;
+					.summary {
+						margin-left: 1rem;
 
-					&::before {
-						content: '\e900';
-						font-family: 'icomoon';
-						margin-right: 0.5rem;
-						font-size: 1.33em;
+						h2 {
+							font-weight: normal;
+							font-size: 1.8rem;
+							margin-bottom: 0.5rem;
+						}
+
+						.create {
+							font-size: 1.4rem;
+							opacity: 0.6;
+							&::before {
+								content: '发布于 ';
+							}
+						}
+					}
+
+					.details {
+						margin-left: auto;
+						.comments {
+							display: flex;
+							align-items: center;
+							font-size: 2rem;
+
+							&::before {
+								content: '\e900';
+								font-family: 'icomoon';
+								margin-right: 0.5rem;
+								font-size: 1.33em;
+							}
+						}
 					}
 				}
 			}
 		}
+	}
+
+	.Post {
+		.PostBody {
+		}
+
+		.Comments {
+		}
+	}
+
+	.ChatInput {
+	}
+}
+
+.ChatInput {
+	&.locked {
+		filter: saturate(0) brightness(0.75);
+		opacity: 0.5;
+		pointer-events: none;
+	}
+
+	.title-area {
+		display: flex;
+		align-items: stretch;
+		margin-top: 1rem;
+
+		& > *:not(:first-child) {
+			margin-left: 1rem;
+		}
+
+		.Button {
+			padding: 1rem 1.5rem;
+			font-size: 1.8rem;
+		}
+	}
+
+	.body-area {
+		display: flex;
+		margin-top: 1rem;
+	}
+
+	input, textarea {
+		flex: 1;
+		border: none;
+		outline: none;
+		background-color: #eee;
+		resize: none;
+		padding: 1rem;
+		padding-top: calc(1rem + 2px);
+		border-radius: 0.5rem;
+		box-shadow: 0px 0.5rem 0px inset rgba(0, 0, 0, 0.15);
+		margin-top: -2px;
+		color: $clrText;
+	}
+}
+
+.UserAvatar {
+	width: 6.4rem;
+	height: 6.4rem;
+	position: relative;
+	border-radius: 0.5rem;
+	overflow: hidden;
+
+	&:hover {
+		filter: brightness(1.2);
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+	}
+
+	h2 {
+		position: absolute;
+		display: block;
+		white-space: nowrap;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.2rem;
+		font-weight: normal;
+		background-color: rgba(0, 0, 0, 0.5);
+		padding: 0.5rem 0.5rem;
+		color: white;
+		transition: transform 0.2s;
+		transform: translateY(100%);
 	}
 }
