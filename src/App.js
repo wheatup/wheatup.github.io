@@ -4,10 +4,12 @@ import {
 	HashRouter as Router,
 	Switch,
 	Route,
-	Link
+	NavLink
 } from "react-router-dom";
 import Home from './projects/home/Home';
 import { useMaxHeight } from './hooks/misc';
+import Forum from './projects/forum/components/Forum';
+import User from './components/common/User';
 
 const App = () => {
 
@@ -17,13 +19,16 @@ const App = () => {
 		<Router>
 			<div className="App">
 				<nav>
-					<Link to="/" className="logo"></Link>
-					<Link to="/">首页</Link>
-					<Link to="/hexie">和谐加密器</Link>
+					<NavLink exact to="/" className="logo"></NavLink>
+					<NavLink exact to="/">首页</NavLink>
+					<NavLink to="/forum">留言板</NavLink>
+					<NavLink to="/hexie">和谐加密器</NavLink>
+					<User />
 				</nav>
 				<main>
 					<Switch>
 						<Route path="/hexie" component={HexieEncoder} />
+						<Route path="/forum" component={Forum} />
 						<Route path="/" component={Home} exact />
 					</Switch>
 				</main>
