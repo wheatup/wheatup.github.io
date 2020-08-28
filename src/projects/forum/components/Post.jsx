@@ -20,8 +20,12 @@ const Post = props => {
 
 	return (
 		<div className="Post">
-			<PostBody post={post} />
-			<Comments comments={comments} />
+			<div className="post-area">
+				<div className="post-wrapper">
+					<PostBody post={post} />
+					<Comments comments={comments} />
+				</div>
+			</div>
 			<ChatInput onPost={reply} />
 		</div>
 	);

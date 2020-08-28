@@ -94,132 +94,137 @@
 		display: flex;
 		flex-direction: column;
 		flex: 1;
-		padding: 1rem 0;
+		padding: 1rem;
 
-		.PostBody {
-			background-color: #f3f3f3;
-			padding: 1.6rem;
-			border-radius: 0.5rem;
-			filter: drop-shadow(0rem 2px 0px rgba(0, 0, 0, 0.2));
-
-			.wrapper {
-				.title-area {
-					display: flex;
-					align-items: center;
-
-					.UserAvatar {
-					}
-
-					.info-area {
-						margin-left: 1rem;
-						h2 {
-							font-weight: normal;
-							font-size: 2.4rem;
-							margin-bottom: 0.5rem;
-						}
-
-						time {
-							opacity: 0.5;
-							font-size: 1.4rem;
-
-							&::before {
-								content: '发布于 ';
-							}
-						}
-					}
-
-					margin-bottom: 1rem;
-					padding-bottom: 1rem;
-					border-bottom: solid 1px rgba(0, 0, 0, 0.1);
-				}
-
-				.body-area {
-					p {
-					}
-				}
-			}
-		}
-
-		.Comments {
-			margin: -1rem;
-			margin-top: 1rem;
+		.post-area {
 			flex: 1;
 			position: relative;
-
-			.wrapper {
+			.post-wrapper {
 				position: absolute;
-				overflow-y: auto;
 				top: 0;
 				left: 0;
 				width: 100%;
 				height: 100%;
+				overflow-y: auto;
+				overflow-x: hidden;
 
-				.comment-wrapper {
-					time {
-						display: block;
-						text-align: center;
-						font-size: 1.2rem;
-						opacity: 0.5;
-					}
-					.Comment {
-						display: flex;
-						align-items: flex-start;
-						position: relative;
+				.PostBody {
+					background-color: #f3f3f3;
+					padding: 1.6rem;
+					border-radius: 0.5rem;
+					filter: drop-shadow(0rem 2px 0px rgba(0, 0, 0, 0.2));
 
-						& > * {
-							margin: 1rem;
+					.wrapper {
+						.title-area {
+							display: flex;
+							align-items: center;
+
+							.UserAvatar {
+							}
+
+							.info-area {
+								margin-left: 1rem;
+								h2 {
+									font-weight: normal;
+									font-size: 2.4rem;
+									margin-bottom: 0.5rem;
+								}
+
+								time {
+									opacity: 0.5;
+									font-size: 1.4rem;
+
+									&::before {
+										content: '发布于 ';
+									}
+								}
+							}
+
+							margin-bottom: 1rem;
+							padding-bottom: 1rem;
+							border-bottom: solid 1px rgba(0, 0, 0, 0.1);
 						}
 
-						.UserAvatar {
-						}
-
-						.content {
-							background-color: #f3f3f3;
-							padding: 1.6rem;
-							border-radius: 0.5rem;
-							width: calc(100% - 18.8rem);
-							position: relative;
-							filter: drop-shadow(0rem 2px 0px rgba(0, 0, 0, 0.2));
-
-							&::before {
-								content: '';
-								display: block;
-								width: 2rem;
-								height: 2rem;
-								position: absolute;
-								top: 1rem;
-								left: -1rem;
-								background-color: inherit;
-								transform: scaleY(0.5) rotate(45deg);
-								clip-path: polygon(0 0, 100% 100%, 0 100%);
+						.body-area {
+							p {
 							}
 						}
+					}
+				}
 
-						&.me {
-							justify-content: flex-end;
+				.Comments {
+					margin: -1rem;
+					margin-top: 1rem;
+					flex: 1;
+					position: relative;
+
+					.comment-wrapper {
+						time {
+							display: block;
+							text-align: center;
+							font-size: 1.2rem;
+							opacity: 0.5;
+						}
+						.Comment {
+							display: flex;
+							align-items: flex-start;
+							position: relative;
+
+							& > * {
+								margin: 1rem;
+							}
+
+							.UserAvatar {
+							}
+
 							.content {
-								order: -1;
-								background-color: #fffded;
+								background-color: #f3f3f3;
+								padding: 1.6rem;
+								border-radius: 0.5rem;
+								width: calc(100% - 18.8rem);
+								position: relative;
+								filter: drop-shadow(0rem 2px 0px rgba(0, 0, 0, 0.2));
 
 								&::before {
-									left: initial;
-									right: -1rem;
+									content: '';
+									display: block;
+									width: 2rem;
+									height: 2rem;
+									position: absolute;
+									top: 1rem;
+									left: -1rem;
+									background-color: inherit;
 									transform: scaleY(0.5) rotate(45deg);
-									clip-path: polygon(0 0, 100% 100%, 100% 0);
+									clip-path: polygon(0 0, 100% 100%, 0 100%);
+								}
+							}
+
+							&.me {
+								justify-content: flex-end;
+								.content {
+									order: -1;
+									background-color: #fffded;
+
+									&::before {
+										left: initial;
+										right: -1rem;
+										transform: scaleY(0.5) rotate(45deg);
+										clip-path: polygon(0 0, 100% 100%, 100% 0);
+									}
 								}
 							}
 						}
 					}
 				}
+
+				.ChatInput {
+					margin-top: 1rem;
+				}
+			}
+
+			.ChatInput {
 			}
 		}
-
-		.ChatInput {
-			margin-top: 1rem;
-		}
-	}
-
-	.ChatInput {
 	}
 }
 

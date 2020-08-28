@@ -8,13 +8,12 @@ import { getTimeDiff } from '../utils/misc';
 
 const Comments = ({ comments }) => {
 	return (
-		<div className="Comments">
-			<div className="wrapper">{comments.map(comment => (
-				<div key={comment.id.toString()} className="comment-wrapper">
-					<time title={new Date(comment.created_at).toLocaleString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false })}>{getTimeDiff(comment.created_at)}</time>
-					<Comment comment={comment} />
-				</div>
-			))}</div>
+		<div className="Comments">{comments.map(comment => (
+			<div key={comment.id.toString()} className="comment-wrapper">
+				<time title={new Date(comment.created_at).toLocaleString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false })}>{getTimeDiff(comment.created_at)}</time>
+				<Comment comment={comment} />
+			</div>
+		))}
 		</div>
 	);
 }
