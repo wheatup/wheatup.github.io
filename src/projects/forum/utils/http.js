@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const http = axios.create({
-	baseURL: 'https://api.github.com/repos/wheatup/wheatup.github.io',
+	baseURL: 'https://api.github.com/repos/wheatup/forum-threads',
 });
 
 let authorized = false;
