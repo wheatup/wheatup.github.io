@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import UserAvatar from './UserAvatar';
 import { getTimeDiff } from '../utils/misc';
+import Markdown from './Markdown';
 
 const PostBody = ({ post }) => {
-	console.log(post);
 	const { user, title, body, created_at } = post || {};
 	return (
 		<div className="PostBody">{post &&
@@ -16,7 +16,7 @@ const PostBody = ({ post }) => {
 					</div>
 				</div>
 				<div className="body-area">
-					<p>{body}</p>
+					<Markdown source={body} />
 				</div>
 			</div>
 		}</div>

@@ -6,7 +6,6 @@ const User = props => {
 	const [user, login] = useAuthentication();
 
 	const onClickUser = useCallback(() => {
-		console.log(user);
 		window.open(user.html_url);
 	}, [user]);
 

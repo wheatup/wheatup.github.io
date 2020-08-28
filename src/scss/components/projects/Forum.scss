@@ -98,8 +98,10 @@
 
 		.PostBody {
 			background-color: #f3f3f3;
-			padding: 1rem;
+			padding: 1.6rem;
 			border-radius: 0.5rem;
+			filter: drop-shadow(0rem 2px 0px rgba(0, 0, 0, 0.2));
+
 			.wrapper {
 				.title-area {
 					display: flex;
@@ -119,7 +121,7 @@
 						time {
 							opacity: 0.5;
 							font-size: 1.4rem;
-							
+
 							&::before {
 								content: '发布于 ';
 							}
@@ -139,10 +141,81 @@
 		}
 
 		.Comments {
+			margin: -1rem;
+			margin-top: 1rem;
+			flex: 1;
+			position: relative;
+
+			.wrapper {
+				position: absolute;
+				overflow-y: auto;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+
+				.comment-wrapper {
+					time {
+						display: block;
+						text-align: center;
+						font-size: 1.2rem;
+						opacity: 0.5;
+					}
+					.Comment {
+						display: flex;
+						align-items: flex-start;
+						position: relative;
+
+						& > * {
+							margin: 1rem;
+						}
+
+						.UserAvatar {
+						}
+
+						.content {
+							background-color: #f3f3f3;
+							padding: 1.6rem;
+							border-radius: 0.5rem;
+							width: calc(100% - 18.8rem);
+							position: relative;
+							filter: drop-shadow(0rem 2px 0px rgba(0, 0, 0, 0.2));
+
+							&::before {
+								content: '';
+								display: block;
+								width: 2rem;
+								height: 2rem;
+								position: absolute;
+								top: 1rem;
+								left: -1rem;
+								background-color: inherit;
+								transform: scaleY(0.5) rotate(45deg);
+								clip-path: polygon(0 0, 100% 100%, 0 100%);
+							}
+						}
+
+						&.me {
+							justify-content: flex-end;
+							.content {
+								order: -1;
+								background-color: #fffded;
+
+								&::before {
+									left: initial;
+									right: -1rem;
+									transform: scaleY(0.5) rotate(45deg);
+									clip-path: polygon(0 0, 100% 100%, 100% 0);
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 
 		.ChatInput {
-			margin-top: auto;
+			margin-top: 1rem;
 		}
 	}
 

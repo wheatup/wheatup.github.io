@@ -5,7 +5,6 @@ import { useCallback } from 'react';
 import UserAvatar from './UserAvatar';
 
 const PostEntry = ({ post }) => {
-	console.log(post);
 	const { title, user, created_at, comments, updated_at, number } = post;
 
 	return (

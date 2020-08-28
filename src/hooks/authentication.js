@@ -37,7 +37,6 @@ export const useAuthentication = () => {
 						window.location.href = window.location.href.replace(/[&?]code=\w+/, '');
 					}
 				}
-				console.log(e);
 			}).catch(ex => {
 				swal("授权失败", "登录失败，请重试！", "error");
 				console.error(ex);
