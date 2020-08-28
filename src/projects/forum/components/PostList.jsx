@@ -4,11 +4,18 @@ import PostEntry from './PostEntry';
 import ChatInput from './ChatInput';
 import { useCallback } from 'react';
 import swal from 'sweetalert';
+import whevent from 'whevent';
 
 const PostList = props => {
-	const posts = usePostList();
+	const [posts, reload] = usePostList();
 
 	const post = usePostThread();
+
+	useEffect(() => {
+		whevent.on('REFRESH_POSTS', reload);
+
+		return () => whevent.off('REFRESH_POSTS', reload);
+	}, []);
 
 	return (
 		<div className="PostList">

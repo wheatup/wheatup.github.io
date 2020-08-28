@@ -91,10 +91,58 @@
 	}
 
 	.Post {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		padding: 1rem 0;
+
 		.PostBody {
+			background-color: #f3f3f3;
+			padding: 1rem;
+			border-radius: 0.5rem;
+			.wrapper {
+				.title-area {
+					display: flex;
+					align-items: center;
+
+					.UserAvatar {
+					}
+
+					.info-area {
+						margin-left: 1rem;
+						h2 {
+							font-weight: normal;
+							font-size: 2.4rem;
+							margin-bottom: 0.5rem;
+						}
+
+						time {
+							opacity: 0.5;
+							font-size: 1.4rem;
+							
+							&::before {
+								content: '发布于 ';
+							}
+						}
+					}
+
+					margin-bottom: 1rem;
+					padding-bottom: 1rem;
+					border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+				}
+
+				.body-area {
+					p {
+					}
+				}
+			}
 		}
 
 		.Comments {
+		}
+
+		.ChatInput {
+			margin-top: auto;
 		}
 	}
 
@@ -129,7 +177,8 @@
 		margin-top: 1rem;
 	}
 
-	input, textarea {
+	input,
+	textarea {
 		flex: 1;
 		border: none;
 		outline: none;
@@ -150,9 +199,13 @@
 	position: relative;
 	border-radius: 0.5rem;
 	overflow: hidden;
+	cursor: pointer;
 
 	&:hover {
 		filter: brightness(1.2);
+		h2 {
+			transform: translateY(0);
+		}
 	}
 
 	img {

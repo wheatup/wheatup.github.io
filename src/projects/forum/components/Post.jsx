@@ -3,6 +3,7 @@ import { usePostDetail } from '../hooks/post';
 import { useParams } from 'react-router-dom';
 import PostBody from './PostBody';
 import Comments from './Comments';
+import ChatInput from './ChatInput';
 
 const Post = props => {
 	const { id } = useParams();
@@ -12,6 +13,7 @@ const Post = props => {
 		<div className="Post">
 			<PostBody post={post} />
 			<Comments comments={comments} />
+			<ChatInput />
 		</div>
 	);
 }

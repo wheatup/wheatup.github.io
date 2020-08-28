@@ -10,7 +10,7 @@ const getHttp = () => {
 	if (!authorized) {
 		let token = window.localStorage.getItem('token');
 		if (token) {
-			http.defaults.headers.common['Authorization'] = 'token ' + token;
+			http.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 			authorized = true;
 		}
 	}

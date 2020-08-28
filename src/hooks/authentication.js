@@ -18,7 +18,7 @@ export const useAuthentication = () => {
 	const user = useData(ME);
 
 	const login = useCallback(() => {
-		window.location.href = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`;
+		window.location.href = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=repo`;
 	}, [])
 
 	useEffect(() => {

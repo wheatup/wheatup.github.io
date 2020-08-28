@@ -14,7 +14,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "sweetalert": "^2.1.2",
-    "wherehouse": "^1.0.3"
+    "wherehouse": "^1.0.3",
+    "whevent": "^2.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
