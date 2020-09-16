@@ -1,14 +1,14 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Wheen } from 'wheen';
-import { useFish, useGameLoop } from '../../hooks/game';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useFish, useStatus } from '../../hooks/game';
+import { useMemo } from 'react';
+import { useInterval } from '../../hooks/common';
 
 
-const Fish = ({ tier, point, id, onRemoveFish }) => {
+const Fish = ({ fishId, id, onRemoveFish }) => {
 	const [active, setActive] = useState(true);
 	const [coord, setCoord] = useState([Math.random() > 0.5 ? -0.5 : 1.5, Math.random(), 1, 1000]);
 
 	const move = useCallback(() => {
-		if (!active) return;
 		setCoord(([x, y]) => {
 			const dirX = Math.random() > x ? 1 : -1;
 			const dirY = Math.random() > y ? 1 : -1;
@@ -20,31 +20,35 @@ const Fish = ({ tier, point, id, onRemoveFish }) => {
 
 			return [_x, _y, dirX, duration];
 		});
+	}, [setCoord]);
 
-		setTimeout(move, 3000 + Math.random() * 3000)
-	}, [active])
-
+	useInterval(move, () => 3000 + Math.random() * 3000, () => !active);
 	useEffect(() => {
-		move();
+		setTimeout(move, 50);
 	}, []);
 
 	const [fish, addFish] = useFish();
+	const status = useStatus();
+
+	const score = useMemo(() => {
+		return status.fishScores[fishId];
+	}, [status]);
 
 	const onClickFish = useCallback(() => {
-		if(!active) return;
+		if (!active) return;
 
 		setActive(false);
 		setCoord(([x, y]) => [x, y, 1, 1]);
-		addFish(point);
+		addFish(score);
 		setTimeout(() => {
 			onRemoveFish(id);
-		}, 2000);
-	}, [active]);
+		}, 1000);
+	}, [active, score]);
 
 	return (
 		<div className={`Fish${active ? '' : ' dead'}`} id={`fish-${id}`} onClick={onClickFish} style={{ '--x': coord[0], '--y': coord[1], '--dir': coord[2], '--duration': coord[3] }}>
-			<img src={`/images/moyu/fish-${tier + 1}.svg`} />
-			<span class="fish-score">{point}</span>
+			<img src={`/images/moyu/fish-${fishId}.svg`} />
+			<span className="fish-score">{score}</span>
 		</div>
 	);
 }

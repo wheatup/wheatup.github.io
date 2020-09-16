@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useData } from 'wherehouse';
 import { useFish, useSpawnFish, useStatus, useUpgrades } from '../hooks/game';
 import Fish from './FishTank/Fish';
+import whevent from 'whevent';
 
 let ID = 0;
 const FishTank = props => {
@@ -16,14 +17,18 @@ const FishTank = props => {
 	const spawnFish = useCallback(fishId => {
 		++ID;
 		setFishList(list => {
-			if (list.length > fishTankSize) {
+			if (list.length >= fishTankSize) {
 				return list;
 			}
-			return [...list, { id: ID, tier: fishId, point: fishScores[fishId] }];
+			return [...list, { id: ID, fishId }];
 		})
 	}, [setFishList, status]);
 
 	useSpawnFish(spawnFish);
+
+	useEffect(() => {
+		whevent.emit('FISH_LIST', fishList);
+	}, [fishList]);
 
 	return (
 		<div className="FishTank">{fishList.map(fish => (
