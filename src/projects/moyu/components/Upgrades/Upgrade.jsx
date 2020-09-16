@@ -1,12 +1,16 @@
 import React, { useEffect, useMemo } from 'react';
 import { useFish } from '../../hooks/game';
 
-const Upgrade = ({ title, desc, level = 0, locked, icon, requirements }) => {
+const Upgrade = ({ title, desc, level = 0, locked, hidden, icon, requirements }) => {
 	const [fish] = useFish();
 
 	const price = useMemo(() => requirements[level + 1], [requirements, level]);
 
 	const affordable = useMemo(() =>  price < fish, [price, fish]);
+
+	if(hidden) {
+		return null;
+	}
 
 	return (
 		<a href="javascript: void(0)" className={`Upgrade${affordable ? '' : ' ins'}${locked ? ' locked' : ''}`}>

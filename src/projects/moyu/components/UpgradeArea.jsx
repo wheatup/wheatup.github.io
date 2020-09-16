@@ -7,8 +7,8 @@ const UpgradeArea = props => {
 
 	return (
 		<div className="UpgradeArea">
-			<div class="upgrade-list">{upgrades.map(upgrade => (
-				<Upgrade key={`upgrade-${upgrade.id}`} {...upgrade} />
+			<div class="upgrade-list">{Object.entries(upgrades.fish).map(([name, upgrade]) => (
+				<Upgrade key={`upgrade-${name}`} {...upgrade} />
 			))}</div>
 		</div>
 	);

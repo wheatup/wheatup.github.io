@@ -1,25 +1,25 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useData } from 'wherehouse';
-import { FISH_STATUS } from '../../../utils/store';
-import { useFish, useSpawnFish } from '../hooks/game';
+import { useFish, useSpawnFish, useStatus, useUpgrades } from '../hooks/game';
 import Fish from './FishTank/Fish';
 
 let ID = 0;
 const FishTank = props => {
 	const [fishList, setFishList] = useState([]);
-	const status = useData(FISH_STATUS);
+	const status = useStatus();
+	const { fishTankSize, fishScores } = status;
 
 	const onRemoveFish = useCallback(id => {
 		setFishList(list => list.filter(fish => fish.id !== id));
 	}, [setFishList, fishList]);
 
-	const spawnFish = useCallback(tier => {
+	const spawnFish = useCallback(fishId => {
 		++ID;
 		setFishList(list => {
-			if (list.length > status.maxFish) {
+			if (list.length > fishTankSize) {
 				return list;
 			}
-			return [...list, { id: ID, tier, point: (status.tierScores[tier] || 1) * (status.tierMultipliers[tier] || 1)}];
+			return [...list, { id: ID, tier: fishId, point: fishScores[fishId] }];
 		})
 	}, [setFishList, status]);
 
