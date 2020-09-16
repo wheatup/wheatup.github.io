@@ -6,7 +6,6 @@
 	user-select: none;
 
 	.top-area {
-		background-color: steelblue;
 		flex: 0 1 50rem;
 		position: relative;
 		max-height: 50%;
@@ -24,6 +23,7 @@
 				display: flex;
 				align-items: center;
 				padding: 1rem 2rem;
+				text-shadow: 0px 3px 0px rgba(0, 0, 0, 0.5);
 
 				i {
 					margin-right: 1rem;
@@ -32,12 +32,16 @@
 		}
 
 		.FishTank {
+			--clr1: steelblue;
+			--clr2: #529ad6;
+			background-image: repeating-linear-gradient(to bottom, var(--clr1) 0rem, var(--clr1) 1rem, var(--clr2) 1rem, var(--clr2) 2rem) ;
 			position: absolute;
 			overflow: hidden;
 			top: 0;
 			left: 0;
 			width: 100%;
 			height: 100%;
+			border: $moyuBorder;
 
 			.Fish {
 				--x: 0;
@@ -51,6 +55,8 @@
 				width: 16rem;
 				height: 9rem;
 				color: $clrTheme1;
+
+				filter: drop-shadow(0px 6px 0px rgba(0, 0, 0, 0.4));
 
 				left: calc(var(--x) * 100% - var(--x) * 16rem);
 				top: calc(var(--y) * 100% - var(--y) * 9rem);
@@ -104,6 +110,140 @@
 	}
 
 	.UpgradeArea {
+		border: $moyuBorder;
+		height: 100%;
+		position: relative;
+
+		.upgrade-list {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			overflow-x: hidden;
+			overflow-y: auto;
+			padding: 1rem;
+
+			.Upgrade {
+				color: inherit;
+				background-color: #ceff98;
+				display: grid;
+				padding: 1rem;
+				border-radius: 0.5rem;
+				border: $moyuBorder;
+
+				grid-template-areas:
+					'icon title'
+					'icon level';
+
+				grid-template-columns: min-content 1fr;
+				gap: 1rem;
+				position: relative;
+
+				&.ins, &.locked {
+					cursor: not-allowed;
+					filter: saturate(0) brightness(0.75);
+				}
+
+				&.locked {
+					&::after {
+						content: '\e906';
+						font-family: icomoon;
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						color: rgba(0, 0, 0, 0.6);
+						font-size: 4rem;
+						background-color: rgba(255, 255, 255, 0.5);
+					}
+				}
+
+				&:not(:first-child) {
+					margin-top: 1rem;
+				}
+
+				.icon-area {
+					grid-area: icon;
+					font-size: 2.4rem;
+					place-self: center;
+
+					& > * {
+						border-radius: 3rem;
+						display: flex;
+						width: 4rem;
+						height: 4rem;
+						background-color: #888;
+						align-items: center;
+						justify-content: center;
+						color: #ceff98;
+						border: $moyuBorder;
+						font-family: Verdana, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+					}
+
+					i {
+						font-size: 0.9em;
+					}
+				}
+
+				.title-area {
+					display: flex;
+					align-items: center;
+					grid-area: title;
+
+					h2 {
+						flex: 0 1 10rem;
+					}
+
+					p {
+						margin-left: 1rem;
+					}
+
+					h3 {
+						i {
+							margin-right: 0.5rem;
+						}
+						margin-left: auto;
+					}
+				}
+
+				.level-area {
+					grid-area: level;
+					display: flex;
+					align-items: center;
+					height: 3rem;
+					position: relative;
+
+					h2 {
+						flex: 0 1 10rem;
+						font-size: 2rem;
+					}
+
+					figure {
+						display: grid;
+						flex: 1;
+						grid-template-columns: repeat(10, 1fr);
+						gap: 0.5rem;
+						height: 100%;
+						align-self: stretch;
+
+						span {
+							background-color: #ccc;
+							border-radius: 0.5rem;
+							border: $moyuBorder;
+
+							&.active {
+								background-color: #396;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
 

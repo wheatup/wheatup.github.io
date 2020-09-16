@@ -12,10 +12,13 @@ export const setup = () => init({
 
 	[FISH]: 0,
 	[FISH_STATUS]: {
-		maxFish: 20,
+		maxFish: 10,
 		spawnInterval: 1000,
-		spawnRate: [10, 5],
+		spawnRate: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
 		tierScores: [1, 3, 10, 20, 50, 100, 1000, 5000, 10000, 100000],
-		tierMultipliers: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		tierMultipliers: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+		upgrades: {
+			fish1: 1
+		}
 	}
 });
