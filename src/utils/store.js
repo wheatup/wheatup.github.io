@@ -10,7 +10,7 @@ export const setup = () => init({
 	[LOADING]: '',
 	[ME]: null,
 
-	[FISH]: 10000000,
+	[FISH]: 0,
 	[UPGRADES]: {
 		fish: {
 			fish1: 0,

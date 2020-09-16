@@ -113,12 +113,15 @@
 	.bottom-area {
 		flex: 1 0 auto;
 		position: relative;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.UpgradeArea {
 		border: $moyuBorder;
 		height: 100%;
 		position: relative;
+		flex: 1;
 
 		.upgrade-list {
 			position: absolute;
