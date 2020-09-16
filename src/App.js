@@ -10,6 +10,7 @@ import Home from './projects/home/Home';
 import { useMaxHeight } from './hooks/misc';
 import Forum from './projects/forum/components/Forum';
 import User from './components/common/User';
+import Moyu from './projects/moyu/Moyu';
 import { setup } from './utils/store';
 
 setup();
@@ -26,12 +27,14 @@ const App = () => {
 					<NavLink exact to="/">首页</NavLink>
 					<NavLink to="/forum">留言板</NavLink>
 					<NavLink to="/hexie">和谐加密器</NavLink>
+					<NavLink to="/moyu">摸鱼</NavLink>
 					<User />
 				</nav>
 				<main>
 					<Switch>
 						<Route path="/hexie" component={HexieEncoder} />
 						<Route path="/forum" component={Forum} />
+						<Route path="/moyu" component={Moyu} />
 						<Route path="/" component={Home} exact />
 					</Switch>
 				</main>
