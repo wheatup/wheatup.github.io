@@ -37,7 +37,7 @@ export const useSpawnFish = onSpawnFish => {
 	const { spawnInterval, spawnRate } = useData(FISH_STATUS);
 
 	const resetCooldown = useCallback(() => {
-		cooldown = spawnInterval;
+		cooldown = spawnInterval + (spawnInterval * (Math.random() - 0.5));
 	}, []);
 
 	const rates = useMemo(() => {

@@ -6,7 +6,7 @@ const InfoArea = props => {
 
 	return (
 		<div className="InfoArea">
-			<div>
+			<div className="fish-count">
 				<i className="icon-fish"></i>
 				<span>{fish}</span>
 			</div>

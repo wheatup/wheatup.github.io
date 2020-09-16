@@ -3,16 +3,32 @@
 	flex-direction: column;
 	background-color: #ccc;
 	height: 100%;
+	user-select: none;
 
 	.top-area {
 		background-color: steelblue;
 		flex: 0 1 50rem;
 		position: relative;
+		max-height: 50%;
 
 		.InfoArea {
 			position: absolute;
 			top: 0;
 			left: 0;
+			font-size: 3rem;
+			color: white;
+			pointer-events: none;
+			z-index: 1;
+
+			.fish-count {
+				display: flex;
+				align-items: center;
+				padding: 1rem 2rem;
+
+				i {
+					margin-right: 1rem;
+				}
+			}
 		}
 
 		.FishTank {
@@ -24,16 +40,59 @@
 			height: 100%;
 
 			.Fish {
+				--x: 0;
+				--y: 0;
+				--dir: 1;
+				--duration: 1000;
+
+				cursor: pointer;
 				position: absolute;
 				display: block;
-				width: 10rem;
-				height: 10rem;
+				width: 16rem;
+				height: 9rem;
+				color: $clrTheme1;
+
+				left: calc(var(--x) * 100% - var(--x) * 16rem);
+				top: calc(var(--y) * 100% - var(--y) * 9rem);
+				transform: scaleX(var(--dir));
+
+				transition-property: left, top;
+				transition-duration: calc(1000ms + var(--duration) * 1ms);
+
+				&.dead {
+					transform: scaleX(1);
+					pointer-events: none;
+
+					span {
+						display: flex;
+						animation: float 1s ease-out both;
+					}
+
+					img {
+						display: none;
+					}
+				}
 
 				img {
 					width: 100%;
 					height: 100%;
 					object-fit: contain;
 					object-position: center;
+				}
+
+				span {
+					display: flex;
+					position: absolute;
+					opacity: 0;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					align-items: center;
+					justify-content: center;
+					transition: all 1s;
+					font-size: 4rem;
+					font-weight: bold;
 				}
 			}
 		}
@@ -45,5 +104,22 @@
 	}
 
 	.UpgradeArea {
+	}
+}
+
+@keyframes float {
+	0% {
+		opacity: 0;
+		transform: translateY(0rem) scale(1);
+	}
+
+	1% {
+		opacity: 1;
+		transform: translateY(0rem);
+	}
+
+	100% {
+		transform: translateY(-15rem) scale(2);
+		opacity: 0;
 	}
 }
