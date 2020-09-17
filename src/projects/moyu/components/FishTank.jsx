@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useData } from 'wherehouse';
-import { useFish, useSpawnFish, useStatus, useUpgrades } from '../hooks/game';
+import { useSpawnFish, useStatus } from '../hooks/game';
 import Fish from './FishTank/Fish';
 import whevent from 'whevent';
 

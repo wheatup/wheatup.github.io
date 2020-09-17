@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useFish, useStatus } from '../../hooks/game';
 import { useMemo } from 'react';
 import { useInterval } from '../../hooks/common';
+import { numberer } from '../utils/utils';
 
 
 const Fish = ({ fishId, id, onRemoveFish }) => {
@@ -31,7 +32,7 @@ const Fish = ({ fishId, id, onRemoveFish }) => {
 	const status = useStatus();
 
 	const score = useMemo(() => {
-		return status.fishScores[fishId];
+		return Math.ceil(status.fishScores[fishId] * status.fishMultiplier);
 	}, [status]);
 
 	const onClickFish = useCallback(() => {
@@ -48,7 +49,7 @@ const Fish = ({ fishId, id, onRemoveFish }) => {
 	return (
 		<div className={`Fish${active ? '' : ' dead'}`} id={`fish-${id}`} onClick={onClickFish} style={{ '--x': coord[0], '--y': coord[1], '--dir': coord[2], '--duration': coord[3] }}>
 			<img src={`/images/moyu/fish-${fishId}.svg`} />
-			<span className="fish-score">{score}</span>
+			<span className="fish-score">{numberer(score)}</span>
 		</div>
 	);
 }

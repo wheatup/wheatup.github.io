@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useData } from 'wherehouse';
 import { ME } from '../../../utils/store';
 import UserAvatar from './UserAvatar';
-import { useMemo } from 'react';
 import Markdown from './Markdown';
 import { getTimeDiff } from '../utils/misc';
 import { useCallback } from 'react';
-import { useState } from 'react';
 
 
 const Comments = ({ comments }) => {
@@ -22,7 +20,7 @@ const Comments = ({ comments }) => {
 	};
 
 	const me = useData(ME);
-	const isMe = useCallback(user => me && me.id === user.id);
+	const isMe = useCallback(user => me && me.id === user.id, []);
 
 	return (
 		<div className="Comments">{comments.map(comment => (

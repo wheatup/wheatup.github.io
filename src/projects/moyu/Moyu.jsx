@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useTitle } from '../../hooks/misc';
 import FishTank from './components/FishTank';
 import InfoArea from './components/InfoArea';

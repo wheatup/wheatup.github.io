@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAuthentication } from '../../hooks/authentication';
 import { useCallback } from 'react';
 
-const User = props => {
+const User = () => {
 	const [user, login] = useAuthentication();
 
 	const onClickUser = useCallback(() => {

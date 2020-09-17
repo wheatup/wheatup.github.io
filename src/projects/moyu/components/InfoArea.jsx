@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useFish, useStatus } from '../hooks/game';
 import whevent from 'whevent';
-import {  } from 'react';
+import { numberer } from './utils/utils';
 
 const InfoArea = props => {
 	const [fish] = useFish();
@@ -11,7 +11,7 @@ const InfoArea = props => {
 	const onFishList = useCallback(list => {
 		setCurrentFish(list.length);
 	}, [setCurrentFish]);
-	
+
 
 	useEffect(() => {
 		whevent.on('FISH_LIST', onFishList);
@@ -24,7 +24,7 @@ const InfoArea = props => {
 		<div className="InfoArea">
 			<div className="fish-count">
 				<i className="icon-fish"></i>
-				<span>{fish}</span>
+				<span>{numberer(fish)}</span>
 			</div>
 			<div className="fish-amount">
 				{currentFish}/{fishTankSize}

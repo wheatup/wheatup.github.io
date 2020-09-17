@@ -4,6 +4,7 @@
 	background-color: #ccc;
 	height: 100%;
 	user-select: none;
+	font-family: 'Verdana', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 	.top-area {
 		flex: 0 1 50rem;
@@ -40,7 +41,7 @@
 		.FishTank {
 			--clr1: steelblue;
 			--clr2: #529ad6;
-			background-image: repeating-linear-gradient(to bottom, var(--clr1) 0rem, var(--clr1) 1rem, var(--clr2) 1rem, var(--clr2) 2rem);
+			background-image: repeating-linear-gradient(to bottom, var(--clr1) 0rem, var(--clr1) 3rem, var(--clr2) 3rem, var(--clr2) 6rem);
 			position: absolute;
 			overflow: hidden;
 			top: 0;
@@ -122,6 +123,36 @@
 		height: 100%;
 		position: relative;
 		flex: 1;
+
+		.category-list {
+			position: absolute;
+			top: 0;
+			left: 0;
+			transform: translateY(calc(-100% + 1px));
+			display: flex;
+			margin-left: -3px;
+
+			.CategoryTag {
+				display: block;
+				padding: 1rem 2rem;
+				padding-right: 3rem;
+				border: solid 3px #8E8E8E;
+				color: inherit;
+				background-color: #aaa;
+				font-size: 2rem;
+				border-top-right-radius: 3rem;
+				border-top-left-radius: 1rem;
+
+				&:not(:first-child) {
+					margin-left: -3px;
+				}
+
+				&.current {
+					background-color: #ccc;
+					border-bottom: solid 4px #ccc;
+				}
+			}
+		}
 
 		.upgrade-list {
 			position: absolute;
@@ -249,6 +280,33 @@
 							&.active {
 								background-color: #396;
 							}
+						}
+					}
+
+					h4 {
+						flex: 0 1 10rem;
+						text-align: right;
+
+						.effect {
+							&>* {
+								display: flex;
+								justify-content: flex-end;
+								align-items: center;
+
+								i {
+									flex: 0 1 2rem;
+									margin-right: 0.5rem;
+								}
+
+								span {
+									flex: 0 1 5rem;
+									text-align: left;
+								}
+							}
+						}
+
+						&.preview {
+							color: #396;
 						}
 					}
 				}
