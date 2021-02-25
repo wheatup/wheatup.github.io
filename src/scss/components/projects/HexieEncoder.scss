@@ -21,8 +21,8 @@
 		max-width: 100%;
 		width: 60rem;
 
-		color: #333;
-		background-color: #eee;
+		color: var(--clrText);
+		background-color: var(--clrBg1);
 		box-shadow: 0px 0.5rem 0px inset rgba(0, 0, 0, 0.15);
 		border: none;
 		border-radius: 0.2rem;

@@ -15,7 +15,6 @@ html {
 		font-size: 1.6vw;
 	}
 
-	background-color: $clrBg2;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	overflow: hidden;
 
@@ -35,7 +34,7 @@ html {
 }
 
 a {
-	color: $clrTheme1;
+	color: var(--clrTheme1);
 	transition: all .2s;
 
 
@@ -46,7 +45,7 @@ a {
 	}
 
 	&:hover {
-		color: #ffd724;
+		color: var(--clrTheme1);
 	}
 }
 

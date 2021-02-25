@@ -17,7 +17,7 @@
     "sweetalert": "^2.1.2",
     "wherehouse": "^1.0.3",
     "whevent": "^2.1.1",
-    "whi18n": "^1.1.0"
+    "whi18n": "^1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,14 +1,14 @@
 .App {
-	color: $clrText;
+	color: var(--clrText);
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
-	--maxWidth: 128rem;
+	background-color: var(--clrBg2);
 
 	nav {
-		background-color: $clrBg1;
+		background-color: var(--clrBg3);
 		padding: 1rem calc((100vw - var(--maxWidth)) / 2 + 1rem);
 		align-items: center;
 		display: flex;
@@ -22,11 +22,11 @@
 			&:not(.logo) {
 				display: flex;
 				align-items: center;
-				color: $clrTitle;
+				color: var(--clrTitle);
 				padding: 1rem;
 
 				&:hover {
-					background-color: $clrTheme2;
+					background-color: var(--clrTheme2);
 					color: white;
 				}
 			}
@@ -42,8 +42,8 @@
 			}
 
 			&.active {
-				background-color: $clrTheme1;
-				color: $clrBg1;
+				background-color: var(--clrTheme1);
+				color: var(--clrBg3);
 			}
 
 			&.LanguageSwitcher {
@@ -104,11 +104,11 @@
 	}
 
 	footer {
-		background-color: $clrBg1;
+		background-color: var(--clrBg3);
 		padding: 1rem calc((100vw - var(--maxWidth)) / 2);
 		align-items: center;
 		display: flex;
 		justify-content: center;
-		color: #aaa;
+		color: var(--clrSub);
 	}
 }

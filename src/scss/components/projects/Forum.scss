@@ -1,17 +1,19 @@
 .Forum {
-	max-width: 72rem;
+	max-width: 90rem;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
 	height: 100%;
 	overflow: hidden;
 	position: relative;
+	color: var(--clrBg2);
 
 	.PostList {
 		padding: 1rem;
 		display: flex;
 		flex-direction: column;
 		flex: 1;
+		background-color: var(--clrBg1);
 
 		.list-wrapper {
 			flex: 1;
@@ -27,10 +29,10 @@
 
 				.PostEntry {
 					display: flex;
-					background-color: #ccc;
+					background-color: var(--clrLight);
 					padding: 1rem;
 					padding-right: 2rem;
-					color: $clrText;
+					color: var(--clrBg1);
 					border-radius: 0.5rem;
 					align-items: center;
 					box-shadow: 0px 2px 0 rgba(0, 0, 0, 0.3);
@@ -42,8 +44,8 @@
 					&:hover {
 						transform: translateY(calc(-0.5rem + 2px));
 						box-shadow: 0px 0.5rem 0 rgba(175, 139, 10, 0.8);
-						background-color: $clrTheme1;
-						color: #694000;
+						background-color: var(--clrTheme1);
+						color: var(--clrBg3);
 
 						.UserAvatar {
 							h2 {
@@ -59,14 +61,21 @@
 							font-weight: normal;
 							font-size: 1.8rem;
 							margin-bottom: 0.5rem;
+
+							p {
+								display: -webkit-box;
+								line-clamp: 2;
+								-webkit-line-clamp: 2;
+								box-orient: vertical;
+								-webkit-box-orient: vertical;
+								text-overflow: ellipsis;
+								overflow: hidden;
+							}
 						}
 
 						.create {
 							font-size: 1.4rem;
 							opacity: 0.6;
-							&::before {
-								content: '发布于 ';
-							}
 						}
 					}
 
@@ -95,6 +104,7 @@
 		flex-direction: column;
 		flex: 1;
 		padding: 1rem;
+		background-color: var(--clrBg1);
 
 		.post-area {
 			flex: 1;
@@ -109,7 +119,7 @@
 				overflow-x: hidden;
 
 				.PostBody {
-					background-color: #f3f3f3;
+					background-color: var(--clrLight);
 					padding: 1.6rem;
 					border-radius: 0.5rem;
 					filter: drop-shadow(0rem 2px 0px rgba(0, 0, 0, 0.2));
@@ -133,10 +143,6 @@
 								time {
 									opacity: 0.5;
 									font-size: 1.4rem;
-
-									&::before {
-										content: '发布于 ';
-									}
 								}
 							}
 
@@ -165,6 +171,7 @@
 							opacity: 0.5;
 							margin-left: 10rem;
 							margin-top: 2rem;
+							color: var(--clrLight);
 
 							&.me {
 								text-align: right;
@@ -175,34 +182,24 @@
 							display: flex;
 							align-items: flex-start;
 							position: relative;
+							padding: 1rem;
 
-							& > * {
-								margin: 1rem;
+							&>* {
+								&:not(:first-child) {
+									margin-left: 1rem;
+								}
 							}
 
 							.UserAvatar {
 							}
 
 							.content {
-								background-color: #f3f3f3;
+								background-color: var(--clrText);
 								padding: 1.6rem;
 								border-radius: 0.5rem;
 								max-width: calc(100% - 18.8rem);
 								position: relative;
 								filter: drop-shadow(0rem 2px 0px rgba(0, 0, 0, 0.2));
-
-								&::before {
-									content: '';
-									display: block;
-									width: 2rem;
-									height: 2rem;
-									position: absolute;
-									top: 1rem;
-									left: -1rem;
-									background-color: inherit;
-									transform: scaleY(0.5) rotate(45deg);
-									clip-path: polygon(0 0, 100% 100%, 0 100%);
-								}
 							}
 
 							&.me {
@@ -273,12 +270,12 @@
 		border-radius: 0.5rem;
 		box-shadow: 0px 0.5rem 0px inset rgba(0, 0, 0, 0.15);
 		margin-top: -2px;
-		color: $clrText;
+		color: var(--clrText);
 	}
 }
 
 .UserAvatar {
-	width: 6.4rem;
+	flex: 0 0 6.4rem;
 	height: 6.4rem;
 	position: relative;
 	border-radius: 0.5rem;

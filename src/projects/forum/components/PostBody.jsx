@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import UserAvatar from './UserAvatar';
 import { getTimeDiff } from '../utils/misc';
 import Markdown from './Markdown';
+import $$ from 'whi18n';
 
 const PostBody = ({ post }) => {
 	const { user, title, body, created_at } = post || {};

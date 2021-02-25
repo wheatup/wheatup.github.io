@@ -1,6 +1,14 @@
-$clrTheme1: #ffcb3d;
-$clrTheme2: #5577d4;
-$clrText: #666;
-$clrTitle: #fff;
-$clrBg1: #444;
-$clrBg2: #ddd;
+:root {
+	--clrTheme1: #ffcb3d;
+	--clrTheme2: #5577d4;
+	--clrText: #eee;
+	--clrTitle: #fff;
+	--clrLight: #ccc;
+	--clrSub: #999;
+
+	--clrBg1: #666;
+	--clrBg2: #444;
+	--clrBg3: #333;
+
+	--maxWidth: 128rem;
+}
