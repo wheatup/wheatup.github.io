@@ -17,6 +17,7 @@
 			border-radius: 0.5rem;
 			transition: all 0.2s;
 			margin: 0 0.5rem;
+			text-transform: uppercase;
 
 			&:not(.logo) {
 				display: flex;
@@ -43,6 +44,26 @@
 			&.active {
 				background-color: $clrTheme1;
 				color: $clrBg1;
+			}
+
+			&.LanguageSwitcher {
+				width: 2.4rem;
+				height: 2.4rem;
+				position: relative;
+				padding: 0;
+				margin-left: 1rem;
+
+				&:hover {
+					background-color: transparent;
+				}
+
+				img {
+					display: block;
+					width: 100%;
+					height: 100%;
+					object-fit: contain;
+					object-position: center;
+				}
 			}
 
 			&.User {

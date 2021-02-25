@@ -3,15 +3,22 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import './scss/style.scss';
-import { init } from './store';
+import { setup as initStore } from './utils/store';
+import { init as initI18n } from 'whi18n';
+import http from "./utils/http";
 
-init();
+(async () => {
+	initStore();
+	await initI18n(window.localStorage.getItem('lang') || 'zh-CN', async lang => (await http.get(`/i18n/${lang}.json`)).data);
 
-ReactDOM.render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>,
-	document.getElementById('root')
-);
+	ReactDOM.render(
+		<React.StrictMode>
+			<App />
+		</React.StrictMode>,
+		document.getElementById('root')
+	);
+	serviceWorker.unregister();
+})();
 
-serviceWorker.unregister();
+
+

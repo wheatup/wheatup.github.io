@@ -3,6 +3,7 @@ import http from "../utils/http";
 import swal from "sweetalert";
 import { ME } from "../utils/store";
 import { setData, useData } from "wherehouse";
+import $$ from 'whi18n';
 
 
 // develop
@@ -25,6 +26,7 @@ export const useAuthentication = () => {
 		const code = /code=(\w+)/[Symbol.match](window.location.href);
 		if (code && code[1]) {
 			// TODO: use a better way to handle cors requests
+			// http.post('https://github.com/login/oauth/access_token', {
 			http.post('https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token', {
 				client_id: CLIENT_ID,
 				client_secret: CLIENT_SECRET,
@@ -38,7 +40,7 @@ export const useAuthentication = () => {
 					}
 				}
 			}).catch(ex => {
-				swal("授权失败", "登录失败，请重试！", "error");
+				swal($$`auth.auth-failed`, $$`auth.auth-failed-detail`, "error");
 				console.error(ex);
 			})
 		} else if (!user) {
@@ -53,7 +55,7 @@ export const useAuthentication = () => {
 						setData(ME, e.data);
 					}
 				}).catch(ex => {
-					swal("授权失败", "登录已过期，请重新登录！", "error");
+					swal($$`auth.auth-failed`, $$`auth.auth-expired-detail`, "error");
 					console.error(ex);
 					window.localStorage.removeItem('token');
 				})

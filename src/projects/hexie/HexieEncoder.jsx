@@ -3,9 +3,10 @@ import Button from '../../components/common/Button';
 import { encode, decode } from 'hexie-encode';
 import { useHistory } from 'react-router-dom';
 import { useTitle } from '../../hooks/misc';
+import $$ from 'whi18n';
 
 const HexieEncoder = ({ location }) => {
-	useTitle('和谐加密器');
+	useTitle($$`hexie-encoder`);
 
 	const [input, setInput] = useState('');
 	const [customDict, setCustomDict] = useState('');
@@ -35,24 +36,29 @@ const HexieEncoder = ({ location }) => {
 		history.replace(location.pathname + '?act=decode' + (customDict ? `&dict=${encodeURI(customDict)}` : '') + (input ? `&txt=${encodeURI(input)}` : ''));
 	}, [input, customDict, history, location]);
 
-	const doEncode = useCallback((txt, dict) => {
-		try {
-			const result = dict && dict.length > 2 ? encode(txt, dict) : encode(txt);
-			setOutput(result);
-		} catch (ex) {
-			setOutput('');
-		}
-	}, [setOutput]);
+	const doEncode = useCallback(
+		(txt, dict) => {
+			try {
+				const result = dict && dict.length > 2 ? encode(txt, dict) : encode(txt);
+				setOutput(result);
+			} catch (ex) {
+				setOutput('');
+			}
+		},
+		[setOutput]
+	);
 
-	const doDecode = useCallback((txt, dict) => {
-		try {
-			const result = dict && dict.length > 2 ? decode(txt, dict) : decode(txt);
-			setOutput(result);
-		} catch (ex) {
-			setOutput('');
-		}
-	}, [setOutput]);
-
+	const doDecode = useCallback(
+		(txt, dict) => {
+			try {
+				const result = dict && dict.length > 2 ? decode(txt, dict) : decode(txt);
+				setOutput(result);
+			} catch (ex) {
+				setOutput('');
+			}
+		},
+		[setOutput]
+	);
 
 	useEffect(() => {
 		if (txt) {
@@ -75,7 +81,7 @@ const HexieEncoder = ({ location }) => {
 	const onClickOutput = useCallback(() => {
 		outputComp.current.select();
 		outputComp.current.setSelectionRange(0, 999999);
-		document.execCommand("copy");
+		document.execCommand('copy');
 		setCopied(true);
 
 		setTimeout(() => setCopied(false), 700);
@@ -84,27 +90,37 @@ const HexieEncoder = ({ location }) => {
 	const onFocusInput = useCallback(() => {
 		inputComp.current.select();
 		inputComp.current.setSelectionRange(0, 999999);
-	}, [inputComp])
+	}, [inputComp]);
 
 	return (
 		<div className="HexieEncoder">
-			<h1>和谐加密器</h1>
-			<textarea onChange={({ target: { value } }) => {
-				setOutput('');
-				setInput(value);
-			}} value={input} ref={inputComp} onFocus={onFocusInput}></textarea>
+			<h1>{$$`hexie-encoder`}</h1>
+			<textarea
+				onChange={({ target: { value } }) => {
+					setOutput('');
+					setInput(value);
+				}}
+				value={input}
+				ref={inputComp}
+				onFocus={onFocusInput}
+			></textarea>
 			<div className="button-area">
-				<Button onClick={onClickEncode}>加密</Button>
-				<Button onClick={onClickDecode}>解密</Button>
+				<Button onClick={onClickEncode}>{$$`hexie.encode`}</Button>
+				<Button onClick={onClickDecode}>{$$`hexie.decode`}</Button>
 			</div>
-			<textarea value={copied ? '已复制' : output} readOnly={true} onClick={onClickOutput} ref={outputComp}></textarea>
-			<h2>自定义字典</h2>
-			<input type="text" placeholder="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善" onChange={({ target: { value } }) => {
-				setOutput('');
-				setCustomDict(value);
-			}} value={customDict} />
+			<textarea value={copied ? $$`hexie.copied` : output} readOnly={true} onClick={onClickOutput} ref={outputComp}></textarea>
+			<h2>{$$`hexie.custom-dict`}</h2>
+			<input
+				type="text"
+				placeholder="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善"
+				onChange={({ target: { value } }) => {
+					setOutput('');
+					setCustomDict(value);
+				}}
+				value={customDict}
+			/>
 		</div>
 	);
-}
+};
 
 export default HexieEncoder;

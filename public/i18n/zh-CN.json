@@ -1,0 +1,21 @@
+{
+	"version": 1,
+	"texts": {
+		"wip": "施工中，请稍后再来",
+		"switch-language": "Switch to English",
+		"home": "首页",
+		"forum": "留言板",
+		"hexie-encoder": "和谐加密器",
+		"hexie": {
+			"encode": "加密",
+			"decode": "解密",
+			"copied": "已复制！",
+			"custom-dict": "自定义字典"
+		},
+		"auth": {
+			"auth-failed": "授权失败",
+			"auth-failed-detail": "授权失败，请重试",
+			"auth-expired-detail": "登录已过期，请重新登录！"
+		}
+	}
+}

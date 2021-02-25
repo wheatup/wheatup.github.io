@@ -10,22 +10,20 @@ import Home from './projects/home/Home';
 import { useMaxHeight } from './hooks/misc';
 import Forum from './projects/forum/components/Forum';
 import User from './components/common/User';
-import { setup } from './utils/store';
-
-setup();
+import LanguageSwitcher from './components/LanguageSwitcher';
+import whi18n from 'whi18n';
 
 const App = () => {
-
 	useMaxHeight();
-
 	return (
 		<Router>
 			<div className="App">
 				<nav>
 					<NavLink exact to="/" className="logo"></NavLink>
-					<NavLink exact to="/">首页</NavLink>
-					<NavLink to="/forum">留言板</NavLink>
-					<NavLink to="/hexie">和谐加密器</NavLink>
+					<NavLink exact to="/">{whi18n`home`}</NavLink>
+					<NavLink to="/forum">{whi18n`forum`}</NavLink>
+					<NavLink to="/hexie">{whi18n`hexie-encoder`}</NavLink>
+					<LanguageSwitcher />
 					<User />
 				</nav>
 				<main>
