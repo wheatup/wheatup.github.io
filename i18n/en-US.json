@@ -1,0 +1,21 @@
+{
+	"version": 1,
+	"texts": {
+		"wip": "WIP, please come again later!",
+		"switch-language": "切换至中文",
+		"home": "Home",
+		"forum": "Forum",
+		"hexie-encoder": "Hexie Encoder",
+		"hexie": {
+			"encode": "Encode",
+			"decode": "Decode",
+			"copied": "Copied!",
+			"custom-dict": "Custom Dictionary"
+		},
+		"auth": {
+			"auth-failed": "Authorization Failed!",
+			"auth-failed-detail": "Authorization has failed, please try again!",
+			"auth-expired-detail": "Authrizaition has expired, please try again!"
+		}
+	}
+}
