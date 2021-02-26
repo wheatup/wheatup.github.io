@@ -179,11 +179,7 @@
 							position: relative;
 							padding: 1rem;
 
-							&>* {
-								&:not(:first-child) {
-									margin-left: 1rem;
-								}
-							}
+							
 
 							.UserAvatar {
 							}
@@ -197,7 +193,21 @@
 								filter: drop-shadow(0rem 2px 0px rgba(0, 0, 0, 0.2));
 							}
 
+							&:not(.me) {
+								&>* {
+									&:not(:first-child) {
+										margin-left: 1rem;
+									}
+								}
+							}
+
 							&.me {
+								&>* {
+									&:not(:last-child) {
+										margin-left: 1rem;
+									}
+								}
+
 								justify-content: flex-end;
 								.content {
 									order: -1;
@@ -261,6 +271,7 @@
 	border-radius: 0.5rem;
 	overflow: hidden;
 	cursor: pointer;
+	border: var(--border);
 
 	&:hover {
 		filter: brightness(1.2);
