@@ -3,7 +3,7 @@ import { usePostList, usePostThread } from '../hooks/post';
 import PostEntry from './PostEntry';
 import ChatInput from './ChatInput';
 import { useCallback } from 'react';
-import swal from 'sweetalert';
+import swal from 'sweetalert2';
 import whevent from 'whevent';
 
 const PostList = props => {

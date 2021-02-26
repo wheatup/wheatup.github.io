@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import http from "../utils/http";
-import swal from "sweetalert";
+import swal from "sweetalert2";
 import { ME } from "../utils/store";
 import { setData, useData } from "wherehouse";
 import $$ from 'whi18n';
@@ -40,7 +40,19 @@ export const useAuthentication = () => {
 					}
 				}
 			}).catch(ex => {
-				swal($$`auth.auth-failed`, $$`auth.auth-failed-detail`, "error");
+				swal.fire({
+					title: $$`auth.auth-failed`,
+					html: $$`auth.auth-failed-detail`,
+					icon: 'error',
+					confirmButtonText: $$`auth.grant-auth`,
+					cancelButtonText: $$`auth.cancel`,
+					showCloseButton: true,
+					showCancelButton: true
+				}).then((result) => {
+					if (result.isConfirmed) {
+						window.open('https://cors-anywhere.herokuapp.com/');
+					}
+				});
 				console.error(ex);
 			})
 		} else if (!user) {
@@ -55,7 +67,7 @@ export const useAuthentication = () => {
 						setData(ME, e.data);
 					}
 				}).catch(ex => {
-					swal($$`auth.auth-failed`, $$`auth.auth-expired-detail`, "error");
+					swal.fire($$`auth.auth-failed`, $$`auth.auth-expired-detail`, "error");
 					console.error(ex);
 					window.localStorage.removeItem('token');
 				})

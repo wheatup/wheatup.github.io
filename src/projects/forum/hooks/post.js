@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { getPosts, getPost, getComments, postThread, replyThread } from "../services/post";
-import swal from "sweetalert";
+import swal from "sweetalert2";
 import whevent from "whevent";
 import $$ from 'whi18n';
 
@@ -47,14 +47,14 @@ export const usePostDetail = id => {
 export const usePostThread = () => {
 	const post = useCallback((title, body) => {
 		if (!title) {
-			swal($$`error`, $$`please-enter-title`, 'error');
+			swal.fire($$`error`, $$`please-enter-title`, 'error');
 			return;
 		}
 
 		postThread(title, body).then(e => {
 			whevent.emit('REFRESH_POSTS');
 		}).catch(ex => {
-			swal($$`post-failed`, $$`post-failed-try-again`, "error");
+			swal.fire($$`post-failed`, $$`post-failed-try-again`, "error");
 			console.error(ex);
 		})
 	}, []);
@@ -65,14 +65,14 @@ export const usePostThread = () => {
 export const useReplyThread = id => {
 	const post = useCallback(body => {
 		if (!body || !body.trim()) {
-			swal($$`error`, $$`Please enter the comment!`, 'error');
+			swal.fire($$`error`, $$`Please enter the comment!`, 'error');
 			return;
 		}
 
 		replyThread(id, body).then(e => {
 			whevent.emit('REFRESH_COMMENTS');
 		}).catch(ex => {
-			swal($$`post-failed`, $$`post-failed-try-again`, "error");
+			swal.fire($$`post-failed`, $$`post-failed-try-again`, "error");
 			console.error(ex);
 		})
 	}, [id]);

@@ -19,8 +19,10 @@
 		},
 		"auth": {
 			"auth-failed": "授权失败",
-			"auth-failed-detail": "授权失败，请重试",
-			"auth-expired-detail": "登录已过期，请重新登录！"
+			"auth-failed-detail": "<p>授权失败，本网站需要<a target=\"_blank\" href=\"https://cors-anywhere.herokuapp.com/\">cors-anywhere</a>的支持，请点击\"获取权限\"跳转并获取权限。</p>",
+			"auth-expired-detail": "登录已过期，请重新登录！",
+			"grant-auth": "获取权限",
+			"cancel": "取消"
 		},
 		"posted": "发布于 ",
 		"time-diff": {

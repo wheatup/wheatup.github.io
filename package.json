@@ -14,7 +14,7 @@
     "react-markdown": "^4.3.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "sweetalert": "^2.1.2",
+    "sweetalert2": "^10.15.5",
     "wherehouse": "^1.0.3",
     "whevent": "^2.1.1",
     "whi18n": "^1.1.1"
