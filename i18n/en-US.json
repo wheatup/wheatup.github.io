@@ -19,8 +19,10 @@
 		},
 		"auth": {
 			"auth-failed": "Authorization Failed!",
-			"auth-failed-detail": "Authorization has failed, please try again!",
-			"auth-expired-detail": "Authrizaition has expired, please try again!"
+			"auth-failed-detail": "<p>Authorization has failed, this website requires authentication from <a target=\"_blank\" href=\"https://cors-anywhere.herokuapp.com/\">cors-anywhere</a>. Click \"Grant Authentication\" to redirect and grant authentication!</p>",
+			"auth-expired-detail": "Authrizaition has expired, please try again!",
+			"grant-auth": "Grant Authentication",
+			"cancel": "Cancel"
 		},
 		"posted": "posted ",
 		"time-diff": {
