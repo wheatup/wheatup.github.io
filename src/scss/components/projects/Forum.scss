@@ -117,7 +117,7 @@
 					background-color: var(--clrBg3);
 					padding: 1.6rem;
 					border-radius: 0.5rem;
-					filter: drop-shadow(0rem 2px 0px rgba(0, 0, 0, 0.2));
+					border: var(--border);
 
 					.wrapper {
 						.title-area {
@@ -190,7 +190,7 @@
 								border-radius: 0.5rem;
 								max-width: calc(100% - 18.8rem);
 								position: relative;
-								filter: drop-shadow(0rem 2px 0px rgba(0, 0, 0, 0.2));
+								border: var(--border);
 							}
 
 							&:not(.me) {
