@@ -1,3 +1,18 @@
+@font-face {
+	font-family: 'Noto Sans NC';
+	src: url('/fonts/Noto_Sans_SC/NotoSansSC-Regular.otf') format('opentype'), 
+		// url('/fonts/Noto_Sans_SC/NotoSansSC-Medium.otf') format('opentype'), 
+		url('/fonts/Noto_Sans_SC/NotoSansSC-Thin.otf') format('opentype'), 
+		// url('/fonts/Noto_Sans_SC/NotoSansSC-Light.otf') format('opentype'), 
+		url('/fonts/Noto_Sans_SC/NotoSansSC-Bold.otf') format('opentype');
+		// url('/fonts/Noto_Sans_SC/NotoSansSC-Black.otf') format('opentype');
+}
+
+// @font-face {
+// 	font-family: 'XiaoWei';
+// 	src: url('/fonts/ZCOOL_XiaoWei/ZCOOLXiaoWei-Regular.ttf') format('truetype');
+// }
+
 *,
 *::before,
 *::after {
@@ -11,11 +26,11 @@ html {
 	box-sizing: border-box;
 	font-size: 62.5%;
 
-	@media only screen and (max-width: 640px) {
-		font-size: 1.6vw;
+	@media only screen and (max-width: 632px) {
+		font-size: 50%;
 	}
 
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-family: 'Trebuchet MS', 'Noto Sans NC', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 	overflow: hidden;
 
 	body {
@@ -68,5 +83,17 @@ textarea {
 
 	&::placeholder {
 		color: var(--clrSub);
+	}
+}
+
+.pc-only {
+	@media only screen and (max-width: 632px) {
+		display: none !important;
+	}
+}
+
+.phone-only {
+	@media only screen and (min-width: 632.1px) {
+		display: none !important;
 	}
 }

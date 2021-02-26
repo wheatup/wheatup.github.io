@@ -14,12 +14,29 @@
 		align-items: center;
 		display: flex;
 
+		&>* {
+			margin-left: 1rem;
+
+			&:last-child {
+				margin-right: 1rem;
+			}
+		}
+
+		.nav-links {
+			display: flex;
+			overflow-x: auto;
+			margin-right: auto;
+		}
+
 		a {
+			&:not(:first-child) {
+				margin-left: 1rem;
+			}
 			color: inherit;
 			border-radius: 0.5rem;
 			transition: all 0.2s;
-			margin: 0 0.5rem;
 			text-transform: uppercase;
+			white-space: nowrap;
 
 			&:not(.logo) {
 				display: flex;
@@ -34,7 +51,7 @@
 
 			&.logo {
 				background: url(/logo.jpeg) center / cover;
-				width: 3.6rem;
+				flex: 0 0 3.6rem;
 				height: 3.6rem;
 
 				&:hover {
@@ -48,7 +65,7 @@
 			}
 
 			&.LanguageSwitcher {
-				width: 2.4rem;
+				flex: 0 0 2.4rem;
 				height: 2.4rem;
 				position: relative;
 				padding: 0;
@@ -68,8 +85,6 @@
 			}
 
 			&.User {
-				margin-left: auto;
-
 				&:not(.login) {
 					font-size: 2.4rem;
 				}
