@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { getPosts, getPost, getComments, postThread, replyThread } from "../services/post";
 import swal from "sweetalert";
 import whevent from "whevent";
+import $$ from 'whi18n';
 
 export const usePostList = () => {
 	const [posts, setPosts] = useState([]);
@@ -46,14 +47,14 @@ export const usePostDetail = id => {
 export const usePostThread = () => {
 	const post = useCallback((title, body) => {
 		if (!title) {
-			swal('错误', '请输入标题！', 'error');
+			swal($$`error`, $$`please-enter-title`, 'error');
 			return;
 		}
 
 		postThread(title, body).then(e => {
 			whevent.emit('REFRESH_POSTS');
 		}).catch(ex => {
-			swal('发布失败', '主题发布失败，请重试！', "error");
+			swal($$`post-failed`, $$`post-failed-try-again`, "error");
 			console.error(ex);
 		})
 	}, []);
@@ -64,14 +65,14 @@ export const usePostThread = () => {
 export const useReplyThread = id => {
 	const post = useCallback(body => {
 		if (!body || !body.trim()) {
-			swal('错误', '请输入回复内容！', 'error');
+			swal($$`error`, $$`Please enter the comment!`, 'error');
 			return;
 		}
 
 		replyThread(id, body).then(e => {
 			whevent.emit('REFRESH_COMMENTS');
 		}).catch(ex => {
-			swal('发布失败', '主题发布失败，请重试！', "error");
+			swal($$`post-failed`, $$`post-failed-try-again`, "error");
 			console.error(ex);
 		})
 	}, [id]);

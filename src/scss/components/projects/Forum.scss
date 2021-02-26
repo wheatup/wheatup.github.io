@@ -6,14 +6,12 @@
 	height: 100%;
 	overflow: hidden;
 	position: relative;
-	color: var(--clrBg2);
 
 	.PostList {
 		padding: 1rem;
 		display: flex;
 		flex-direction: column;
 		flex: 1;
-		background-color: var(--clrBg1);
 
 		.list-wrapper {
 			flex: 1;
@@ -32,20 +30,18 @@
 					background-color: var(--clrLight);
 					padding: 1rem;
 					padding-right: 2rem;
-					color: var(--clrBg1);
+					color: var(--clrText);
 					border-radius: 0.5rem;
 					align-items: center;
-					box-shadow: 0px 2px 0 rgba(0, 0, 0, 0.3);
+					border: var(--border);
 
 					&:not(:first-of-type) {
 						margin-top: 1rem;
 					}
 
 					&:hover {
-						transform: translateY(calc(-0.5rem + 2px));
-						box-shadow: 0px 0.5rem 0 rgba(175, 139, 10, 0.8);
 						background-color: var(--clrTheme1);
-						color: var(--clrBg3);
+						color: var(--clrTitle);
 
 						.UserAvatar {
 							h2 {
@@ -104,7 +100,6 @@
 		flex-direction: column;
 		flex: 1;
 		padding: 1rem;
-		background-color: var(--clrBg1);
 
 		.post-area {
 			flex: 1;
@@ -119,7 +114,7 @@
 				overflow-x: hidden;
 
 				.PostBody {
-					background-color: var(--clrLight);
+					background-color: var(--clrBg3);
 					padding: 1.6rem;
 					border-radius: 0.5rem;
 					filter: drop-shadow(0rem 2px 0px rgba(0, 0, 0, 0.2));
@@ -171,7 +166,7 @@
 							opacity: 0.5;
 							margin-left: 10rem;
 							margin-top: 2rem;
-							color: var(--clrLight);
+							color: var(--clrSub);
 
 							&.me {
 								text-align: right;
@@ -194,7 +189,7 @@
 							}
 
 							.content {
-								background-color: var(--clrText);
+								background-color: var(--clrBg3);
 								padding: 1.6rem;
 								border-radius: 0.5rem;
 								max-width: calc(100% - 18.8rem);
@@ -256,21 +251,6 @@
 	.body-area {
 		display: flex;
 		margin-top: 1rem;
-	}
-
-	input,
-	textarea {
-		flex: 1;
-		border: none;
-		outline: none;
-		background-color: var(--clrBg1);
-		resize: none;
-		padding: 1rem;
-		padding-top: calc(1rem + 2px);
-		border-radius: 0.5rem;
-		box-shadow: 0px 0.5rem 0px inset rgba(0, 0, 0, 0.15);
-		margin-top: -2px;
-		color: var(--clrText);
 	}
 }
 

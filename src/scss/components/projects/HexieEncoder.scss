@@ -14,22 +14,8 @@
 
 	textarea,
 	input[type='text'] {
-		padding: 1rem;
-		padding-top: calc(1rem + 0.5rem);
-		font-size: 1.6rem;
-		outline: none;
 		max-width: 100%;
 		width: 60rem;
-
-		color: var(--clrText);
-		background-color: var(--clrBg1);
-		box-shadow: 0px 0.5rem 0px inset rgba(0, 0, 0, 0.15);
-		border: none;
-		border-radius: 0.2rem;
-
-		&::placeholder {
-			color: #888;
-		}
 	}
 
 	textarea {

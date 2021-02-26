@@ -35,8 +35,7 @@ html {
 
 a {
 	color: var(--clrTheme1);
-	transition: all .2s;
-
+	transition: all 0.2s;
 
 	&,
 	&:link,
@@ -53,7 +52,21 @@ ul {
 	list-style: none;
 }
 
-input, textarea {
+input,
+textarea {
 	font-size: inherit;
 	font-family: inherit;
+	flex: 1;
+	outline: none;
+	background-color: var(--clrBg3);
+	resize: none;
+	padding: 1rem;
+	padding-top: calc(1rem + 2px);
+	border-radius: 0.5rem;
+	color: var(--clrText);
+	border: var(--border);
+
+	&::placeholder {
+		color: var(--clrSub);
+	}
 }

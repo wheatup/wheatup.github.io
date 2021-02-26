@@ -22,9 +22,14 @@ const HexieEncoder = ({ location }) => {
 	const txt = decodeURI(search.get('txt') || '');
 
 	const dictArr = useMemo(() => {
-		const d = customDict || dict;
+		let d = customDict || dict;
 		if (d) {
-			return d.split(/[,，]/).map(e => e.trim());
+			if(/^(?:[^\s,，]+[\s,，]){2,}/[Symbol.match](d)) {
+				d = dict.split(/[\s,，]/).map(e => e.trim());
+			} else {
+				d = dict.split('').map(e => e.trim());
+			}
+			return d;
 		}
 	}, [customDict, dict]);
 
@@ -42,6 +47,7 @@ const HexieEncoder = ({ location }) => {
 				const result = dict && dict.length > 2 ? encode(txt, dict) : encode(txt);
 				setOutput(result);
 			} catch (ex) {
+				console.error(ex);
 				setOutput('');
 			}
 		},
@@ -112,7 +118,7 @@ const HexieEncoder = ({ location }) => {
 			<h2>{$$`hexie.custom-dict`}</h2>
 			<input
 				type="text"
-				placeholder="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善"
+				placeholder="富强 民主 文明 和谐 自由 平等 公正 法治 爱国 敬业 诚信 友善"
 				onChange={({ target: { value } }) => {
 					setOutput('');
 					setCustomDict(value);

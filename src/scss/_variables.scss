@@ -1,14 +1,17 @@
 :root {
 	--clrTheme1: #ffcb3d;
 	--clrTheme2: #5577d4;
-	--clrText: #eee;
-	--clrTitle: #fff;
-	--clrLight: #ccc;
+	--clrText: #555;
+	--clrTitle: #333;
 	--clrSub: #999;
 
-	--clrBg1: #666;
-	--clrBg2: #444;
-	--clrBg3: #333;
+	--clrLight: #ccc;
+	--clrDark: #333;
+
+	--clrBg1: #ddd;
+	--clrBg2: #eee;
+	--clrBg3: #fff;
 
 	--maxWidth: 128rem;
+	--border: solid 1px rgba(0, 0, 0, 0.1);
 }
