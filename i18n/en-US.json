@@ -6,6 +6,11 @@
 		"home": "Home",
 		"forum": "Forum",
 		"hexie-encoder": "Hexie Encoder",
+		"error": "Error",
+		"post-failed": "Post Failed!",
+		"please-enter-title": "Please enter the title!",
+		"post-failed-try-again": "Post failed, please try again!",
+		"please-enter-comment": "Please enter the comment!",
 		"hexie": {
 			"encode": "Encode",
 			"decode": "Decode",

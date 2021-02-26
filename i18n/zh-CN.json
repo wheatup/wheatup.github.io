@@ -5,6 +5,11 @@
 		"switch-language": "Switch to English",
 		"home": "首页",
 		"forum": "留言板",
+		"error": "错误",
+		"post-failed": "发布失败！",
+		"please-enter-title": "请输入标题！",
+		"post-failed-try-again": "发布失败，请重试！",
+		"please-enter-comment": "请输入回复！",
 		"hexie-encoder": "和谐加密器",
 		"hexie": {
 			"encode": "加密",
@@ -19,8 +24,8 @@
 		},
 		"posted": "发布于 ",
 		"time-diff": {
-			"before": "前",
-			"ago": "后",
+			"before": "后",
+			"ago": "前",
 			"just-now": "刚刚",
 			"second": "${1}秒${2}",
 			"seconds": "${1}秒${2}",
