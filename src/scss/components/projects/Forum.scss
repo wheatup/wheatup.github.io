@@ -32,7 +32,7 @@
 					padding-right: 2rem;
 					color: var(--clrText);
 					border-radius: 0.5rem;
-					align-items: center;
+					align-items: flex-start;
 					border: var(--border);
 
 					&:not(:first-of-type) {
@@ -115,7 +115,7 @@
 
 				.PostBody {
 					background-color: var(--clrBg3);
-					padding: 1.6rem;
+					padding: 1rem;
 					border-radius: 0.5rem;
 					border: var(--border);
 
@@ -123,9 +123,6 @@
 						.title-area {
 							display: flex;
 							align-items: flex-start;
-
-							.UserAvatar {
-							}
 
 							.info-area {
 								margin-left: 1rem;
@@ -163,13 +160,14 @@
 							display: block;
 							font-size: 1.2rem;
 							opacity: 0.5;
-							margin-left: 10rem;
+							margin-left: 7rem;
 							margin-top: 2rem;
 							color: var(--clrSub);
 
 							&.me {
 								text-align: right;
-								margin-right: 10rem;
+								margin-left: initial;
+								margin-right: 7rem;
 							}
 						}
 						.Comment {
@@ -185,9 +183,9 @@
 
 							.content {
 								background-color: var(--clrBg3);
-								padding: 1.2rem 1.6rem;
+								padding: 1rem;
 								border-radius: 0.5rem;
-								max-width: calc(100% - 18.8rem);
+								// max-width: calc(100% - 8rem);
 								position: relative;
 								border: var(--border);
 							}
@@ -264,8 +262,8 @@
 }
 
 .UserAvatar {
-	flex: 0 0 6.4rem;
-	height: 6.4rem;
+	flex: 0 0 4.8rem;
+	height: 4.8rem;
 	position: relative;
 	border-radius: 0.5rem;
 	overflow: hidden;

@@ -11,7 +11,7 @@ import { useMaxHeight } from './hooks/misc';
 import Forum from './projects/forum/components/Forum';
 import User from './components/common/User';
 import LanguageSwitcher from './components/LanguageSwitcher';
-import whi18n from 'whi18n';
+import $$ from 'whi18n';
 
 const App = () => {
 	useMaxHeight();
@@ -21,9 +21,9 @@ const App = () => {
 				<nav>
 					<NavLink exact to="/" className="logo pc-only"></NavLink>
 					<div className="nav-links">
-						<NavLink exact to="/">{whi18n`home`}</NavLink>
-						<NavLink to="/forum">{whi18n`forum`}</NavLink>
-						<NavLink to="/hexie">{whi18n`hexie-encoder`}</NavLink>
+						<NavLink exact to="/">{$$`home`}</NavLink>
+						<NavLink to="/forum">{$$`forum`}</NavLink>
+						<NavLink to="/hexie">{$$`hexie-encoder`}</NavLink>
 					</div>
 					<LanguageSwitcher />
 					<User />
@@ -36,7 +36,7 @@ const App = () => {
 					</Switch>
 				</main>
 				<footer>
-					&copy;&nbsp;<a href="https://github.com/wheatup/" target="_blank" rel="noopener noreferrer">wheatup</a>&nbsp;@{new Date().getFullYear()} All rights reserved.
+					&copy;&nbsp;<a href="https://github.com/wheatup/" target="_blank" rel="noopener noreferrer">wheatup</a>&nbsp;@{new Date().getFullYear()} {$$`all-rights-reserved`}
 				</footer>
 			</div>
 		</Router>
