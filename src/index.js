@@ -9,7 +9,7 @@ import http from "./utils/http";
 
 (async () => {
 	initStore();
-	await initI18n(window.localStorage.getItem('lang') || 'zh-CN', async lang => (await http.get(`/i18n/${lang}.json`)).data);
+	await initI18n(window.localStorage.getItem('lang') || ({ en: 'en-US', 'en-BR': 'en-US', 'zh-CN': 'zh-CN', 'zh-TW': 'zh-CN' })[navigator.language] || 'en-US', async lang => (await http.get(`/i18n/${lang}.json`)).data);
 
 	ReactDOM.render(
 		<React.StrictMode>
@@ -19,6 +19,3 @@ import http from "./utils/http";
 	);
 	serviceWorker.unregister();
 })();
-
-
-
