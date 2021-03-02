@@ -1,12 +1,12 @@
-@font-face {
-	font-family: 'Noto Sans NC';
-	src: url('/fonts/Noto_Sans_SC/NotoSansSC-Regular.otf') format('opentype'),
-		// url('/fonts/Noto_Sans_SC/NotoSansSC-Medium.otf') format('opentype'),
-		url('/fonts/Noto_Sans_SC/NotoSansSC-Thin.otf') format('opentype'),
-		// url('/fonts/Noto_Sans_SC/NotoSansSC-Light.otf') format('opentype'),
-		url('/fonts/Noto_Sans_SC/NotoSansSC-Bold.otf') format('opentype');
-	// url('/fonts/Noto_Sans_SC/NotoSansSC-Black.otf') format('opentype');
-}
+// @font-face {
+// 	font-family: 'Noto Sans NC';
+// 	src: url('/fonts/Noto_Sans_SC/NotoSansSC-Regular.otf') format('opentype'),
+// 		// url('/fonts/Noto_Sans_SC/NotoSansSC-Medium.otf') format('opentype'),
+// 		url('/fonts/Noto_Sans_SC/NotoSansSC-Thin.otf') format('opentype'),
+// 		// url('/fonts/Noto_Sans_SC/NotoSansSC-Light.otf') format('opentype'),
+// 		url('/fonts/Noto_Sans_SC/NotoSansSC-Bold.otf') format('opentype');
+// 	// url('/fonts/Noto_Sans_SC/NotoSansSC-Black.otf') format('opentype');
+// }
 
 // @font-face {
 // 	font-family: 'XiaoWei';
@@ -30,7 +30,7 @@ html {
 		font-size: 50%;
 	}
 
-	font-family: 'Trebuchet MS', 'Noto Sans NC', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 	overflow: hidden;
 
 	body {
