@@ -4,10 +4,12 @@ import { useDictionary } from './hooks/dictionary';
 import { pinyin } from 'pinyin-pro';
 import copy from 'copy-to-clipboard';
 import { useHistory } from 'react-router-dom';
+import { useTitle } from '../../hooks/misc';
 
 const Idioms = ({ location }) => {
 	const dictionary = useDictionary();
 	const history = useHistory();
+	useTitle('成语接龙查询工具');
 
 	const [shouldUpdate, setShouldUpdate] = useState(false);
 
