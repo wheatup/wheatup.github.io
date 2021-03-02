@@ -12,6 +12,7 @@ import Forum from './projects/forum/components/Forum';
 import User from './components/common/User';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import $$ from 'whi18n';
+import Idioms from './projects/idioms/Idioms';
 
 const App = () => {
 	useMaxHeight();
@@ -24,6 +25,7 @@ const App = () => {
 						<NavLink exact to="/">{$$`home`}</NavLink>
 						<NavLink to="/forum">{$$`forum`}</NavLink>
 						<NavLink to="/hexie">{$$`hexie-encoder`}</NavLink>
+						<NavLink to="/idioms">{$$`idioms`}</NavLink>
 					</div>
 					<LanguageSwitcher />
 					<User />
@@ -32,6 +34,7 @@ const App = () => {
 					<Switch>
 						<Route path="/hexie" component={HexieEncoder} />
 						<Route path="/forum" component={Forum} />
+						<Route path="/idioms" component={Idioms} />
 						<Route path="/" component={Home} exact />
 					</Switch>
 				</main>

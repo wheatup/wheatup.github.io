@@ -1,6 +1,11 @@
 .HexieEncoder {
 	text-align: center;
-	padding: 2rem 1rem;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+	overflow: auto;
 
 	& > * {
 		&:not(:first-child) {
@@ -21,14 +26,20 @@
 	textarea {
 		resize: none;
 		height: 24rem;
+		flex: 1;
+		max-height: 48rem;
+	}
+
+	.custom-dict {
+		flex: 0 0 auto;
 	}
 
 	.button-area {
 		width: 60rem;
 		max-width: 100%;
 		display: flex;
-		margin-left: auto;;
-		margin-right: auto;;
+		align-items: center;
+		justify-content: center;
 
 		.Button {
 			flex: 1;

@@ -5,8 +5,10 @@ import {
 } from "react-router-dom";
 import PostList from './PostList';
 import Post from './Post';
+import { useTitle } from '../../../hooks/misc';
 
 const Forum = props => {
+	useTitle('wheatup');
 	return (
 		<div className="Forum">
 			<Switch>

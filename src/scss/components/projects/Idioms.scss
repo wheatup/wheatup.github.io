@@ -1,0 +1,71 @@
+.Idioms {
+	text-align: center;
+	padding: 1rem;
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+
+	&>* {
+		&:not(:first-child) {
+			margin-top: 1rem;
+		}
+	}
+	
+	h1 {
+		margin-bottom: 1rem;
+	}
+
+	.input {
+		flex: 0 0 auto;
+	}
+
+	.options {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		.option-group {
+			display: flex;
+			align-items: center;
+			cursor: pointer;
+			user-select: none;
+
+			&:not(:first-of-type) {
+				margin-left: 1rem;
+			}
+
+			input {
+				margin-right: 0.5rem;
+				cursor: inherit;
+			}
+
+			label {
+				cursor: inherit;
+			}
+		}
+	}
+
+	.results {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+		grid-auto-rows: min-content;
+		gap: 1rem;
+		flex: 1;
+		overflow-y: auto;
+
+		span {
+			display: inline-block;
+			padding: 0.5rem 1rem;
+			border-radius: 0.5rem;
+			background-color: var(--clrTheme1);
+			cursor: pointer;
+			transition: all .3s;
+			text-align: center;
+
+			&:hover {
+				background-color: var(--clrTheme2);
+				color: white;
+			}
+		}
+	}
+}

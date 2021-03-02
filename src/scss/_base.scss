@@ -1,11 +1,11 @@
 @font-face {
 	font-family: 'Noto Sans NC';
-	src: url('/fonts/Noto_Sans_SC/NotoSansSC-Regular.otf') format('opentype'), 
-		// url('/fonts/Noto_Sans_SC/NotoSansSC-Medium.otf') format('opentype'), 
-		url('/fonts/Noto_Sans_SC/NotoSansSC-Thin.otf') format('opentype'), 
-		// url('/fonts/Noto_Sans_SC/NotoSansSC-Light.otf') format('opentype'), 
+	src: url('/fonts/Noto_Sans_SC/NotoSansSC-Regular.otf') format('opentype'),
+		// url('/fonts/Noto_Sans_SC/NotoSansSC-Medium.otf') format('opentype'),
+		url('/fonts/Noto_Sans_SC/NotoSansSC-Thin.otf') format('opentype'),
+		// url('/fonts/Noto_Sans_SC/NotoSansSC-Light.otf') format('opentype'),
 		url('/fonts/Noto_Sans_SC/NotoSansSC-Bold.otf') format('opentype');
-		// url('/fonts/Noto_Sans_SC/NotoSansSC-Black.otf') format('opentype');
+	// url('/fonts/Noto_Sans_SC/NotoSansSC-Black.otf') format('opentype');
 }
 
 // @font-face {
@@ -67,7 +67,10 @@ ul {
 	list-style: none;
 }
 
-input,
+input:not([type]),
+input[type='text'],
+input[type='password'],
+input[type='number'],
 textarea {
 	font-size: inherit;
 	font-family: inherit;

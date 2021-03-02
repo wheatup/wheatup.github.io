@@ -117,6 +117,7 @@ const HexieEncoder = ({ location }) => {
 			<textarea value={copied ? $$`hexie.copied` : output} readOnly={true} onClick={onClickOutput} ref={outputComp}></textarea>
 			<h2>{$$`hexie.custom-dict`}</h2>
 			<input
+				className="custom-dict"
 				type="text"
 				placeholder="富强 民主 文明 和谐 自由 平等 公正 法治 爱国 敬业 诚信 友善"
 				onChange={({ target: { value } }) => {
