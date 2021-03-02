@@ -3,45 +3,89 @@ import { debounce, pinyin2num } from '../../utils/misc';
 import { useDictionary } from './hooks/dictionary';
 import { pinyin } from 'pinyin-pro';
 import copy from 'copy-to-clipboard';
+import { useHistory } from 'react-router-dom';
 
-const Idioms = props => {
+const Idioms = ({ location }) => {
 	const dictionary = useDictionary();
+	const history = useHistory();
 
-	const [options, setOptions] = useState({ pron: false, tone: false });
-	const [query, setQuery] = useState('');
+	const [shouldUpdate, setShouldUpdate] = useState(false);
+
+	const searchString = new URLSearchParams(location?.search ?? '');
+	let q = decodeURI(searchString.get('q') || '');
+	let pron = !!+decodeURI(searchString.get('pron') || '0');
+	let tone = !!+decodeURI(searchString.get('tone') || '0');
+	let initial = !!+decodeURI(searchString.get('initial') || '1');
+
+	const [options, setOptions] = useState({ pron: !!+pron, tone: !!+tone, initial: !!+initial });
+	const [query, setQuery] = useState(q);
 	const [results, setResults] = useState([]);
-	const parsedDictionary = useMemo(() => dictionary.map(entry => ({ ...entry, pinyin: pinyin2num(entry.pinyin) })), [dictionary]);
 
-	const _search = useCallback((query, { pron, tone }, dict, setResults, setOptions) => {
-		if (/^\w+$/[Symbol.match](query)) {
-			// if(/\d$/[Symbol.match](query)) {
-			// 	setOptions({ pron, tone: true });
-			// } else {
-			// 	setOptions({ pron: true, tone: false });
-			// }
-			if (tone && /\d$/[Symbol.match](query)) {
-				setResults(dict.filter(({ pinyin }) => pinyin.split(' ')[0] === query));
-			} else {
-				setResults(dict.filter(({ pinyin }) => pinyin.split(' ')[0].replace(/\d+/g, '') === query.replace(/\d+/g, '')));
-			}
-		} else if(/^[\u4e00-\u9fa5，]+$/[Symbol.match](query)) {
-			const text = query[query.length - 1];
-			if(pron) {
-				const pys = pinyin(text, { toneType: 'num', multiple: true }).split(' ');
-				if(tone) {
-					setResults(dict.filter(({ pinyin }) => pys.some(py => py === pinyin.split(' ')[0])));
+	const search = useMemo(() => debounce(() => setShouldUpdate(true), 200), [setShouldUpdate]);
+
+	useEffect(() => {
+		console.log('aaa');
+
+		const searchString = new URLSearchParams(location?.search ?? '');
+		q = decodeURI(searchString.get('q') || '');
+		pron = !!+decodeURI(searchString.get('pron') || '0');
+		tone = !!+decodeURI(searchString.get('tone') || '0');
+		initial = !!+decodeURI(searchString.get('initial') || '1');
+
+		setOptions({ pron, tone, initial });
+		setQuery(q);
+
+		if (/^\w+$/[Symbol.match](q)) {
+			if (tone && /\d$/[Symbol.match](q)) {
+				if (initial) {
+					setResults(dictionary.filter(({ pinyin }) => pinyin.split(' ')[0] === q));
 				} else {
-					setResults(dict.filter(({ pinyin }) => pys.some(py => py.replace(/\d+/g, '') === pinyin.split(' ')[0].replace(/\d+/g, ''))));
+					setResults(dictionary.filter(({ pinyin }) => pinyin.split(' ').some(t => t === q)));
 				}
 			} else {
-				setResults(dict.filter(({ word }) => word[0] === text));
+				if (initial) {
+					setResults(dictionary.filter(({ pinyin }) => pinyin.split(' ')[0].replace(/\d+/g, '') === q.replace(/\d+/g, '')));
+				} else {
+					setResults(dictionary.filter(({ pinyin }) => pinyin.split(' ').some(t => t.replace(/\d+/g, '') === q.replace(/\d+/g, ''))));
+				}
+			}
+		} else if (/^[\u4e00-\u9fa5，]+$/[Symbol.match](q)) {
+			const text = q[q.length - 1];
+			if (pron) {
+				const pys = pinyin(text, { toneType: 'num', multiple: true }).split(' ');
+				if (tone) {
+					if (initial) {
+						setResults(dictionary.filter(({ pinyin }) => pys.some(py => py === pinyin.split(' ')[0])));
+					} else {
+						setResults(dictionary.filter(({ pinyin }) => pys.some(py => pinyin.split(' ').some(t => t === py))));
+					}
+				} else {
+					if (initial) {
+						setResults(dictionary.filter(({ pinyin }) => pys.some(py => py.replace(/\d+/g, '') === pinyin.split(' ')[0].replace(/\d+/g, ''))));
+					} else {
+						setResults(dictionary.filter(({ pinyin }) => pys.some(py => pinyin.split(' ').some(t => t.replace(/\d+/g, '') === py.replace(/\d+/g, '')))));
+					}
+				}
+			} else {
+				if (initial) {
+					setResults(dictionary.filter(({ word }) => word[0] === text));
+				} else {
+					setResults(dictionary.filter(({ word }) => [...word].some(t => t === text)));
+				}
 			}
 		} else {
 			setResults([]);
 		}
-	}, []);
+	}, [location, history, dictionary])
 
-	const search = useMemo(() => debounce(_search), [_search]);
+	useEffect(() => {
+		if (!shouldUpdate) return;
+		setShouldUpdate(false);
+
+		console.log('update');
+
+		history.push(location.pathname + `?q=${encodeURI(query)}&initial=${+options.initial}&pron=${+options.pron}&tone=${+options.tone}`);
+	}, [shouldUpdate, options, setResults, dictionary, location]);
 
 	useEffect(() => {
 		if (!dictionary?.length) return;
@@ -50,8 +94,8 @@ const Idioms = props => {
 			setQuery(query.replace(/\s+/g, ''));
 		}
 
-		search(query, options, parsedDictionary, setResults, setOptions);
-	}, [query, setQuery, options, parsedDictionary, setResults]);
+		search();
+	}, [query, setQuery, options, dictionary, setResults]);
 
 	const onClickWord = useCallback(text => {
 		copy(text);
@@ -61,20 +105,36 @@ const Idioms = props => {
 	return (
 		<div className="Idioms">
 			<h1>成语接龙查询工具</h1>
-			<input className="input" value={query} onChange={({ target: { value } }) => setQuery(value)} placeholder="输入成语、汉字或者拼音(yuan, san1)等..." />
+			<input className="input" disabled={dictionary.length === 0} value={query} onChange={({ target: { value } }) => setQuery(value)} placeholder="输入成语、汉字或者拼音(yuan, san1)等..." />
 			<div className="options">
+				<div className={`option-group`}>
+					<input id="initial" name="initial" type="checkbox" checked={options.initial} onChange={({ target: { checked } }) => setOptions({ ...options, initial: checked })} />
+					<label htmlFor="initial">首字</label>
+				</div>
 				<div className="option-group">
-					<input id="pron" name="pron" type="checkbox" checked={options.pron} onChange={({ target: { checked } }) => setOptions({ ...options, pron: checked })} />
+					<input id="pron" name="pron" type="checkbox" checked={options.pron} onChange={({ target: { checked } }) => {
+						if (!checked) {
+							setOptions({ ...options, pron: false, tone: false })
+						} else {
+							setOptions({ ...options, pron: checked })
+						}
+					}} />
 					<label htmlFor="pron">同音字</label>
 				</div>
 				<div className={`option-group${options.pron ? '' : ' disabled'}`}>
-					<input id="tone" name="tone" type="checkbox" checked={options.tone} onChange={({ target: { checked } }) => setOptions({ ...options, tone: checked })} />
+					<input id="tone" name="tone" type="checkbox" checked={options.tone} onChange={({ target: { checked } }) => {
+						if (checked) {
+							setOptions({ ...options, pron: true, tone: true })
+						} else {
+							setOptions({ ...options, tone: checked })
+						}
+					}} />
 					<label htmlFor="tone">同音调</label>
 				</div>
 			</div>
 			<div className="results">
 				{results.map(r => (
-					<span onClick={() => onClickWord(r.word)}>{r.word}</span>
+					<span key={r.word} onClick={() => onClickWord(r.word)}>{r.word}</span>
 				))}
 			</div>
 		</div>

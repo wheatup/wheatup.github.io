@@ -8,7 +8,7 @@ export const useDictionary = () => {
 
 	useEffect(() => {
 		if (!dictionary.length) {
-			get('/data/idiom.json').then(({ data }) => {
+			get('/data/idiom.min.json').then(({ data }) => {
 				setDictionary(data);
 				console.log(data);
 			});
