@@ -24,7 +24,7 @@ const Idioms = props => {
 			} else {
 				setResults(dict.filter(({ pinyin }) => pinyin.split(' ')[0].replace(/\d+/g, '') === query.replace(/\d+/g, '')));
 			}
-		} else if(/^[\u4e00-\u9fa5]+$/[Symbol.match](query)) {
+		} else if(/^[\u4e00-\u9fa5，]+$/[Symbol.match](query)) {
 			const text = query[query.length - 1];
 			if(pron) {
 				const pys = pinyin(text, { toneType: 'num', multiple: true }).split(' ');
