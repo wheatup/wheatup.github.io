@@ -45,6 +45,13 @@
 			"year": "${1}年${2}",
 			"years": "${1}年${2}"
 		},
-		"idioms": "成语"
+		"idioms": "成语",
+		"_idioms": {
+			"title": "成语接龙查询工具",
+			"initial": "首字",
+			"homophone": "同音词",
+			"tone": "同音调",
+			"placeholder": "输入成语、汉字或者拼音(yuan, san1)等..."
+		}
 	}
 }
