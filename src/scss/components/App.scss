@@ -14,7 +14,7 @@
 		align-items: center;
 		display: flex;
 
-		&>* {
+		& > * {
 			margin-left: 1rem;
 
 			&:last-child {
@@ -26,6 +26,24 @@
 			display: flex;
 			overflow-x: auto;
 			margin-right: auto;
+
+			a {
+				i {
+					font-size: 2.4rem;
+					display: flex;
+					justify-content: center;
+				}
+
+				@include pc {
+					&[title]::after {
+						content: attr(title);
+					}
+
+					i {
+						margin-right: 0.5rem;
+					}
+				}
+			}
 		}
 
 		a {

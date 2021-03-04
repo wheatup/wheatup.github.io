@@ -45,6 +45,13 @@
 			"year": "${1} year ${2}",
 			"years": "${1} years ${2}"
 		},
-		"idioms": "Idioms"
+		"idioms": "Idioms",
+		"_idioms": {
+			"title": "Chinese Idiom Query Tool",
+			"initial": "initial",
+			"homophone": "homophone",
+			"tone": "tone",
+			"placeholder": "Please enter idiom, character or pinyin(yuan, san1 etc.)"
+		}
 	}
 }

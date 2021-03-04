@@ -104,3 +104,21 @@ textarea {
 		display: none !important;
 	}
 }
+
+@mixin phone {
+	@media only screen and (max-width: 632px) {
+		@content;
+	}
+}
+
+@mixin pc {
+	@media only screen and (min-width: 632.1px) {
+		@content;
+	}
+}
+
+@mixin response($width) {
+	@media only screen and (max-width: #{$width}) {
+		@content;
+	}
+}

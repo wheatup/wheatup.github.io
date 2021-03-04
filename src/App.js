@@ -22,10 +22,10 @@ const App = () => {
 				<nav>
 					<NavLink exact to="/" className="logo pc-only"></NavLink>
 					<div className="nav-links">
-						<NavLink exact to="/">{$$`home`}</NavLink>
-						<NavLink to="/forum">{$$`forum`}</NavLink>
-						<NavLink to="/hexie">{$$`hexie-encoder`}</NavLink>
-						<NavLink to="/idioms">{$$`idioms`}</NavLink>
+						<NavLink exact to="/" title={$$`home`}><i className="icon-home"></i></NavLink>
+						<NavLink to="/forum" title={$$`forum`}><i className="icon-forum"></i></NavLink>
+						<NavLink to="/hexie" title={$$`hexie-encoder`}><i className="icon-exchange"></i></NavLink>
+						<NavLink to="/idioms" title={$$`idioms`}><i className="icon-book"></i></NavLink>
 					</div>
 					<LanguageSwitcher />
 					<User />

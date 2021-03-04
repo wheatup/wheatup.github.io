@@ -1,15 +1,16 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { debounce, pinyin2num } from '../../utils/misc';
+import { debounce } from '../../utils/misc';
 import { useDictionary } from './hooks/dictionary';
 import { pinyin } from 'pinyin-pro';
 import copy from 'copy-to-clipboard';
 import { useHistory } from 'react-router-dom';
 import { useTitle } from '../../hooks/misc';
+import $$ from 'whi18n';
 
 const Idioms = ({ location }) => {
 	const dictionary = useDictionary();
 	const history = useHistory();
-	useTitle('成语接龙查询工具');
+	useTitle($$`_idioms.title`);
 
 	const [shouldUpdate, setShouldUpdate] = useState(false);
 
@@ -26,8 +27,6 @@ const Idioms = ({ location }) => {
 	const search = useMemo(() => debounce(() => setShouldUpdate(true), 200), [setShouldUpdate]);
 
 	useEffect(() => {
-		console.log('aaa');
-
 		const searchString = new URLSearchParams(location?.search ?? '');
 		q = decodeURI(searchString.get('q') || '');
 		pron = !!+decodeURI(searchString.get('pron') || '0');
@@ -106,12 +105,12 @@ const Idioms = ({ location }) => {
 
 	return (
 		<div className="Idioms">
-			<h1>成语接龙查询工具</h1>
-			<input className="input" disabled={dictionary.length === 0} value={query} onChange={({ target: { value } }) => setQuery(value)} placeholder="输入成语、汉字或者拼音(yuan, san1)等..." />
+			<h1>{$$`_idioms.title`}</h1>
+			<input className="input" disabled={dictionary.length === 0} value={query} onChange={({ target: { value } }) => setQuery(value)} placeholder={$$`_idioms.placeholder`} />
 			<div className="options">
 				<div className={`option-group`}>
 					<input id="initial" name="initial" type="checkbox" checked={options.initial} onChange={({ target: { checked } }) => setOptions({ ...options, initial: checked })} />
-					<label htmlFor="initial">首字</label>
+					<label htmlFor="initial">{$$`_idioms.initial`}</label>
 				</div>
 				<div className="option-group">
 					<input id="pron" name="pron" type="checkbox" checked={options.pron} onChange={({ target: { checked } }) => {
@@ -121,7 +120,7 @@ const Idioms = ({ location }) => {
 							setOptions({ ...options, pron: checked })
 						}
 					}} />
-					<label htmlFor="pron">同音字</label>
+					<label htmlFor="pron">{$$`_idioms.homophone`}</label>
 				</div>
 				<div className={`option-group${options.pron ? '' : ' disabled'}`}>
 					<input id="tone" name="tone" type="checkbox" checked={options.tone} onChange={({ target: { checked } }) => {
@@ -131,7 +130,7 @@ const Idioms = ({ location }) => {
 							setOptions({ ...options, tone: checked })
 						}
 					}} />
-					<label htmlFor="tone">同音调</label>
+					<label htmlFor="tone">{$$`_idioms.tone`}</label>
 				</div>
 			</div>
 			<div className="results">
