@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?vxig4h');
-  src:  url('fonts/icomoon.eot?vxig4h#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?vxig4h') format('truetype'),
-    url('fonts/icomoon.woff?vxig4h') format('woff'),
-    url('fonts/icomoon.svg?vxig4h#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?bl5r3');
+  src:  url('fonts/icomoon.eot?bl5r3#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?bl5r3') format('truetype'),
+    url('fonts/icomoon.woff?bl5r3') format('woff'),
+    url('fonts/icomoon.svg?bl5r3#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -36,6 +36,33 @@
 }
 .icon-question_answer:before {
   content: "\e906";
+}
+.icon-stats-dots:before {
+  content: "\e90b";
+}
+.icon-wrench:before {
+  content: "\e90a";
+}
+.icon-tool:before {
+  content: "\e90a";
+}
+.icon-fix:before {
+  content: "\e90a";
+}
+.icon-settings:before {
+  content: "\e90a";
+}
+.icon-control:before {
+  content: "\e90a";
+}
+.icon-options:before {
+  content: "\e90a";
+}
+.icon-preferences:before {
+  content: "\e90a";
+}
+.icon-lab:before {
+  content: "\e909";
 }
 .icon-book:before {
   content: "\e908";
