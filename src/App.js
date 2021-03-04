@@ -13,6 +13,7 @@ import User from './components/common/User';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import $$ from 'whi18n';
 import Idioms from './projects/idioms/Idioms';
+import Labs from './projects/labs/Labs';
 
 const App = () => {
 	useMaxHeight();
@@ -20,21 +21,25 @@ const App = () => {
 		<Router>
 			<div className="App">
 				<nav>
-					<NavLink exact to="/" className="logo pc-only"></NavLink>
-					<div className="nav-links">
-						<NavLink exact to="/" title={$$`home`}><i className="icon-home"></i></NavLink>
-						<NavLink to="/forum" title={$$`forum`}><i className="icon-forum"></i></NavLink>
-						<NavLink to="/hexie" title={$$`hexie-encoder`}><i className="icon-exchange"></i></NavLink>
-						<NavLink to="/idioms" title={$$`idioms`}><i className="icon-book"></i></NavLink>
+					<div className="nav">
+						<NavLink exact to="/" className="logo pc-only"></NavLink>
+						<div className="nav-links">
+							<NavLink exact to="/" title={$$`home`}><i className="icon-home"></i></NavLink>
+							<NavLink to="/forum" title={$$`forum`}><i className="icon-forum"></i></NavLink>
+							<NavLink to="/hexie" title={$$`hexie-encoder`}><i className="icon-exchange"></i></NavLink>
+							<NavLink to="/idioms" title={$$`idioms`}><i className="icon-book"></i></NavLink>
+							<NavLink to="/labs" title={$$`labs`}><i className="icon-lab"></i></NavLink>
+						</div>
+						<LanguageSwitcher />
+						<User />
 					</div>
-					<LanguageSwitcher />
-					<User />
 				</nav>
 				<main>
 					<Switch>
 						<Route path="/hexie" component={HexieEncoder} />
 						<Route path="/forum" component={Forum} />
 						<Route path="/idioms" component={Idioms} />
+						<Route path="/labs" component={Labs} />
 						<Route path="/" component={Home} exact />
 					</Switch>
 				</main>

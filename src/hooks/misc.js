@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 
 export const useMaxHeight = () => {
 	const onHeightChange = useCallback(() => {
@@ -16,4 +16,13 @@ export const useTitle = title => {
 	useEffect(() => {
 		document.title = title;
 	}, [title]);
+}
+
+export const useAsync = (fn, deps = []) => {
+	const [ready, setReady] = useState(false);
+	useEffect(() => {
+		fn().then(() => setReady(true));
+	}, deps);
+
+	return ready;
 }

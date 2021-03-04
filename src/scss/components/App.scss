@@ -10,118 +10,123 @@
 	nav {
 		background-color: var(--clrDark);
 		color: var(--clrLight);
-		padding: 1rem calc((100vw - var(--maxWidth)) / 2 + 1rem);
-		align-items: center;
-		display: flex;
 
-		& > * {
-			margin-left: 1rem;
-
-			&:last-child {
-				margin-right: 1rem;
-			}
-		}
-
-		.nav-links {
+		.nav {
+			margin: 0 auto;
+			max-width: var(--max-width);
+			align-items: center;
 			display: flex;
-			overflow-x: auto;
-			margin-right: auto;
+			padding: 1rem 0;
+
+			& > * {
+				margin-left: 1rem;
+
+				&:last-child {
+					margin-right: 1rem;
+				}
+			}
+
+			.nav-links {
+				display: flex;
+				overflow-x: auto;
+				margin-right: auto;
+
+				a {
+					i {
+						font-size: 2.4rem;
+						display: flex;
+						justify-content: center;
+					}
+
+					@include pc {
+						&[title]::after {
+							content: attr(title);
+						}
+
+						i {
+							margin-right: 0.5rem;
+						}
+					}
+				}
+			}
 
 			a {
-				i {
-					font-size: 2.4rem;
+				&:not(:first-child) {
+					margin-left: 1rem;
+				}
+				color: inherit;
+				border-radius: 0.5rem;
+				transition: all 0.2s;
+				text-transform: uppercase;
+				white-space: nowrap;
+
+				&:not(.logo) {
 					display: flex;
-					justify-content: center;
-				}
+					align-items: center;
+					padding: 1rem;
 
-				@include pc {
-					&[title]::after {
-						content: attr(title);
-					}
-
-					i {
-						margin-right: 0.5rem;
+					&:hover {
+						background-color: var(--clrTheme2);
+						color: white;
 					}
 				}
-			}
-		}
 
-		a {
-			&:not(:first-child) {
-				margin-left: 1rem;
-			}
-			color: inherit;
-			border-radius: 0.5rem;
-			transition: all 0.2s;
-			text-transform: uppercase;
-			white-space: nowrap;
-
-			&:not(.logo) {
-				display: flex;
-				align-items: center;
-				padding: 1rem;
-
-				&:hover {
-					background-color: var(--clrTheme2);
-					color: white;
-				}
-			}
-
-			&.logo {
-				background: url(/logo.jpeg) center / cover;
-				flex: 0 0 3.6rem;
-				height: 3.6rem;
-
-				&:hover {
-					filter: brightness(1.2);
-				}
-			}
-
-			&.active {
-				background-color: var(--clrTheme1);
-				color: var(--clrTitle);
-			}
-
-			&.LanguageSwitcher {
-				flex: 0 0 2.4rem;
-				height: 2.4rem;
-				position: relative;
-				padding: 0;
-				margin-left: 1rem;
-
-				&:hover {
-					background-color: transparent;
-				}
-
-				img {
-					display: block;
-					width: 100%;
-					height: 100%;
-					object-fit: contain;
-					object-position: center;
-				}
-			}
-
-			&.User {
-				&:not(.login) {
-					font-size: 2.4rem;
-				}
-
-				&.login {
+				&.logo {
+					background: url(/logo.jpeg) center / cover;
 					flex: 0 0 3.6rem;
 					height: 3.6rem;
-					position: relative;
-					padding: 0;
-					border-radius: 0.5rem;
-					overflow: hidden;
 
 					&:hover {
 						filter: brightness(1.2);
 					}
+				}
+
+				&.active {
+					background-color: var(--clrTheme1);
+					color: var(--clrTitle);
+				}
+
+				&.LanguageSwitcher {
+					flex: 0 0 2.4rem;
+					height: 2.4rem;
+					position: relative;
+					padding: 0;
+					margin-left: 1rem;
+
+					&:hover {
+						background-color: transparent;
+					}
 
 					img {
+						display: block;
 						width: 100%;
 						height: 100%;
+						object-fit: contain;
+						object-position: center;
+					}
+				}
+
+				&.User {
+					&:not(.login) {
+						font-size: 2.4rem;
+					}
+
+					&.login {
+						flex: 0 0 3.6rem;
+						height: 3.6rem;
+						position: relative;
+						padding: 0;
+						border-radius: 0.5rem;
+						overflow: hidden;
+
+						&:hover {
+							filter: brightness(1.2);
+						}
+
+						img {
+							width: 100%;
+							height: 100%;
+						}
 					}
 				}
 			}
@@ -134,12 +139,16 @@
 		overflow-x: hidden;
 		margin: 0 auto;
 		width: 100%;
-		max-width: var(--maxWidth);
+
+		& > * {
+			max-width: var(--max-width);
+			margin: 0 auto;
+		}
 	}
 
 	footer {
 		background-color: var(--clrDark);
-		padding: 1rem calc((100vw - var(--maxWidth)) / 2);
+		padding: 1rem calc((100vw - var(--max-width)) / 2);
 		align-items: center;
 		display: flex;
 		justify-content: center;

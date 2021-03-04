@@ -1,0 +1,109 @@
+.LinearRegression {
+	height: 100%;
+	padding: 1rem;
+	margin: 0 auto;
+
+	&>* {
+		&:not(:first-child) {
+			margin-top: 2rem;
+		}
+	}
+
+	.title-area {
+		text-align: center;
+		margin-top: 4rem;
+
+		&>* {
+			&:not(:first-child) {
+				margin-top: 2rem;
+			}
+		}
+
+		h1 {
+			font-size: 2.4rem;
+			color: var(--clrTheme2);
+		}
+
+		h2 {
+			font-size: 1.6rem;
+			font-weight: normal;
+		}
+	}
+
+	.columns {
+		max-width: 90rem;
+		display: flex;
+		flex-wrap: wrap;
+		margin-top: 4rem;
+
+		.column {
+			flex: 1;
+			text-align: center;
+
+			&:not(:first-child) {
+				margin-left: 2rem;
+			}
+
+			&>* {
+				&:not(:first-child) {
+					margin-top: 2rem;
+				}
+			}
+
+			.legend {
+				display: flex;
+				flex-direction: column;
+				i {
+					color: var(--clrTheme2);
+					font-size: 6rem;
+				}
+
+				h2 {
+					margin-top: 1rem;
+				}
+			}
+
+
+			.data-set, .buttons {
+				text-align: left;
+			}
+
+			.data-set {
+				position: relative;
+				h3 {
+					font-size: 1.4rem;
+					font-weight: normal;
+					opacity: 0.7;
+					margin-bottom: 1rem;
+				}
+
+				output {
+					display: block;
+					padding: 1rem;
+					background-color: rgba(0, 0, 0, 0.05);
+					border-radius: 0.5rem;
+				}
+
+				input {
+					width: 100%;
+				}
+			}
+
+			.buttons {
+				&>* {
+					margin-bottom: 1rem;
+					margin-right: 1rem;
+				}
+
+				margin-bottom: -1rem;
+				margin-right: -1rem;
+			}
+		}
+	}
+
+	.operations {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
