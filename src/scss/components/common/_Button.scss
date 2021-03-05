@@ -5,15 +5,20 @@
 	border-radius: 0.5rem;
 	display: inline-block;
 	transition: all 0.1s;
-	border: var(--border);
+	box-sizing: border-box;
+	background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));
 
 	&:hover {
 		filter: brightness(1.2);
 		color: var(--clrBg3);
 	}
 
-	&:active {
-		color: var(--clrTitle);
-		transition-duration: 0.02s;
+	&:not(.disabled):active {
+		background-image: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.1));
+	}
+
+	&.disabled {
+		filter: saturate(0) brightness(1.5) !important;
+		cursor: not-allowed;
 	}
 }

@@ -40,9 +40,6 @@
 		flex: 1;
 		margin: 0 auto;
 		max-width: var(--max-width);
-
-		& > * {
-			overflow-y: auto;
-		}
+		overflow-y: auto;
 	}
 }

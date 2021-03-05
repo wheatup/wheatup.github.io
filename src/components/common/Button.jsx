@@ -1,9 +1,11 @@
 import React from 'react';
 
-const Button = ({ children, onClick, ...rest }) => {
+const Button = ({ children, disabled, onClick, ...rest }) => {
 	return (
-		<a onClick={(...args) => onClick && onClick(...args)} className="Button" href="javascript: void(0)" {...rest}>{ children }</a>
+		<a onClick={(...args) => onClick && !disabled && onClick(...args)} className={`Button${disabled ? ' disabled' : ''}`} href="javascript: void(0)" {...rest}>
+			{children}
+		</a>
 	);
-}
+};
 
 export default Button;

@@ -10,7 +10,7 @@ const Labs = props => {
 		<section className="Labs">
 			<div className="laboratories">
 				<div className="lab-navs">
-					<NavLink to="/labs/tensorflow">Tensor Flow</NavLink>
+					{/* <NavLink to="/labs/tensorflow">Tensor Flow</NavLink> */}
 					<NavLink to="/labs/linear-regression">Linear Regression</NavLink>
 				</div>
 			</div>
