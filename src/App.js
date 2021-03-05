@@ -1,10 +1,10 @@
 import React from 'react';
-import HexieEncoder from './projects/hexie/HexieEncoder';
 import {
 	HashRouter as Router,
 	Switch,
 	Route,
-	NavLink
+	NavLink,
+	Redirect
 } from "react-router-dom";
 import Home from './projects/home/Home';
 import { useMaxHeight } from './hooks/misc';
@@ -12,7 +12,6 @@ import Forum from './projects/forum/components/Forum';
 import User from './components/common/User';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import $$ from 'whi18n';
-import Idioms from './projects/idioms/Idioms';
 import Labs from './projects/labs/Labs';
 
 const App = () => {
@@ -26,8 +25,6 @@ const App = () => {
 						<div className="nav-links">
 							<NavLink exact to="/" title={$$`home`}><i className="icon-home"></i></NavLink>
 							<NavLink to="/forum" title={$$`forum`}><i className="icon-forum"></i></NavLink>
-							<NavLink to="/hexie" title={$$`hexie-encoder`}><i className="icon-exchange"></i></NavLink>
-							<NavLink to="/idioms" title={$$`idioms`}><i className="icon-book"></i></NavLink>
 							<NavLink to="/labs" title={$$`labs`}><i className="icon-lab"></i></NavLink>
 						</div>
 						<LanguageSwitcher />
@@ -36,9 +33,9 @@ const App = () => {
 				</nav>
 				<main>
 					<Switch>
-						<Route path="/hexie" component={HexieEncoder} />
 						<Route path="/forum" component={Forum} />
-						<Route path="/idioms" component={Idioms} />
+						<Redirect path="/hexie" to="/labs/hexie" />
+						<Redirect path="/idioms" to="/labs/idioms" />
 						<Route path="/labs" component={Labs} />
 						<Route path="/" component={Home} exact />
 					</Switch>

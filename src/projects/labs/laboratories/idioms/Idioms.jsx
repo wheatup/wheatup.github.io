@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { debounce } from '../../utils/misc';
+import { debounce } from '../../../../utils/misc';
 import { useDictionary } from './hooks/dictionary';
 import { pinyin } from 'pinyin-pro';
 import copy from 'copy-to-clipboard';
 import { useHistory } from 'react-router-dom';
-import { useTitle } from '../../hooks/misc';
+import { useTitle } from '../../../../hooks/misc';
 import $$ from 'whi18n';
 
 const Idioms = ({ location }) => {

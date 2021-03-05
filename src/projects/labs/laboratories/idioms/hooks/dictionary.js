@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { get } from '../../../utils/http';
+import { get } from '../../../../../utils/http';
 
 let cache = [];
 

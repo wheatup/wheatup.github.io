@@ -3,6 +3,7 @@ import Button from '../../../../components/common/Button';
 import { useAsync } from '../../../../hooks/misc';
 import * as tf from '@tensorflow/tfjs';
 import * as tfvis from '@tensorflow/tfjs-vis';
+import swal from "sweetalert2";
 
 let normalizedFeature, normalizedLabel;
 let trainingFeatureTensor, testingFeatureTensor, trainingLabelTensor, testingLabelTensor;
@@ -197,7 +198,7 @@ const LinearRegression = props => {
 			setSaved(true);
 			setLoaded(true);
 		} else {
-			alert('No saved model found!');
+			swal.fire('Error', 'No saved model found!', 'error');
 		}
 	}, [setTrainingStatus, setSaved, setLoaded]);
 

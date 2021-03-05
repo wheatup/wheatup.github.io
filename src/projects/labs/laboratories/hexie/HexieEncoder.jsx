@@ -1,8 +1,8 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
-import Button from '../../components/common/Button';
+import Button from '../../../../components/common/Button';
 import { encode, decode } from 'hexie-encode';
 import { useHistory } from 'react-router-dom';
-import { useTitle } from '../../hooks/misc';
+import { useTitle } from '../../../../hooks/misc';
 import $$ from 'whi18n';
 
 const HexieEncoder = ({ location }) => {
