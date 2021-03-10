@@ -8,7 +8,7 @@ import whevent from 'whevent';
 
 const Post = props => {
 	const { id } = useParams();
-	const [post, comments, _, loadComments] = usePostDetail(id);
+	const [post, comments, , loadComments] = usePostDetail(id);
 
 	const reply = useReplyThread(id);
 
@@ -29,6 +29,6 @@ const Post = props => {
 			<ChatInput onPost={reply} />
 		</div>
 	);
-}
+};
 
 export default Post;

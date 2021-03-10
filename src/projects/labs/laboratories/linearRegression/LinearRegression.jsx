@@ -1,16 +1,17 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import Button from '../../../../components/common/Button';
 import { useAsync } from '../../../../hooks/misc';
 import * as tf from '@tensorflow/tfjs';
 import * as tfvis from '@tensorflow/tfjs-vis';
-import swal from "sweetalert2";
+import swal from 'sweetalert2';
 
 let normalizedFeature, normalizedLabel;
 let trainingFeatureTensor, testingFeatureTensor, trainingLabelTensor, testingLabelTensor;
 let trainingModel, savedResult;
 let featureMin, featureMax, labelMin, labelMax;
+let points;
 
-const EPOCHS = 24;
+const EPOCHS = 100;
 const BATCH_SIZE = 32;
 const STORAGE_ID = 'kc-house-price-regression';
 
@@ -31,14 +32,22 @@ const normalize = (tensor, min, max) => {
 
 const denormalize = (tensor, min, max) => tf.tidy(() => tensor.mul(max.sub(min)).add(min));
 
-const plot = async (pointsArray, feat) => {
+const plot = async (pointsArray, feat, predictedPointsArray) => {
+	const values = [pointsArray.slice(0, 1000)];
+	const series = ['original'];
+
+	if (Array.isArray(predictedPointsArray)) {
+		values.push(predictedPointsArray);
+		series.push('predicted');
+	}
+
 	tfvis.render.scatterplot(
 		{
 			name: `${feat} vs House Price`
 		},
 		{
-			values: [pointsArray],
-			series: ['original']
+			values,
+			series
 		},
 		{
 			xLabel: feat,
@@ -47,15 +56,58 @@ const plot = async (pointsArray, feat) => {
 	);
 };
 
+const plotParams = async (weight, bias) => {
+	trainingModel.getLayer(null, 0).setWeights([tf.tensor2d([[weight]]), tf.tensor1d([bias])]);
+
+	await plotPredictionLine();
+	const layer = trainingModel.getLayer(undefined, 0);
+	tfvis.show.layer({ name: 'Layer 1' }, layer);
+
+};
+
+window.plotParams = plotParams;
+
+const plotPredictionLine = async () => {
+	const [xs, ys] = tf.tidy(() => {
+		const normalizedXs = tf.linspace(0, 1, 100);
+		const normalizedYs = trainingModel.predict(normalizedXs.reshape([100, 1]));
+
+		const xs = denormalize(normalizedXs, featureMin, featureMax);
+		const ys = denormalize(normalizedYs, labelMin, labelMax);
+
+		return [xs.dataSync(), ys.dataSync()];
+	});
+
+	const predictedPoints = Array.from(xs).map((v, i) => ({ x: v, y: ys[i] }));
+
+	await plot(points, 'Square Feet', predictedPoints);
+};
+
 const createModel = () => {
 	const model = tf.sequential();
 
 	model.add(
 		tf.layers.dense({
+			units: 10,
+			useBias: true,
+			activation: 'sigmoid',
+			inputDim: 1
+		})
+	);
+
+	model.add(
+		tf.layers.dense({
+			units: 10,
+			useBias: true,
+			activation: 'sigmoid',
+		})
+	);
+
+	model.add(
+		tf.layers.dense({
 			units: 1,
 			useBias: true,
-			activation: 'linear',
-			inputDim: 1
+			activation: 'sigmoid',
 		})
 	);
 
@@ -68,6 +120,20 @@ const createModel = () => {
 	});
 
 	return model;
+};
+
+const loadPoints = async () => {
+	// Preparing data
+	const dataset = tf.data.csv('/data/lab/kc_house_data.csv');
+	// const dataset = tf.data.csv('/data/lab/kc_house_data.csv');
+
+	// extract x and y value
+	const pointsDataset = dataset.map(({ sqft_living: x, price: y }) => ({ x, y }));
+	points = await pointsDataset.toArray();
+	points.length % 2 && points.pop();
+	tf.util.shuffle(points);
+	// plot(points, 'Square Feet');
+	// tfvis.visor().close();
 };
 
 const LinearRegression = props => {
@@ -89,18 +155,9 @@ const LinearRegression = props => {
 
 	const onClickTrainNewModel = useCallback(async () => {
 		setTrainingStatus('LOADING');
-
-		// Preparing data
-		// const dataset = tf.data.csv('/data/lab/kc_house_data.csv').take(2000);
-		const dataset = tf.data.csv('/data/lab/kc_house_data.csv');
-
-		// extract x and y value
-		const pointsDataset = dataset.map(({ sqft_living: x, price: y }) => ({ x, y }));
-		const points = await pointsDataset.toArray();
-		points.length % 2 && points.pop();
-		tf.util.shuffle(points);
-		plot(points, 'Square Feet');
-		tfvis.visor().close();
+		if (!points) {
+			await loadPoints();
+		}
 
 		// extract features(input)
 		const featureValues = points.map(p => p.x);
@@ -116,8 +173,6 @@ const LinearRegression = props => {
 
 		[featureMin, featureMax] = [normalizedFeature.min, normalizedFeature.max];
 		[labelMin, labelMax] = [normalizedLabel.min, normalizedLabel.max];
-
-		console.log(featureMin);
 
 		// splitting sets into training and testing sets
 		[trainingFeatureTensor, testingFeatureTensor] = tf.split(normalizedFeature.tensor, 2);
@@ -146,6 +201,11 @@ const LinearRegression = props => {
 				onEpochEnd: (epoch, log, ...rest) => {
 					setEpochs(epoch + 1);
 					onEpochEnd(epoch, log, ...rest);
+				},
+				onEpochBegin: async () => {
+					await plotPredictionLine();
+					const layer = trainingModel.getLayer(undefined, 0);
+					tfvis.show.layer({ name: 'Layer 1' }, layer);
 				}
 			}
 		});
@@ -160,6 +220,8 @@ const LinearRegression = props => {
 		// validation loss
 		const validationLoss = trainingResult.history.val_loss[trainingResult.history.val_loss.length - 1];
 		setValidationLoss(validationLoss);
+
+		await plotPredictionLine();
 
 		setTrainingStatus('TRAINED');
 		setLoaded(false);
@@ -181,6 +243,10 @@ const LinearRegression = props => {
 		const models = await tf.io.listModels();
 		savedResult = models[storageKey];
 		if (savedResult) {
+			if (!points) {
+				await loadPoints();
+			}
+
 			savedResult.dateSaved = new Date(savedResult.dateSaved);
 			trainingModel = await tf.loadLayersModel(storageKey);
 
@@ -192,7 +258,7 @@ const LinearRegression = props => {
 			const layer = trainingModel.getLayer(undefined, 0);
 			tfvis.show.layer({ name: 'Layer 1' }, layer);
 
-			tfvis.visor().close();
+			await plotPredictionLine();
 
 			setTrainingStatus('TRAINED');
 			setSaved(true);

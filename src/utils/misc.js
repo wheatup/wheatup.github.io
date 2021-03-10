@@ -16,6 +16,8 @@ export const pinyin2num = txt => {
 			return e.replace(/[ǎǒěňǐǔǚ]/, i => ({ 'ǎ': 'a', 'ǒ': 'o', 'ě': 'e', 'ň': 'n', 'ǐ': 'i', 'ǔ': 'u', 'ǚ': 'v' })[i]) + '3';
 		} else if (/[àòèìùǜ]/[Symbol.match](e)) {
 			return e.replace(/[àòèìùǜ]/, i => ({ 'à': 'a', 'ò': 'o', 'è': 'e', '': 'n', 'ì': 'i', 'ù': 'u', 'ǜ': 'v' })[i]) + '4';
+		} else {
+			return e;
 		}
 	}).join(' ');
 }

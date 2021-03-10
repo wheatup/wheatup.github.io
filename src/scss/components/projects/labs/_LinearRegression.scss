@@ -2,6 +2,9 @@
 	height: 100%;
 	padding: 1rem;
 	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
 
 	&>* {
 		&:not(:first-child) {
@@ -35,14 +38,13 @@
 		display: flex;
 		flex-wrap: wrap;
 		margin-top: 4rem;
+		margin: -1rem;
+		justify-content: center;
 
 		.column {
-			flex: 1;
+			flex: 1 0 30rem;
 			text-align: center;
-
-			&:not(:first-child) {
-				margin-left: 2rem;
-			}
+			margin: 4rem 1rem;
 
 			&>* {
 				&:not(:first-child) {
