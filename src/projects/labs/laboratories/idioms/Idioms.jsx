@@ -53,31 +53,33 @@ const Idioms = ({ location }) => {
 		} else if (/^[\u4e00-\u9fa5，]+$/[Symbol.match](q)) {
 			const text = q[q.length - 1];
 			if (pron) {
-				const pys = pinyin(text, { toneType: 'num', multiple: true }).split(' ');
+				let pys = pinyin(text, { toneType: 'num', multiple: true }).split(' ');
 				if (tone) {
 					if (initial) {
 						setResults(dictionary.filter(({ pinyin }) => pys.some(py => py === pinyin.split(' ')[0])));
 					} else {
-						setResults(dictionary.filter(({ pinyin }) => pys.some(py => pinyin.split(' ').some(t => t === py))));
+						pys = [...q].map(e => pinyin(e, { toneType: 'num', multiple: true }).split(' '));
+						setResults(dictionary.filter(({ pinyin }) => pys.every(py1 => py1.some(py => pinyin.split(' ').some(t => t === py)))));
 					}
 				} else {
 					if (initial) {
 						setResults(dictionary.filter(({ pinyin }) => pys.some(py => py.replace(/\d+/g, '') === pinyin.split(' ')[0].replace(/\d+/g, ''))));
 					} else {
-						setResults(dictionary.filter(({ pinyin }) => pys.some(py => pinyin.split(' ').some(t => t.replace(/\d+/g, '') === py.replace(/\d+/g, '')))));
+						pys = [...q].map(e => pinyin(e, { toneType: 'num', multiple: true }).split(' '));
+						setResults(dictionary.filter(({ pinyin }) => pys.every(py1 => py1.some(py => pinyin.split(' ').some(t => t.replace(/\d+/g, '') === py.replace(/\d+/g, ''))))));
 					}
 				}
 			} else {
 				if (initial) {
 					setResults(dictionary.filter(({ word }) => word[0] === text));
 				} else {
-					setResults(dictionary.filter(({ word }) => [...word].some(t => t === text)));
+					setResults(dictionary.filter(({ word }) => [...q].every(e => word.includes(e))));
 				}
 			}
 		} else {
 			setResults([]);
 		}
-	}, [location, history, dictionary])
+	}, [location, history, dictionary]);
 
 	useEffect(() => {
 		if (!shouldUpdate) return;
@@ -98,10 +100,13 @@ const Idioms = ({ location }) => {
 		search();
 	}, [query, setQuery, options, dictionary, setResults]);
 
-	const onClickWord = useCallback(text => {
-		copy(text);
-		setQuery(text);
-	}, [setQuery]);
+	const onClickWord = useCallback(
+		text => {
+			copy(text);
+			setQuery(text);
+		},
+		[setQuery]
+	);
 
 	return (
 		<div className="Idioms">
@@ -113,29 +118,43 @@ const Idioms = ({ location }) => {
 					<label htmlFor="initial">{$$`_idioms.initial`}</label>
 				</div>
 				<div className="option-group">
-					<input id="pron" name="pron" type="checkbox" checked={options.pron} onChange={({ target: { checked } }) => {
-						if (!checked) {
-							setOptions({ ...options, pron: false, tone: false })
-						} else {
-							setOptions({ ...options, pron: checked })
-						}
-					}} />
+					<input
+						id="pron"
+						name="pron"
+						type="checkbox"
+						checked={options.pron}
+						onChange={({ target: { checked } }) => {
+							if (!checked) {
+								setOptions({ ...options, pron: false, tone: false });
+							} else {
+								setOptions({ ...options, pron: checked });
+							}
+						}}
+					/>
 					<label htmlFor="pron">{$$`_idioms.homophone`}</label>
 				</div>
 				<div className={`option-group${options.pron ? '' : ' disabled'}`}>
-					<input id="tone" name="tone" type="checkbox" checked={options.tone} onChange={({ target: { checked } }) => {
-						if (checked) {
-							setOptions({ ...options, pron: true, tone: true })
-						} else {
-							setOptions({ ...options, tone: checked })
-						}
-					}} />
+					<input
+						id="tone"
+						name="tone"
+						type="checkbox"
+						checked={options.tone}
+						onChange={({ target: { checked } }) => {
+							if (checked) {
+								setOptions({ ...options, pron: true, tone: true });
+							} else {
+								setOptions({ ...options, tone: checked });
+							}
+						}}
+					/>
 					<label htmlFor="tone">{$$`_idioms.tone`}</label>
 				</div>
 			</div>
 			<div className="results">
 				{results.map(r => (
-					<span key={r.word} onClick={() => onClickWord(r.word)}>{r.word}</span>
+					<span key={r.word} onClick={() => onClickWord(r.word)}>
+						{r.word}
+					</span>
 				))}
 			</div>
 		</div>
