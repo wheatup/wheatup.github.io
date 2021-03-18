@@ -1,15 +1,15 @@
 import React from 'react';
 import { useTitle } from '../../hooks/misc';
-import whi18n from 'whi18n';
+import $$ from 'whi18n';
 
 const Home = props => {
 	useTitle('wheatup');
 
 	return (
-		<div className="Home">
-			<h2>{whi18n`wip`}</h2>
+		<div className={`Home${window.CSS.registerProperty ? '' : ' not-support'}`}>
+			<h2 data-fallback={$$`wip`}></h2>
 		</div>
 	);
-}
+};
 
 export default Home;
