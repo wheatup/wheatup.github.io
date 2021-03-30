@@ -1,0 +1,118 @@
+.EmojiSpin {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+
+	.StatusBar {
+		background-color: #8c6a2d;
+		padding: 0.5rem 1rem;
+		font-size: 2rem;
+		color: gold;
+	}
+
+	.screens {
+		flex: 1 0 auto;
+		position: relative;
+		overflow: hidden;
+
+		.screen {
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			overflow: hidden;
+			position: absolute;
+		}
+
+		.GameScreen {
+			display: flex;
+			flex-direction: column;
+
+			.top-area {
+				flex: 0 1 40rem;
+				position: relative;
+
+				.SlotArea {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					display: flex;
+					flex-direction: row;
+					background-color: #ffeebf;
+
+					.Column {
+						flex: 1;
+						height: 100%;
+						position: relative;
+						overflow: hidden;
+
+						&.spinning {
+							filter: url("#blur");
+						}
+
+						.column-wrapper {
+							position: relative;
+							width: 100%;
+							height: 100%;
+							transform: translateY(calc(var(--bias, 0) * 1%));
+
+							
+
+							.slots {
+								display: flex;
+								flex-direction: column;
+								width: 100%;
+								height: 100%;
+								position: absolute;
+								top: 0;
+								left: 0;
+
+								&.fake {
+									transform: translateY(-100%);
+								}
+
+								.Slot {
+									flex: 1 0 auto;
+									position: relative;
+									border: solid 1px rgba(0, 0, 0, 0.2);
+
+									&.hidden {
+										position: absolute;
+									}
+
+									.slot-content {
+										display: flex;
+										position: absolute;
+										width: 100%;
+										height: 100%;
+										top: 0;
+										left: 0;
+										align-items: center;
+										justify-content: center;
+
+										.EmojiSprite {
+											font-size: 4rem;
+										}
+									}
+								}
+							}
+						}
+					}
+
+					&>svg {
+						display: none;
+					}
+				}
+			}
+
+			.bottom-area {
+				flex: 1 0 40%;
+			}
+		}
+	}
+}

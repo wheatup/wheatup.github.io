@@ -1,0 +1,47 @@
+.Games {
+	width: 100%;
+	height: 100%;
+	max-width: initial !important;
+
+	display: flex;
+	flex-direction: column;
+
+	& > .games {
+		background-color: #444;
+
+		.game-navs {
+			overflow-x: auto;
+			padding: 1rem;
+			display: flex;
+			max-width: var(--max-width);
+			margin: 0 auto;
+
+			a {
+				font-size: 1.4rem;
+				display: block;
+				padding: 0.5rem 1rem;
+				border-radius: 0.5rem;
+				color: var(--clrLight);
+				white-space: nowrap;
+
+				&:not(:first-child) {
+					margin-left: 0.5rem;
+				}
+
+				&.active {
+					background-color: var(--clrTheme1);
+					color: var(--clrDark);
+				}
+			}
+		}
+	}
+
+	& > .game {
+		flex: 1;
+		margin: 0 auto;
+		max-width: var(--max-width);
+		width: 100%;
+		position: relative;
+		overflow: hidden;
+	}
+}

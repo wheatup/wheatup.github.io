@@ -4,7 +4,6 @@
 @import './components/common/Button';
 @import './components/common/Markdown';
 
-
 @import './components/App';
 @import './components/projects/Home';
 @import './components/projects/Forum';
@@ -12,3 +11,6 @@
 @import './components/projects/labs/HexieEncoder';
 @import './components/projects/labs/Idioms';
 @import './components/projects/labs/LinearRegression';
+
+@import './components/projects/Games';
+@import './components/projects/games/EmojiSpin';
