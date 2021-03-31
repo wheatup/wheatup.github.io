@@ -53,16 +53,16 @@ const Column = ({ column }) => {
 	}, [column]);
 
 	return (
-		<section className={'Column' + (spinning ? ' spinning' : '')}>
+		<section data-column={column.column} className={'Column' + (spinning ? ' spinning' : '')}>
 			<div className="column-wrapper" style={{ '--bias': bias % 100 }}>
 				<div className="slots fake">
 					{stored.slots.map(slot => (
 						<Slot key={`slot_${slot.column}_${slot.row}`} slot={slot} />
 					))}
 				</div>
-				<div className="slots">
+				<div className="slots real">
 					{stored.slots.map(slot => (
-						<Slot key={`slot_${slot.column}_${slot.row}`} slot={slot} />
+						<Slot data-column={slot.column} data-row={slot.column} key={`slot_${slot.column}_${slot.row}`} slot={slot} />
 					))}
 				</div>
 			</div>

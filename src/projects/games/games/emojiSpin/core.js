@@ -1,19 +1,29 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { setData, useData } from "wherehouse";
+import whevent from "whevent";
 import { EmojiSpin } from "../../../../utils/store";
+
+export const empty = {
+	name: 'empty',
+	rarity: 0,
+	value: 0
+};
 
 export const symbols = [
 	{
 		name: 'smile',
 		emoji: '😀',
 		rarity: 0,
-		value: 1
+		value: 1,
+		affect(result, source, target, score, boosters) {
+			// console.log({ result, source, target, score, boosters });
+		}
 	},
 	{
 		name: 'mushroom',
 		emoji: '🍄',
 		rarity: 0,
-		value: 1
+		value: 1,
 	},
 	{
 		name: 'coin',
@@ -40,7 +50,7 @@ export const symbols = [
 		emoji: '🍎',
 		rarity: 0,
 		value: 1,
-		desc: 'Give 2x🪙 for every adjacent 🍎'
+		desc: 'Give +1🪙 for every adjacent 🍎'
 	}, {
 		name: 'orange',
 		emoji: '🍊',
@@ -63,7 +73,7 @@ let initiated = false;
 export const useDeck = () => {
 	const deck = useData(EmojiSpin.DECK);
 	const result = useData(EmojiSpin.SPIN_RESULT);
-	
+
 	const spin = useCallback((deck, cols = 5, rows = 5) => {
 		const shuffledDeck = [...deck];
 		shuffledDeck.sort(() => Math.random() > 0.5 ? -1 : 1);
@@ -85,11 +95,11 @@ export const useDeck = () => {
 					columns[y] = {
 						column: y,
 						slots: [
-							{ column: y, row: x, slot: symbols.find(({ name }) => n === name) }
+							{ column: y, row: x, slot: symbols.find(({ name }) => n === name) || empty }
 						]
 					};
 				} else {
-					columns[y].slots.push({ column: y, row: x, slot: symbols.find(({ name }) => n === name) });
+					columns[y].slots.push({ column: y, row: x, slot: symbols.find(({ name }) => n === name) || empty });
 				}
 			}
 		}
@@ -97,9 +107,20 @@ export const useDeck = () => {
 		const result = {
 			cols,
 			rows,
-			columns
+			columns,
+			toString() {
+				const rows = new Array(this.rows).fill('');
+				this.columns.forEach(({ slots }) => {
+					slots.forEach(({ row, slot }) => {
+						rows[row] += (slot.emoji || 'X') + '\t';
+					})
+				})
+				return rows.join('\n');
+			}
 		};
 
+		console.log('%cRESULT', 'background-color: gold; color: #630; padding: 5px 10px; border-radius: 10px;', result);
+		console.log(result.toString());
 		setData(EmojiSpin.SPIN_RESULT, result);
 		return result;
 	}, []);
@@ -107,10 +128,6 @@ export const useDeck = () => {
 	useEffect(() => {
 		if (!deck.length) {
 			setData(EmojiSpin.DECK, [
-				'smile',
-				'smile',
-				'smile',
-				'smile',
 				'smile',
 				'mushroom',
 				'cherry',
@@ -121,11 +138,39 @@ export const useDeck = () => {
 	}, [deck]);
 
 	useEffect(() => {
-		if(!initiated && deck.length) {
+		if (!initiated && deck.length) {
 			spin(deck);
 			initiated = true;
 		}
 	}, [spin, deck]);
 
 	return { deck, result, spin };
+};
+
+export const calculateSlot = (result, target) => {
+	const { column, row, slot } = target;
+	let res = { base: 0, add: 0, mul: 1 };
+	let boosters = [];
+
+	if (slot) {
+		if (typeof slot.value === 'function') {
+			slot.value(res);
+		} else {
+			res.base = slot.value || 0;
+		}
+	}
+
+	for (let c = 0; c < result.cols; c++) {
+		for (let r = 0; r < result.rows; r++) {
+			if (c !== column || r !== row) {
+				const source = result.columns[c].slots[r];
+				if (source.slot.affect) {
+					source.slot.affect(result, source, target, res, boosters);
+				}
+			}
+		}
+	}
+
+	const value = (res.base + res.add) * res.mul || 0;
+	return { value, boosters };
 };
