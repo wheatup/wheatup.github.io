@@ -14,6 +14,7 @@ import LanguageSwitcher from './components/LanguageSwitcher';
 import $$ from 'whi18n';
 import Labs from './projects/labs/Labs';
 import Games from './projects/games/Games';
+import Blog from './projects/blog/components/Blog';
 
 const App = () => {
 	useMaxHeight();
@@ -25,9 +26,10 @@ const App = () => {
 						<NavLink exact to="/" className="logo pc-only"></NavLink>
 						<div className="nav-links">
 							<NavLink exact to="/" title={$$`home`}><i className="icon-home"></i></NavLink>
+							<NavLink to="/blog" title={$$`blog`}><i className="icon-pencil"></i></NavLink>
 							<NavLink to="/forum" title={$$`forum`}><i className="icon-forum"></i></NavLink>
 							<NavLink to="/labs" title={$$`labs`}><i className="icon-lab"></i></NavLink>
-							<NavLink to="/games" title={$$`games`}><i className="icon-pacman"></i></NavLink>
+							{/* <NavLink to="/games" title={$$`games`}><i className="icon-pacman"></i></NavLink> */}
 						</div>
 						<LanguageSwitcher />
 						<User />
@@ -36,6 +38,7 @@ const App = () => {
 				<main>
 					<Switch>
 						<Route path="/forum" component={Forum} />
+						<Route path="/blog" component={Blog} />
 						<Redirect path="/hexie" to="/labs/hexie" />
 						<Redirect path="/idioms" to="/labs/idioms" />
 						<Route path="/labs" component={Labs} />

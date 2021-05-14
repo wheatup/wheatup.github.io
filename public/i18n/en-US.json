@@ -57,6 +57,11 @@
 		"games": "Games",
 		"_games": {
 			"emoji-spin": "Emoji Spin"
+		},
+		"blog": "Blog",
+		"_blog": {
+			"blogs": "Blogs",
+			"empty": "Nothing to see here."
 		}
 	}
 }

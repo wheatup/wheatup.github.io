@@ -12,6 +12,10 @@ export const EmojiSpin = {
 	STATE: Symbol(),
 };
 
+export const Blog = {
+	BLOGS: Symbol()
+};
+
 export const setup = () => init({
 	[LOADING]: '',
 	[ME]: null,
@@ -22,4 +26,6 @@ export const setup = () => init({
 	[EmojiSpin.DIMENTIONS]: [5, 5],
 	[EmojiSpin.STATE]: 'IDLE',
 	[EmojiSpin.SPIN_RESULT]: { cols: 5, rows: 5, columns: Array.from({ length: 5 }, (_, y) => ({ column: y, slots: Array.from({ length: 5 }, (_, x) => ({ column: y, row: x, slot: undefined })) }))},
+
+	[Blog.BLOGS]: []
 });

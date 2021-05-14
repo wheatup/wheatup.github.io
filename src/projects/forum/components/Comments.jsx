@@ -3,7 +3,7 @@ import { useData } from 'wherehouse';
 import { ME } from '../../../utils/store';
 import UserAvatar from './UserAvatar';
 import { useMemo } from 'react';
-import Markdown from './Markdown';
+import Markdown from '../../../components/common/Markdown';
 import { getTimeDiff } from '../utils/misc';
 import { useCallback } from 'react';
 import { useState } from 'react';
@@ -42,7 +42,7 @@ const Comment = ({ comment, isMe }) => {
 		<div className={`Comment${isMe ? ' me' : ''}`}>
 			<UserAvatar user={user} />
 			<div className="content">
-				<Markdown source={body} />
+				<Markdown>{body}</Markdown>
 			</div>
 		</div>
 	);

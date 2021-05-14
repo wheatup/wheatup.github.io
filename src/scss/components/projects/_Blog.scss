@@ -1,0 +1,95 @@
+.Blog {
+	padding: 0 1rem;
+
+	.BlogList {
+		font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', '宋体', serif;
+
+		h1 {
+			margin: 3rem 0;
+			margin-left: 1rem;
+			font-size: 4rem;
+			font-weight: normal;
+		}
+
+		&:empty::before {
+			content: attr(data-empty);
+			margin-left: 1rem;
+			font-size: 2rem;
+			opacity: 0.8;
+		}
+
+		.list {
+			.entry {
+				&:not(:first-child) {
+					margin-top: 1rem;
+					&::before {
+						content: '';
+						display: block;
+						border-top: var(--border);
+						margin-bottom: 1rem;
+					}
+				}
+
+				h2 {
+					font-weight: normal;
+				}
+
+				p {
+					opacity: 0.8;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					display: -webkit-box;
+					-webkit-line-clamp: 3;
+					-webkit-box-orient: vertical;
+				}
+
+				a {
+					display: block;
+					color: inherit;
+					padding: 1rem;
+
+					&:hover {
+						color: var(--clrTheme2);
+					}
+
+					& > * {
+						&:not(:first-child) {
+							margin-top: 1rem;
+						}
+					}
+
+					.footer {
+						display: flex;
+						align-items: center;
+						opacity: 0.5;
+						font-size: 0.8em;
+
+						& > * {
+							&:not(:first-child) {
+								margin-left: 1rem;
+							}
+						}
+
+						.tags {
+							display: flex;
+
+							& > * {
+								background-color: #ddd;
+								padding: 0.5rem 1rem;
+
+								&:not(:first-child) {
+									margin-left: 1rem;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.Article {
+		background-color: white;
+		padding: 4rem;
+	}
+}
