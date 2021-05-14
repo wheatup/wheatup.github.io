@@ -4,6 +4,10 @@
 	height: 100%;
 	position: relative;
 
+	@include phone {
+		padding: 1.6rem;
+	}
+
 	.BlogList {
 		font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', '宋体', serif;
 
