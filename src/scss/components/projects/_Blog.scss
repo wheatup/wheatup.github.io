@@ -1,11 +1,15 @@
 .Blog {
-	padding: 0 1rem;
+	background-color: #f9f9f9;
+	padding: 3.2rem 4rem;
+	height: 100%;
+	position: relative;
 
 	.BlogList {
 		font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', '宋体', serif;
 
 		h1 {
-			margin: 3rem 0;
+			display: block;
+			margin-bottom: 2rem;
 			margin-left: 1rem;
 			font-size: 4rem;
 			font-weight: normal;
@@ -20,14 +24,12 @@
 
 		.list {
 			.entry {
-				&:not(:first-child) {
-					margin-top: 1rem;
-					&::before {
-						content: '';
-						display: block;
-						border-top: var(--border);
-						margin-bottom: 1rem;
-					}
+				margin-top: 1rem;
+				&::before {
+					content: '';
+					display: block;
+					border-top: var(--border);
+					margin-bottom: 1rem;
 				}
 
 				h2 {
@@ -89,7 +91,6 @@
 	}
 
 	.Article {
-		background-color: white;
-		padding: 4rem;
+		min-height: 100%;
 	}
 }

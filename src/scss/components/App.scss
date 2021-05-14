@@ -154,4 +154,16 @@
 		justify-content: center;
 		color: var(--clrSub);
 	}
+
+	.Markdown {
+		pre {
+			background-color: initial;
+			padding: 0;
+			font-size: inherit;
+
+			code {
+				font-family: 'Cascadia Code', 'Cascadia Mono', 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important;
+			}
+		}
+	}
 }
