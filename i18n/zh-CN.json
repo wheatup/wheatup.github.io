@@ -53,6 +53,15 @@
 			"tone": "同音调",
 			"placeholder": "输入成语、汉字或者拼音(yuan, san1)等..."
 		},
-		"labs": "实验室"
+		"labs": "实验室",
+		"games": "游戏",
+		"_games": {
+			"emoji-spin": "Emoji转转乐"
+		},
+		"blog": "博客",
+		"_blog": {
+			"blogs": "wheatup的博客",
+			"empty": "暂无文章。"
+		}
 	}
 }

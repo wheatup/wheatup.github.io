@@ -53,6 +53,15 @@
 			"tone": "tone",
 			"placeholder": "Please enter idiom, character or pinyin(yuan, san1 etc.)"
 		},
-		"labs": "Labs"
+		"labs": "Labs",
+		"games": "Games",
+		"_games": {
+			"emoji-spin": "Emoji Spin"
+		},
+		"blog": "Blog",
+		"_blog": {
+			"blogs": "Wheatup's Blogs",
+			"empty": "Nothing to see here."
+		}
 	}
 }
