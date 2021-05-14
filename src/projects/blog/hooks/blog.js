@@ -10,7 +10,7 @@ export const useBlogList = () => {
 	useEffect(() => {
 		if (!blogs?.length) {
 			(async () => {
-				setData(Blog.BLOGS, await getBlogList());
+				setData(Blog.BLOGS, (await getBlogList())?.reverse());
 			})();
 		}
 	}, [blogs]);

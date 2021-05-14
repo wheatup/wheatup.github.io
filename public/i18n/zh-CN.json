@@ -57,6 +57,11 @@
 		"games": "游戏",
 		"_games": {
 			"emoji-spin": "Emoji转转乐"
+		},
+		"blog": "博客",
+		"_blog": {
+			"blogs": "wheatup的博客",
+			"empty": "暂无文章。"
 		}
 	}
 }
