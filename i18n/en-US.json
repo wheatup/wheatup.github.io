@@ -51,7 +51,8 @@
 			"initial": "initial",
 			"homophone": "homophone",
 			"tone": "tone",
-			"placeholder": "Please enter idiom, character or pinyin(yuan, san1 etc.)"
+			"placeholder": "Please enter idiom, character or pinyin(yuan, san1 etc.)",
+			"copied": "Idiom has been copied to the clipboard!"
 		},
 		"labs": "Labs",
 		"games": "Games",
