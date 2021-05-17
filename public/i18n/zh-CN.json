@@ -51,7 +51,8 @@
 			"initial": "首字",
 			"homophone": "同音词",
 			"tone": "同音调",
-			"placeholder": "输入成语、汉字或者拼音(yuan, san1)等..."
+			"placeholder": "输入成语、汉字或者拼音(yuan, san1)等...",
+			"copied": "成语已复制至剪贴板！"
 		},
 		"labs": "实验室",
 		"games": "游戏",

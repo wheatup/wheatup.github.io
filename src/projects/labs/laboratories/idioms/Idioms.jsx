@@ -6,6 +6,7 @@ import copy from 'copy-to-clipboard';
 import { useHistory } from 'react-router-dom';
 import { useTitle } from '../../../../hooks/misc';
 import $$ from 'whi18n';
+import { toast } from 'react-toastify';
 
 const Idioms = ({ location }) => {
 	const dictionary = useDictionary();
@@ -102,6 +103,7 @@ const Idioms = ({ location }) => {
 
 	const onClickWord = useCallback(
 		text => {
+			toast($$`_idioms.copied`);
 			copy(text);
 			setQuery(text);
 		},

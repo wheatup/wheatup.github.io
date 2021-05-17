@@ -15,6 +15,8 @@ import $$ from 'whi18n';
 import Labs from './projects/labs/Labs';
 import Games from './projects/games/Games';
 import Blog from './projects/blog/components/Blog';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
 	useMaxHeight();
@@ -49,6 +51,7 @@ const App = () => {
 				<footer>
 					&copy;&nbsp;<a href="https://github.com/wheatup/" target="_blank" rel="noopener noreferrer">wheatup</a>&nbsp;<a target="_blank" href="https://github.com/wheatup/wheatup.github.io/blob/master/LICENSE">@{new Date().getFullYear()} {$$`all-rights-reserved`}</a>
 				</footer>
+				<ToastContainer hideProgressBar closeOnClick autoClose={3000}/>
 			</div>
 		</Router>
 	);
