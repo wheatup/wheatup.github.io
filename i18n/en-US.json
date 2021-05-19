@@ -54,6 +54,11 @@
 			"placeholder": "Please enter idiom, character or pinyin(yuan, san1 etc.)",
 			"copied": "Idiom has been copied to the clipboard!"
 		},
+		"web-color-picker": "Web Color Picker",
+		"_web-color-picker": {
+			"title": "Web Color Picker",
+			"copied": "Color text has been copied to the clipboard!"
+		},
 		"labs": "Labs",
 		"games": "Games",
 		"_games": {
