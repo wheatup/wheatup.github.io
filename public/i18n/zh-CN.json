@@ -54,6 +54,11 @@
 			"placeholder": "输入成语、汉字或者拼音(yuan, san1)等...",
 			"copied": "成语已复制至剪贴板！"
 		},
+		"web-color-picker": "拾色器",
+		"_web-color-picker": {
+			"title": "颜色文本拾色器",
+			"copied": "颜色已复制至剪贴板！"
+		},
 		"labs": "实验室",
 		"games": "游戏",
 		"_games": {
