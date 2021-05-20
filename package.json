@@ -12,7 +12,7 @@
 		"@testing-library/user-event": "^7.2.1",
 		"axios": "^0.20.0",
 		"copy-to-clipboard": "^3.3.1",
-		"hexie-encode": "^1.0.5",
+		"hexie-encode": "^1.0.6",
 		"pinyin-pro": "^2.0.8",
 		"react": "^16.13.1",
 		"react-color": "^2.19.3",
