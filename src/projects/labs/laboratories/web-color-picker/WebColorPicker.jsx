@@ -34,7 +34,7 @@ const webColors = {
 	darkgoldenrod: '#b8860b',
 	darkgray: '#a9a9a9',
 	darkgreen: '#006400',
-	darkgrey: '#a9a9a9',
+	// darkgrey: '#a9a9a9',
 	darkkhaki: '#bdb76b',
 	darkmagenta: '#8b008b',
 	darkolivegreen: '#556b2f',
@@ -45,13 +45,13 @@ const webColors = {
 	darkseagreen: '#8fbc8f',
 	darkslateblue: '#483d8b',
 	darkslategray: '#2f4f4f',
-	darkslategrey: '#2f4f4f',
+	// darkslategrey: '#2f4f4f',
 	darkturquoise: '#00ced1',
 	darkviolet: '#9400d3',
 	deeppink: '#ff1493',
 	deepskyblue: '#00bfff',
 	dimgray: '#696969',
-	dimgrey: '#696969',
+	// dimgrey: '#696969',
 	dodgerblue: '#1e90ff',
 	firebrick: '#b22222',
 	floralwhite: '#fffaf0',
@@ -64,7 +64,7 @@ const webColors = {
 	gray: '#808080',
 	green: '#008000',
 	greenyellow: '#adff2f',
-	grey: '#808080',
+	// grey: '#808080',
 	honeydew: '#f0fff0',
 	hotpink: '#ff69b4',
 	indianred: '#cd5c5c',
@@ -81,13 +81,13 @@ const webColors = {
 	lightgoldenrodyellow: '#fafad2',
 	lightgray: '#d3d3d3',
 	lightgreen: '#90ee90',
-	lightgrey: '#d3d3d3',
+	// lightgrey: '#d3d3d3',
 	lightpink: '#ffb6c1',
 	lightsalmon: '#ffa07a',
 	lightseagreen: '#20b2aa',
 	lightskyblue: '#87cefa',
 	lightslategray: '#778899',
-	lightslategrey: '#778899',
+	// lightslategrey: '#778899',
 	lightsteelblue: '#b0c4de',
 	lightyellow: '#ffffe0',
 	lime: '#00ff00',
@@ -141,7 +141,7 @@ const webColors = {
 	skyblue: '#87ceeb',
 	slateblue: '#6a5acd',
 	slategray: '#708090',
-	slategrey: '#708090',
+	// slategrey: '#708090',
 	snow: '#fffafa',
 	springgreen: '#00ff7f',
 	steelblue: '#4682b4',
@@ -170,6 +170,41 @@ const webColorRGBs = Object.fromEntries(
 	})
 );
 
+function rgbToHsl([r, g, b]) {
+	let max = Math.max(r, g, b),
+		min = Math.min(r, g, b);
+	let h,
+		s,
+		l = (max + min) / 2;
+
+	if (max == min) {
+		h = s = 0; // achromatic
+	} else {
+		var d = max - min;
+		s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+
+		switch (max) {
+			case r:
+				h = (g - b) / d + (g < b ? 6 : 0);
+				break;
+			case g:
+				h = (b - r) / d + 2;
+				break;
+			case b:
+				h = (r - g) / d + 4;
+				break;
+		}
+
+		h /= 6;
+	}
+
+	return [h, s, l];
+}
+
+function easeInOutCubic(x) {
+	return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+}
+
 const WebColorPicker = props => {
 	useTitle($$`_web-color-picker.title`);
 	const [color, setColor] = useState('#ff0000');
@@ -179,19 +214,35 @@ const WebColorPicker = props => {
 		return (0.299 * r ** 2 + 0.587 * g ** 2 + 0.114 * b ** 2) ** 0.5;
 	}, [color]);
 
-	const webColor = useMemo(() => {
-		let min = Infinity;
-		let currentWeb = null;
-		const [orgR, orgG, orgB] = getRGB(color);
+	const webColors = useMemo(() => {
+		let mins = [
+			{ dist: Infinity, color: 'N/A' },
+			// { dist: Infinity, color: 'N/A' },
+			// { dist: Infinity, color: 'N/A' }
+		];
+		const [orgH, orgS, orgL] = rgbToHsl(getRGB(color));
+		console.log({ orgH, orgS, orgL });
 		Object.entries(webColorRGBs).forEach(([key, [r, g, b]]) => {
-			const dist = ((orgR - r) ** 2 + (orgG - g) ** 2 + (orgB - b) ** 2) ** 0.5;
-			if (dist < min) {
-				min = dist;
-				currentWeb = key;
+			const [h, s, l] = rgbToHsl([r, g, b]);
+			let distH = easeInOutCubic(Math.min(Math.abs(orgH - h), 1 - Math.abs(orgH - h)) * 2);
+			let distS = easeInOutCubic(Math.abs(orgS - s));
+			let distL = easeInOutCubic(Math.abs(orgL - l));
+			distS *= l ** 0.2;
+			distH *= s ** 0.2;
+			distL *= 0.5;
+			const dist = (distH + distS + distL) ** 0.5;
+			for (let i = 0; i < mins.length; i++) {
+				let min = mins[i];
+				if (dist < min.dist) {
+					for (let j = mins.length - 1; j < i; j--) {
+						mins[j] = mins[j - 1];
+					}
+					mins[i] = { dist, color: key };
+					break;
+				}
 			}
 		});
-
-		return currentWeb;
+		return mins.map(({ color }) => color);
 	}, [color]);
 
 	const onClickColor = useCallback(color => {
@@ -204,15 +255,17 @@ const WebColorPicker = props => {
 			<h2>{$$`_web-color-picker.title`}</h2>
 			<ChromePicker color={color} onChange={({ hex }) => setColor(hex)} disableAlpha={true} />
 			<div className="comparison">
-				<div className="block origin" onClick={() => onClickColor(color)}>
-					<div className="color" style={{ backgroundColor: color, color: brightness > 0.5 ? 'black' : 'white' }}>
+				<div className="block origin">
+					<div className="color" onClick={() => onClickColor(color)} style={{ backgroundColor: color, color: brightness > 0.5 ? 'black' : 'white' }}>
 						<span style={{ opacity: 0.5 }}>{color}</span>
 					</div>
 				</div>
-				<div className="block web" onClick={() => onClickColor(webColor)}>
-					<div className="color" style={{ backgroundColor: webColor, color: brightness > 0.5 ? 'black' : 'white' }}>
-						<span style={{ opacity: 0.5 }}>{webColor}</span>
-					</div>
+				<div className="block web">
+					{webColors.map(color => (
+						<div key={color} onClick={() => onClickColor(color)} className="color" style={{ backgroundColor: color, color: brightness > 0.5 ? 'black' : 'white' }}>
+							<span style={{ opacity: 0.5 }}>{color}</span>
+						</div>
+					))}
 				</div>
 			</div>
 		</section>
