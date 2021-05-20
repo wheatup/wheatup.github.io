@@ -217,11 +217,10 @@ const WebColorPicker = props => {
 	const webColors = useMemo(() => {
 		let mins = [
 			{ dist: Infinity, color: 'N/A' },
-			// { dist: Infinity, color: 'N/A' },
-			// { dist: Infinity, color: 'N/A' }
+			{ dist: Infinity, color: 'N/A' },
+			{ dist: Infinity, color: 'N/A' }
 		];
 		const [orgH, orgS, orgL] = rgbToHsl(getRGB(color));
-		console.log({ orgH, orgS, orgL });
 		Object.entries(webColorRGBs).forEach(([key, [r, g, b]]) => {
 			const [h, s, l] = rgbToHsl([r, g, b]);
 			let distH = easeInOutCubic(Math.min(Math.abs(orgH - h), 1 - Math.abs(orgH - h)) * 2);
