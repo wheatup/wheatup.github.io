@@ -68,6 +68,15 @@
 		"_blog": {
 			"blogs": "Wheatup's Blogs",
 			"empty": "Nothing to see here."
+		},
+
+		"regex-dictionary": "Regex Dictionary",
+		"_regex-dictionary": {
+			"title": "Regex Dictionary",
+			"anchored": "anchored",
+			"copied": "Word has been copied to the clipboard!",
+			"no-results": "no results",
+			"illegal": "regex syntax error"
 		}
 	}
 }

@@ -3,6 +3,7 @@
 
 @import './components/common/Button';
 @import './components/common/Markdown';
+@import './components/common/Common';
 
 @import './components/App';
 @import './components/projects/Home';
@@ -13,6 +14,7 @@
 @import './components/projects/labs/Idioms';
 @import './components/projects/labs/LinearRegression';
 @import './components/projects/labs/WebColorPicker';
+@import './components/projects/labs/RegexDictionary';
 
 @import './components/projects/Games';
 @import './components/projects/games/EmojiSpin';

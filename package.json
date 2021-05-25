@@ -16,6 +16,7 @@
 		"pinyin-pro": "^2.0.8",
 		"react": "^16.13.1",
 		"react-color": "^2.19.3",
+		"react-contenteditable": "^3.3.5",
 		"react-dom": "^16.13.1",
 		"react-markdown": "^6.0.2",
 		"react-router-dom": "^5.2.0",
@@ -24,6 +25,7 @@
 		"react-toastify": "^7.0.4",
 		"remark-gfm": "^1.0.0",
 		"sweetalert2": "^10.15.5",
+		"use-debounced-effect": "^1.2.0",
 		"wherehouse": "^1.0.3",
 		"whevent": "^2.1.1",
 		"whi18n": "^1.1.1"

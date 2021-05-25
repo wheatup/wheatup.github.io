@@ -1,0 +1,25 @@
+.options {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.option-group {
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		user-select: none;
+
+		&:not(:first-of-type) {
+			margin-left: 1rem;
+		}
+
+		input {
+			margin-right: 0.5rem;
+			cursor: inherit;
+		}
+
+		label {
+			cursor: inherit;
+		}
+	}
+}
