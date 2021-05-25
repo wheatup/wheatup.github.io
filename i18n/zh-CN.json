@@ -68,6 +68,14 @@
 		"_blog": {
 			"blogs": "wheatup的博客",
 			"empty": "暂无文章。"
+		},
+		"regex-dictionary": "正则词典",
+		"_regex-dictionary": {
+			"title": "正则词典",
+			"anchored": "添加锚点",
+			"copied": "单词已复制至剪贴板！",
+			"no-results": "没有匹配",
+			"illegal": "正则语法错误！"
 		}
 	}
 }
