@@ -113,7 +113,7 @@ const Idioms = ({ location }) => {
 	return (
 		<div className="Idioms">
 			<h1>{$$`_idioms.title`}</h1>
-			<input className="input" autoComplete={false} disabled={dictionary.length === 0} value={query} onChange={({ target: { value } }) => setQuery(value.toLowerCase())} placeholder={$$`_idioms.placeholder`} />
+			<input className="input" autoComplete="false" disabled={dictionary.length === 0} value={query} onChange={({ target: { value } }) => setQuery(value.toLowerCase())} placeholder={$$`_idioms.placeholder`} />
 			<div className="options">
 				<div className={`option-group`}>
 					<input id="initial" name="initial" type="checkbox" checked={options.initial} onChange={({ target: { checked } }) => setOptions({ ...options, initial: checked })} />

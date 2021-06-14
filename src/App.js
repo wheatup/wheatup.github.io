@@ -17,9 +17,13 @@ import Games from './projects/games/Games';
 import Blog from './projects/blog/components/Blog';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useData } from 'wherehouse';
+import { CV as ViewCV } from './utils/store';
+import CV from './projects/cv/CV';
 
 const App = () => {
 	useMaxHeight();
+	const cv = useData(ViewCV);
 	return (
 		<Router>
 			<div className="App">
@@ -31,6 +35,7 @@ const App = () => {
 							<NavLink to="/blog" title={$$`blog`}><i className="icon-pencil"></i></NavLink>
 							<NavLink to="/forum" title={$$`forum`}><i className="icon-forum"></i></NavLink>
 							<NavLink to="/labs" title={$$`labs`}><i className="icon-lab"></i></NavLink>
+							{cv && <NavLink to="/cv" title={$$`cv`}><i className="icon-profile"></i></NavLink>}
 							{/* <NavLink to="/games" title={$$`games`}><i className="icon-pacman"></i></NavLink> */}
 						</div>
 						<LanguageSwitcher />
@@ -45,6 +50,7 @@ const App = () => {
 						<Redirect path="/idioms" to="/labs/idioms" />
 						<Route path="/labs" component={Labs} />
 						<Route path="/games" component={Games} />
+						<Route path="/cv" component={CV} />
 						<Route path="/" component={Home} exact />
 					</Switch>
 				</main>

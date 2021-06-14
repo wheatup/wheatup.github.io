@@ -10,7 +10,6 @@ export const useDictionary = () => {
 		if (!dictionary.length) {
 			get('/data/idiom.min.json').then(({ data }) => {
 				setDictionary(data);
-				console.log(data);
 			});
 		}
 	}, [dictionary]);

@@ -6,9 +6,11 @@ import $$ from 'whi18n';
 import { useCallback } from 'react';
 import { toast } from 'react-toastify';
 import copy from 'copy-to-clipboard';
+import { useTitle } from '../../../../hooks/misc';
 
 const RegexDictionary = props => {
 	const words = useWords();
+	useTitle($$`regex-dictionary`);
 
 	const [regex, setRegex] = useState('');
 	const [illegal, setIllegal] = useState(false);
