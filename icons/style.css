@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?ahl9cn');
-  src:  url('fonts/icomoon.eot?ahl9cn#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?ahl9cn') format('truetype'),
-    url('fonts/icomoon.woff?ahl9cn') format('woff'),
-    url('fonts/icomoon.svg?ahl9cn#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?gl56jj');
+  src:  url('fonts/icomoon.eot?gl56jj#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?gl56jj') format('truetype'),
+    url('fonts/icomoon.woff?gl56jj') format('woff'),
+    url('fonts/icomoon.svg?gl56jj#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-codepen:before {
+  content: "\e910";
+}
+.icon-phone:before {
+  content: "\e911";
+}
+.icon-envelope:before {
+  content: "\e912";
+}
 .icon-exchange:before {
   content: "\e905";
 }
@@ -36,6 +45,33 @@
 }
 .icon-question_answer:before {
   content: "\e906";
+}
+.icon-star-half:before {
+  content: "\e916";
+}
+.icon-star-full:before {
+  content: "\e917";
+}
+.icon-star-empty:before {
+  content: "\e918";
+}
+.icon-github:before {
+  content: "\e915";
+}
+.icon-linkedin:before {
+  content: "\e914";
+}
+.icon-stackoverflow:before {
+  content: "\e913";
+}
+.icon-brand:before {
+  content: "\e913";
+}
+.icon-social:before {
+  content: "\e913";
+}
+.icon-profile:before {
+  content: "\e90f";
 }
 .icon-pencil:before {
   content: "\e90e";
