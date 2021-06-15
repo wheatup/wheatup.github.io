@@ -1,8 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { setData } from 'wherehouse';
-import { CV as CV_VIEW } from '../../utils/store';
+import { CV as CV_VIEW, FULLSCREEN } from '../../utils/store';
 import $$ from 'whi18n';
 import { useTitle } from '../../hooks/misc';
+import Background from './components/Background';
+import Timeline from './components/Timeline';
 
 const Stars = ({ value }) => {
 	return (
@@ -21,7 +23,6 @@ const Stars = ({ value }) => {
 const PROGRAMMING_LANGUAGES = [
 	{ name: 'JavaScript', value: 10 },
 	{ name: 'CSS', value: 10 },
-	{ name: 'Regex', value: 10 },
 	{ name: 'HTML', value: 9 },
 	{ name: 'TypeScript', value: 7 },
 	{ name: 'Java', value: 6 },
@@ -31,13 +32,14 @@ const PROGRAMMING_LANGUAGES = [
 ];
 
 const SKILL_TECHNEQUES = [
-	{ name: 'React', value: 9 },
+	{ name: 'Regex', value: 10 },
 	{ name: 'Vue', value: 9 },
+	{ name: 'React', value: 9 },
 	{ name: 'Node.js', value: 8 },
 	{ name: 'Git', value: 8 },
-	{ name: 'Cocos Creator', value: 7 },
-	{ name: 'Linux', value: 7 },
-	{ name: 'Photoshop', value: 7 },
+	// { name: 'Cocos Creator', value: 7 },
+	{ name: 'Linux', value: 7 }
+	// { name: 'Photoshop', value: 7 }
 ];
 
 const LANGUAGES = [
@@ -46,7 +48,15 @@ const LANGUAGES = [
 	{ name: '日本語', value: 6 }
 ];
 
-const CV = props => {
+const TIMELINE = [
+	{ time: '2020/01 - Present', icon: 'business_center', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ipsa voluptate atque natus et repudiandae. Itaque explicabo at fuga facilis nesciunt? Dolor sapiente, incidunt placeat odit possimus et harum fugiat.' },
+	{ time: '2020/01 - 2020/01', icon: 'business_center', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ipsa voluptate atque natus et repudiandae. Itaque explicabo at fuga facilis nesciunt? Dolor sapiente.' },
+	{ time: '2020/01 - 2020/01', icon: 'business_center', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ipsa voluptate atque natus et repudiandae. Itaque explicabo at fuga facilis nesciunt? Dolor sapiente, incidunt placeat odit possimus et harum fugiat. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ipsa voluptate atque natus et repudiandae. Itaque explicabo at fuga facilis nesciunt? Dolor sapiente, incidunt placeat odit possimus et harum fugiat.' },
+	{ time: '2020/01 - 2020/01', icon: 'lightbulb', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ipsa voluptate atque natus et repudiandae. Itaque explicabo at fuga facilis nesciunt?' },
+	{ time: '2020/01 - 2020/01', icon: 'education', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ipsa voluptate atque natus et repudiandae. Itaque explicabo at fuga.' },
+]
+
+const CV = ({ location }) => {
 	const { pic, name, title } = useMemo(() => {
 		const keys = ['pic', 'name', 'title'];
 		return keys.reduce((acc, key) => ({ ...acc, [key]: $$`_cv.profile.${key}` }), {});
@@ -59,13 +69,25 @@ const CV = props => {
 		window.localStorage.setItem('cv', '1');
 	}, []);
 
+	useEffect(() => {
+		const search = new URLSearchParams(location.search);
+		console.log(search.get('fullscreen'));
+		if (search.get('fullscreen')) {
+			setData(FULLSCREEN, true);
+		}
+
+		return () => setData(FULLSCREEN, false);
+	}, [location]);
+
 	return (
 		<section className="CV">
 			<div className="left-panel">
 				<div className="section profile">
 					<img data-role="pic" src={pic} alt={name} />
-					<p data-role="name">{name}</p>
-					<p data-role="title">{title}</p>
+					<div data-role="details">
+						<p data-role="name">{name}</p>
+						<p data-role="title">{title}</p>
+					</div>
 				</div>
 
 				<div className="section contact">
@@ -146,7 +168,41 @@ const CV = props => {
 					</ul>
 				</div>
 			</div>
-			<div className="right-panel"></div>
+
+			<div className="right-panel">
+				<div className="section about-me">
+					<h2 className="title">
+						<i className="icon-profile"></i>
+						<span>{$$`_cv.about-me`}</span>
+					</h2>
+					<p>
+						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus id esse laudantium placeat molestias in. Nihil, fugit sed corporis animi dolorem sapiente nisi quam labore, aliquam sunt praesentium vitae voluptate totam magnam. Voluptates accusamus voluptatum ipsum,
+						beatae totam molestiae laboriosam. Impedit in tempora omnis quibusdam beatae dignissimos qui voluptatibus reprehenderit voluptas magnam nesciunt nobis sunt, nam doloribus provident accusamus praesentium a quam libero doloremque necessitatibus facere ipsa at ex? Dolore ipsum,
+						quibusdam similique id suscipit consectetur magnam repudiandae cum odit perspiciatis consequuntur voluptatum aliquid itaque fuga architecto illo tempora nostrum aperiam quisquam eos? Suscipit labore doloremque possimus ipsa pariatur laborum!
+					</p>
+				</div>
+
+				<div className="section about-me">
+					<h2 className="title">
+						<i className="icon-profile"></i>
+						<span>{$$`_cv.about-me`}</span>
+					</h2>
+					<Timeline data={TIMELINE} />
+				</div>
+
+				<div className="section about-me">
+					<h2 className="title">
+						<i className="icon-profile"></i>
+						<span>{$$`_cv.about-me`}</span>
+					</h2>
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore ex quasi quisquam saepe nihil! Beatae modi, fugiat sed aliquid dolorem laborum blanditiis deleniti, magnam aspernatur repudiandae tenetur hic quas fuga sint! Impedit perferendis nulla quibusdam molestias eius
+						architecto corporis nostrum obcaecati laboriosam incidunt cumque odio rerum dolorum consequatur ea ratione eveniet debitis voluptas aspernatur, cum nobis, numquam asperiores! Maiores, praesentium.
+					</p>
+				</div>
+
+				<Background />
+			</div>
 		</section>
 	);
 };

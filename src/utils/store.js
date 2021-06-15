@@ -4,6 +4,7 @@ export const LOADING = Symbol();
 export const ME = Symbol();
 export const LANG = Symbol();
 export const CV = Symbol();
+export const FULLSCREEN = Symbol();
 
 export const EmojiSpin = {
 	COINS: Symbol(),
@@ -26,6 +27,7 @@ export const setup = () => init({
 	[ME]: null,
 	[LANG]: window.localStorage.getItem('lang') || ({ en: 'en-US', 'en-BR': 'en-US', 'zh-CN': 'zh-CN', 'zh-TW': 'zh-CN' })[navigator.language] || 'en-US',
 	[CV]: !!window.localStorage.getItem('CV'),
+	[FULLSCREEN]: false,
 
 	[EmojiSpin.COINS]: 0,
 	[EmojiSpin.DECK]: [],
@@ -35,5 +37,5 @@ export const setup = () => init({
 
 	[Blog.BLOGS]: [],
 
-	[RegexDictionary.WORDS]: []
+	[RegexDictionary.WORDS]: [],
 });

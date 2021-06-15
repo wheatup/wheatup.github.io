@@ -20,6 +20,11 @@
 	src: url('/fonts/Berkshire_Swash/BerkshireSwash-Regular.ttf') format('truetype');
 }
 
+@mixin phone {
+	@media only screen and (max-width: 640px) {
+		@content;
+	}
+}
 
 *,
 *::before,
