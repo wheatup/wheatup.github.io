@@ -76,6 +76,20 @@
 			"copied": "单词已复制至剪贴板！",
 			"no-results": "没有匹配",
 			"illegal": "正则语法错误！"
+		},
+
+		"cv": "CV",
+		"_cv": {
+			"profile": {
+				"pic": "https://media-exp1.licdn.com/dms/image/C4D03AQFvdiUw_oADyg/profile-displayphoto-shrink_800_800/0/1544174289520?e=1629331200&v=beta&t=1c0ut8xuaDvTsVBQeC2Dx44ym6glZjd7DzL82_Cf87c",
+				"name": "Hao Wu",
+				"title": "前端工程师"
+			},
+			"contact": "联系我",
+			"programming-language": "编程语言",
+			"skill-techniques": "技术栈",
+			"languages": "语言",
+			"about-me": "关于我"
 		}
 	}
 }
