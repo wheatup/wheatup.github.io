@@ -84,13 +84,66 @@
 			"profile": {
 				"pic": "https://media-exp1.licdn.com/dms/image/C4D03AQFvdiUw_oADyg/profile-displayphoto-shrink_800_800/0/1544174289520?e=1629331200&v=beta&t=1c0ut8xuaDvTsVBQeC2Dx44ym6glZjd7DzL82_Cf87c",
 				"name": "Hao Wu",
-				"title": "Frontend Engineer"
+				"title": "Senior Frontend Engineer",
+				"email": "acphun@gmail.com",
+				"phone": "+817043766865",
+				"github": "wheatup @ GitHub",
+				"codepen": "wheatup @ CodePen",
+				"stackoverflow": "Hao Wu @ StackOverflow",
+				"linkedin": "Hao Wu @ Linkedin",
+				"itchio": "wheatup @ Itch.io",
+				"homepage": "Hao Wu's Homepage"
 			},
+			"ui-ux-animation": "UI/UX/Animation",
 			"contact": "contact",
 			"programming-language": "programming languange",
 			"skill-techniques": "skills & techniques",
 			"languages": "languages",
-			"about-me": "about me"
+			"about-me": "about me",
+			"_about-me": "Born in 1992/10, China. Senior front-end engineer, also experienced for back-end engineering/game development. Veratile, idiomatic, efficient and adaptive developer. Fast learner, curious. Interested in games, math, computer science, AI and many more.",
+			"timeline": "timeline",
+			"_timeline": {
+				"exp1": {
+					"date": "2019/02 - Present",
+					"icon": "business_center",
+					"institution": "Evolany Co., Ltd.",
+					"title": "Lead Frontend Engineer",
+					"url": "https://evolany.com",
+					"content": "<ul><li>Take major part of developing main B2B product <a href=\"https://anybot.me/\" target=\"_blank\">AnyBot&trade;</a> using vanilla JavaScript/SCSS/PHP.</li><li>Singlehandedly created <a href=\"https://apps.apple.com/us/app/anybot/id1500356511\" target=\"_blank\">AnyBot&trade; App</a> using React Native.</li><li>Singlehandedly created <a href=\"https://admin.anyhook.me/dist/?app=14\" target=\"_blank\">Anyhook&trade; Chatbot</a> using Vue.js.</li><li>Write documentations for products and APIs.</li><li>In charge of training for frontend development.</li></ul>"
+				},
+				"exp2": {
+					"date": "2017/01 - 2019/02",
+					"icon": "business_center",
+					"institution": "Nisshin Technology Co., Ltd.",
+					"title": "Fullstack Engineer",
+					"url": "https://www.nisshin-sci.co.jp/",
+					"content": "<ul><li>HTML5 game development uing phaser/PIXI.</li><li>Web development using bootstrap/jQuery/React.js/SCSS.</li><li>Backend development using Node.js/Java associated with MySQL.</li><li>Image processing using PhotoShop.</li></ul>"
+				},
+				"exp3": {
+					"date": "2014/10 - 2017/01",
+					"icon": "business_center",
+					"institution": "G-bits Network Technology Xiamen Co., Ltd.",
+					"title": "Game Designer/Developer",
+					"url": "https://www.g-bits.com/",
+					"content": "<ul><li>Design & develop HTML5/mobile games with Unity/Phaser.</li><li>Third party API implementation (Wechat, QQ etc).</li></ul>"
+				},
+				"exp4": {
+					"date": "2014/06 - 2014/10",
+					"icon": "lightbulb",
+					"institution": "Aptech Technology Co., Ltd.",
+					"title": "Bootcamp",
+					"url": "",
+					"content": "<ul><li>Web(HTML/CSS/JavaScript) training.</li><li>Java programming training.</li></ul>"
+				},
+				"exp5": {
+					"date": "2010/09 - 2014/06",
+					"icon": "education",
+					"institution": "Electronic Engineering Institute of PLA",
+					"title": "Bachelor Degree",
+					"url": "",
+					"content": "<ul><li>3D Computer Graphics Major.</li><li>Modeling/animating using Maya/3DsMAX.</li><li>Photo Processing with PhotoShop.</li><li>Rendering/Video processing using AfterEffect.</li></ul>"
+				}
+			}
 		}
 	}
 }

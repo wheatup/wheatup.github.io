@@ -26,7 +26,7 @@ export const setup = () => init({
 	[LOADING]: '',
 	[ME]: null,
 	[LANG]: window.localStorage.getItem('lang') || ({ en: 'en-US', 'en-BR': 'en-US', 'zh-CN': 'zh-CN', 'zh-TW': 'zh-CN' })[navigator.language] || 'en-US',
-	[CV]: !!window.localStorage.getItem('CV'),
+	[CV]: !!window.localStorage.getItem('cv'),
 	[FULLSCREEN]: false,
 
 	[EmojiSpin.COINS]: 0,

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?py11g2');
-  src:  url('fonts/icomoon.eot?py11g2#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?py11g2') format('truetype'),
-    url('fonts/icomoon.woff?py11g2') format('woff'),
-    url('fonts/icomoon.svg?py11g2#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?iusebm');
+  src:  url('fonts/icomoon.eot?iusebm#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?iusebm') format('truetype'),
+    url('fonts/icomoon.woff?iusebm') format('woff'),
+    url('fonts/icomoon.svg?iusebm#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-itchio-textless-white:before {
+  content: "\e91c";
+}
 .icon-codepen:before {
   content: "\e910";
 }

@@ -31,10 +31,11 @@ const PROGRAMMING_LANGUAGES = [
 	{ name: 'Python', value: 5 }
 ];
 
-const SKILL_TECHNEQUES = [
+const SKILL_TECHNEQUES = () => [
 	{ name: 'Regex', value: 10 },
 	{ name: 'Vue', value: 9 },
 	{ name: 'React', value: 9 },
+	{ name: $$`_cv.ui-ux-animation`, value: 9 },
 	{ name: 'Node.js', value: 8 },
 	{ name: 'Git', value: 8 },
 	// { name: 'Cocos Creator', value: 7 },
@@ -48,17 +49,24 @@ const LANGUAGES = [
 	{ name: '日本語', value: 6 }
 ];
 
-const TIMELINE = [
-	{ time: '2020/01 - Present', icon: 'business_center', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ipsa voluptate atque natus et repudiandae. Itaque explicabo at fuga facilis nesciunt? Dolor sapiente, incidunt placeat odit possimus et harum fugiat.' },
-	{ time: '2020/01 - 2020/01', icon: 'business_center', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ipsa voluptate atque natus et repudiandae. Itaque explicabo at fuga facilis nesciunt? Dolor sapiente.' },
-	{ time: '2020/01 - 2020/01', icon: 'business_center', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ipsa voluptate atque natus et repudiandae. Itaque explicabo at fuga facilis nesciunt? Dolor sapiente, incidunt placeat odit possimus et harum fugiat. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ipsa voluptate atque natus et repudiandae. Itaque explicabo at fuga facilis nesciunt? Dolor sapiente, incidunt placeat odit possimus et harum fugiat.' },
-	{ time: '2020/01 - 2020/01', icon: 'lightbulb', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ipsa voluptate atque natus et repudiandae. Itaque explicabo at fuga facilis nesciunt?' },
-	{ time: '2020/01 - 2020/01', icon: 'education', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ipsa voluptate atque natus et repudiandae. Itaque explicabo at fuga.' },
-]
+const TIMELINE = () => [
+	...(function* () {
+		for (let i = 1; i <= 5; i++) {
+			yield {
+				time: $$`_cv._timeline.exp${i}.date`,
+				icon: $$`_cv._timeline.exp${i}.icon`,
+				content: $$`_cv._timeline.exp${i}.content`,
+				institution: $$`_cv._timeline.exp${i}.institution`,
+				url: $$`_cv._timeline.exp${i}.url`,
+				title: $$`_cv._timeline.exp${i}.title`,
+			};
+		}
+	})()
+];
 
 const CV = ({ location }) => {
-	const { pic, name, title } = useMemo(() => {
-		const keys = ['pic', 'name', 'title'];
+	const { pic, name, title, email, phone, github, codepen, stackoverflow, linkedin, itchio, homepage } = useMemo(() => {
+		const keys = ['pic', 'name', 'title', 'email', 'phone', 'github', 'codepen', 'stackoverflow', 'linkedin', 'itchio', 'homepage'];
 		return keys.reduce((acc, key) => ({ ...acc, [key]: $$`_cv.profile.${key}` }), {});
 	}, []);
 
@@ -96,37 +104,49 @@ const CV = ({ location }) => {
 						<li>
 							<a target="_blank" href="mailto:acphun@gmail.com">
 								<i className="icon-envelope"></i>
-								<span>acphun@gmail.com</span>
+								<span>{email}</span>
 							</a>
 						</li>
 						<li>
 							<a href="javascript: void(0)">
 								<i className="icon-phone"></i>
-								<span>+817043766865</span>
+								<span>{phone}</span>
 							</a>
 						</li>
 						<li>
 							<a target="_blank" href="https://github.com/wheatup">
 								<i className="icon-github"></i>
-								<span>wheatup</span>
+								<span>{github}</span>
 							</a>
 						</li>
 						<li>
 							<a target="_blank" href="https://codepen.io/wheatup">
 								<i className="icon-codepen"></i>
-								<span>wheatup</span>
+								<span>{codepen}</span>
 							</a>
 						</li>
 						<li>
 							<a target="_blank" href="https://stackoverflow.com/users/10289265/hao-wu">
 								<i className="icon-stackoverflow"></i>
-								<span>Hao Wu</span>
+								<span>{stackoverflow}</span>
+							</a>
+						</li>
+						<li>
+							<a target="_blank" href="https://wheatup.itch.io/">
+								<i className="icon-itchio-textless-white"></i>
+								<span>{itchio}</span>
 							</a>
 						</li>
 						<li>
 							<a target="_blank" href="https://www.linkedin.com/in/hao-wu-55037b170/">
 								<i className="icon-linkedin"></i>
-								<span>Hao Wu</span>
+								<span>{linkedin}</span>
+							</a>
+						</li>
+						<li>
+							<a href="https://wheatup.github.io">
+								<i className="icon-home"></i>
+								<span>{homepage}</span>
 							</a>
 						</li>
 					</ul>
@@ -147,7 +167,7 @@ const CV = ({ location }) => {
 				<div className="section skills">
 					<h2 className="title">{$$`_cv.skill-techniques`}</h2>
 					<ul className="list skill-list" data-role="skill-techniques">
-						{SKILL_TECHNEQUES.map(({ name, value }) => (
+						{SKILL_TECHNEQUES().map(({ name, value }) => (
 							<li key={name}>
 								<label>{name}</label>
 								<Stars value={value} />
@@ -175,19 +195,15 @@ const CV = ({ location }) => {
 						<i className="icon-profile"></i>
 						<span>{$$`_cv.about-me`}</span>
 					</h2>
-					<p>
-						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus id esse laudantium placeat molestias in. Nihil, fugit sed corporis animi dolorem sapiente nisi quam labore, aliquam sunt praesentium vitae voluptate totam magnam. Voluptates accusamus voluptatum ipsum,
-						beatae totam molestiae laboriosam. Impedit in tempora omnis quibusdam beatae dignissimos qui voluptatibus reprehenderit voluptas magnam nesciunt nobis sunt, nam doloribus provident accusamus praesentium a quam libero doloremque necessitatibus facere ipsa at ex? Dolore ipsum,
-						quibusdam similique id suscipit consectetur magnam repudiandae cum odit perspiciatis consequuntur voluptatum aliquid itaque fuga architecto illo tempora nostrum aperiam quisquam eos? Suscipit labore doloremque possimus ipsa pariatur laborum!
-					</p>
+					<p>{$$`_cv._about-me`}</p>
 				</div>
 
-				<div className="section about-me">
+				<div className="section timeline">
 					<h2 className="title">
-						<i className="icon-profile"></i>
-						<span>{$$`_cv.about-me`}</span>
+						<i className="icon-stats-dots"></i>
+						<span>{$$`_cv.timeline`}</span>
 					</h2>
-					<Timeline data={TIMELINE} />
+					<Timeline data={TIMELINE()} />
 				</div>
 
 				<div className="section about-me">

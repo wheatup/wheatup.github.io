@@ -83,6 +83,9 @@
 						color: inherit;
 						display: flex;
 						align-items: center;
+						span {
+							text-decoration: underline;
+						}
 
 						i {
 							margin-right: 1rem;
@@ -165,6 +168,12 @@
 				}
 			}
 
+			&.about-me {
+				p {
+					font-size: 1.8rem;
+				}
+			}
+
 			@include phone {
 				flex-direction: column !important;
 
@@ -181,15 +190,18 @@
 				display: flex;
 				align-items: center;
 				font-size: 2rem;
-				padding: 1rem;
+				padding: 2rem 1rem;
 
 				@include phone {
 					writing-mode: initial;
-					margin-left: -2rem;
-					margin-right: -2rem;
 					text-align: center;
 					align-items: center;
 					justify-content: center;
+					padding: 1rem 2rem;
+					background-color: initial;
+					color: var(--bg1);
+					border-bottom: solid 1px currentColor;
+					font-size: 2.4rem;
 				}
 
 				i {
@@ -197,6 +209,10 @@
 				}
 				margin-block-start: 1rem;
 				border-bottom: none;
+			}
+
+			& > *:not(.title) {
+				flex: 1;
 			}
 
 			&:nth-child(2n) {
@@ -276,8 +292,12 @@
 	align-items: stretch;
 
 	.entries {
+		flex: 1;
+		position: relative;
+
 		.entry {
 			display: flex;
+			width: 100%;
 
 			&:last-child {
 				.line {
@@ -324,12 +344,65 @@
 
 			.wrapper {
 				padding-bottom: 4rem;
+				flex: 1;
 
 				time {
-					display: block;
+					display: flex;
 					color: var(--bg1);
 					line-height: 4rem;
 					font-size: 2rem;
+
+					time {
+					}
+				}
+
+				.position-area {
+					font-size: 1.8rem;
+					display: inline-block;
+					margin: 0.5rem 0;
+					padding: 0.5rem 1rem;
+					font-weight: bold;
+					background-color: var(--bg1);
+					color: var(--bg2);
+					.position {
+					}
+
+					.at {
+						margin: 0 0.5rem;
+						font-size: 0.8em;
+					}
+
+					.institution {
+						&[href] {
+							text-decoration: underline;
+
+							&:hover {
+								color: var(--main2);
+							}
+						}
+					}
+				}
+
+				.content {
+					a {
+						color: var(--main2);
+						text-decoration: underline;
+
+						&:hover {
+							color: var(--main1);
+						}
+					}
+
+					ul {
+						list-style-position: inside;
+						list-style-type: disc;
+
+						li {
+							&:not(:first-child) {
+								margin-top: 0.5rem;
+							}
+						}
+					}
 				}
 			}
 		}
