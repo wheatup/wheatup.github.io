@@ -1,10 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { setData } from 'wherehouse';
 import { CV as CV_VIEW, FULLSCREEN } from '../../utils/store';
 import $$ from 'whi18n';
 import { useTitle } from '../../hooks/misc';
 import Background from './components/Background';
 import Timeline from './components/Timeline';
+import { useRef } from 'react';
 
 const Stars = ({ value }) => {
 	return (
@@ -72,9 +73,17 @@ const CV = ({ location }) => {
 
 	useTitle(name);
 
+	const validate = useCallback(() => {
+		if(myName.current.innerText !== name) {
+			document.body.innerHTML = '<h1>Copyrighted content, please do not modify this page!</h1>';
+		}
+		requestAnimationFrame(validate);
+	}, []);
+
 	useEffect(() => {
 		setData(CV_VIEW, true);
 		window.localStorage.setItem('cv', '1');
+		validate();
 	}, []);
 
 	useEffect(() => {
@@ -87,13 +96,17 @@ const CV = ({ location }) => {
 		return () => setData(FULLSCREEN, false);
 	}, [location]);
 
+	const myName = useRef(null);
+
+
+
 	return (
 		<section className="CV">
 			<div className="left-panel">
 				<div className="section profile">
 					<img data-role="pic" src={pic} alt={name} />
 					<div data-role="details">
-						<p data-role="name">{name}</p>
+						<p data-role="name" ref={myName}>{name}</p>
 						<p data-role="title">{title}</p>
 					</div>
 				</div>
