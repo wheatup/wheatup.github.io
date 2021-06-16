@@ -136,6 +136,7 @@
 	}
 
 	.right-panel {
+		overflow: hidden;
 		flex: 1;
 		background-color: var(--bg2);
 		padding: 2rem;
@@ -255,10 +256,13 @@
 }
 
 .Background {
+	--ratio: 0;
+
 	position: absolute;
 	top: 0;
+	top: calc((1 - var(--ratio)) * -20vh);
 	left: 0;
-	width: 100%;
+	width: 120vh;
 	height: 100%;
 	overflow: hidden;
 
