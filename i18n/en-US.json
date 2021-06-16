@@ -117,7 +117,7 @@
 					"institution": "Nisshin Technology Co., Ltd.",
 					"title": "Fullstack Engineer",
 					"url": "https://www.nisshin-sci.co.jp/",
-					"content": "<ul><li>HTML5 game development uing phaser/PIXI.</li><li>Web development using bootstrap/jQuery/React.js/SCSS.</li><li>Backend development using Node.js/Java associated with MySQL.</li><li>Image processing using PhotoShop.</li></ul>"
+					"content": "<ul><li>HTML5 game development using phaser/PIXI.</li><li>Web development using bootstrap/jQuery/React.js/SCSS.</li><li>Backend development using Node.js/Java associated with MySQL.</li><li>Image processing using PhotoShop.</li></ul>"
 				},
 				"exp3": {
 					"date": "2014/10 - 2017/01",
