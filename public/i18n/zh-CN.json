@@ -82,14 +82,69 @@
 		"_cv": {
 			"profile": {
 				"pic": "https://media-exp1.licdn.com/dms/image/C4D03AQFvdiUw_oADyg/profile-displayphoto-shrink_800_800/0/1544174289520?e=1629331200&v=beta&t=1c0ut8xuaDvTsVBQeC2Dx44ym6glZjd7DzL82_Cf87c",
-				"name": "Hao Wu",
-				"title": "前端工程师"
+				"name": "吴昊",
+				"title": "高级前端工程师",
+				"email": "acphun@gmail.com",
+				"phone": "+817043766865",
+				"github": "wheatup @ GitHub",
+				"codepen": "wheatup @ CodePen",
+				"stackoverflow": "Hao Wu @ StackOverflow",
+				"linkedin": "Hao Wu @ Linkedin",
+				"itchio": "wheatup @ Itch.io",
+				"homepage": "吴昊的主页"
 			},
+			"ui-ux-animation": "UI/UX/动画",
 			"contact": "联系我",
 			"programming-language": "编程语言",
 			"skill-techniques": "技术栈",
 			"languages": "语言",
-			"about-me": "关于我"
+			"about-me": "关于我",
+			"_about-me": "1992年10月生于中国安徽。高级前端工程师，并且对于后端/游戏开发也有着丰富的涉猎。杂学、具有创造力、高效率、高适应能力的开发者。学习效率高，富有好奇心。对于游戏、数学、计算机科学与AI有着浓厚的兴趣。",
+			"timeline": "时间线",
+			"_timeline": {
+				"exp1": {
+					"date": "2019/02 - 至今",
+					"icon": "business_center",
+					"institution": "Evolany有限公司(日本)",
+					"title": "前端开发主程",
+					"url": "https://evolany.com",
+					"content": "<ul><li>使用原生JavaScript/SCSS与PHP协同开发了社内B2B项目<a href=\"https://anybot.me/\" target=\"_blank\">AnyBot&trade;</a>。</li><li>单人完成了<a href=\"https://apps.apple.com/us/app/anybot/id1500356511\" target=\"_blank\">AnyBot&trade; APP</a>，使用了React Native。</li><li>单人完成了<a href=\"https://admin.anyhook.me/dist/?app=14\" target=\"_blank\">Anyhook&trade;聊天页面</a>，使用了Vue.js。</li><li>为产品与API撰写手册与文档(英文)。</li><li>对新人前端工程师予以培训。</li></ul>"
+				},
+				"exp2": {
+					"date": "2017/01 - 2019/02",
+					"icon": "business_center",
+					"institution": "日进科技有限公司(日本)",
+					"title": "全栈工程师",
+					"url": "https://www.nisshin-sci.co.jp/",
+					"content": "<ul><li>使用phaser/PIXI开发HTML5游戏。</li><li>使用bootstrap/jQuery/React.js/SCSS等开发网页。</li><li>使用Node.js/Java/MySQL开发后台服务。</li><li>使用PhotoShop进行图像处理。</li></ul>"
+				},
+				"exp3": {
+					"date": "2014/10 - 2017/01",
+					"icon": "business_center",
+					"institution": "厦门吉比特网络技术股份有限公司",
+					"title": "游戏策划/开发",
+					"url": "https://www.g-bits.com/",
+					"content": "<ul><li>策划并使Unity/Phaser开发HTML与手机游戏。</li><li>第三方服务接入（微信、QQ等）。</li></ul>"
+				},
+				"exp4": {
+					"date": "2014/06 - 2014/10",
+					"icon": "lightbulb",
+					"institution": "北京阿博泰克信息技术有限公司",
+					"title": "培训",
+					"url": "",
+					"content": "<ul><li>Web开发(HTML/CSS/JavaScript)培训。</li><li>Java开发培训。</li></ul>"
+				},
+				"exp5": {
+					"date": "2010/09 - 2014/06",
+					"icon": "education",
+					"institution": "中国人民解放军电子工程学院",
+					"title": "本科毕业",
+					"url": "",
+					"content": "<ul><li>信息安全与网络管理专业。</li></ul>"
+				}
+			},
+			"achievement": "成就与作品",
+			"_achievement": "<ul><li>在<a target=\"_blank\" href=\"https://stackoverflow.com/users/10289265/hao-wu\">StackOverflow</a>回答专业问题获得10k+声望。</li><li>在<a href=\"https://codepen.io/wheatup\" target=\"_blank\">CodePen</a>拥有50+关注并且有多个pen有着上百的Like。</li><li>在<a href=\"https://github.com/wheatup\" target=\"blank\">GitHub</a>拥有近百的关注，并且有多个repo(非fork)获得100+星星。</li><li>通过发送PR参与了多个开源项目的开发。</li><li>开发了chrome浏览器扩展<a href=\"https://chrome.google.com/webstore/detail/twitch-chat-danmaku/koiphfkghjgmncbkcpfnegnbcbomlchg\" target=\"_blank\">Twitch聊天弹幕</a>，有着10k+的活跃用户并且评分高于4.5+星。</li><li>创造了多人在线独立游戏<a href=\"http://wtfgame.gaygay.me/\" target=\"_blank\">the WTFGame</a>并且有着上千人同时在线(2016)。</li></ul>"
 		}
 	}
 }

@@ -223,6 +223,29 @@
 					margin-block-end: 1rem;
 				}
 			}
+
+			&.achievement {
+				font-size: 1.8rem;
+				a {
+					color: var(--bg1);
+					text-decoration: underline;
+
+					&:hover {
+						color: var(--main1);
+					}
+				}
+			}
+
+			ul {
+				list-style-position: inside;
+				list-style-type: disc;
+		
+				li {
+					&:not(:first-child) {
+						margin-top: 0.5rem;
+					}
+				}
+			}
 		}
 	}
 }
@@ -374,10 +397,11 @@
 
 					.institution {
 						&[href] {
+							color: inherit;
 							text-decoration: underline;
 
 							&:hover {
-								color: var(--main2);
+								color: var(--main1);
 							}
 						}
 					}

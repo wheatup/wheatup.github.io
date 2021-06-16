@@ -100,7 +100,7 @@
 			"skill-techniques": "skills & techniques",
 			"languages": "languages",
 			"about-me": "about me",
-			"_about-me": "Born in 1992/10, China. Senior front-end engineer, also experienced for back-end engineering/game development. Veratile, idiomatic, efficient and adaptive developer. Fast learner, curious. Interested in games, math, computer science, AI and many more.",
+			"_about-me": "Born in 1992/10, Anhui, China. Senior front-end engineer, also experienced for back-end engineering/game development. Veratile, creative, efficient and adaptive developer. Fast learner, curious. Interested in games, math, computer science, AI and many more.",
 			"timeline": "timeline",
 			"_timeline": {
 				"exp1": {
@@ -141,9 +141,11 @@
 					"institution": "Electronic Engineering Institute of PLA",
 					"title": "Bachelor Degree",
 					"url": "",
-					"content": "<ul><li>3D Computer Graphics Major.</li><li>Modeling/animating using Maya/3DsMAX.</li><li>Photo Processing with PhotoShop.</li><li>Rendering/Video processing using AfterEffect.</li></ul>"
+					"content": "<ul><li>Information Technology Major.</li></ul>"
 				}
-			}
+			},
+			"achievement": "achievement & portfolio",
+			"_achievement": "<ul><li>Have more than 10k reputation on <a target=\"_blank\" href=\"https://stackoverflow.com/users/10289265/hao-wu\">StackOverflow</a> by answering questions.</li><li>Have 50+ followers on <a href=\"https://codepen.io/wheatup\" target=\"_blank\">CodePen</a> and have multiple popular pens have hundreds of likes.</li><li>Have around 100 followers on <a href=\"https://github.com/wheatup\" target=\"blank\">GitHub</a> and have mulitple repository over 100 stars.</li><li>Participated several open source project with post requests being merged.</li><li>Created a Chrome extension called <a href=\"https://chrome.google.com/webstore/detail/twitch-chat-danmaku/koiphfkghjgmncbkcpfnegnbcbomlchg\" target=\"_blank\">Twitch Chat Danmaku</a>, has 10k+ weekly users with ranting of 4.5+ stars.<li>Created an indie multiplayer game called <a href=\"http://wtfgame.gaygay.me/\" target=\"_blank\">the WTFGame</a>(2016) with thousands of players online at the sametime.</li></ul>"
 		}
 	}
 }

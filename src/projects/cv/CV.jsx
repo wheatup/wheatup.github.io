@@ -206,15 +206,12 @@ const CV = ({ location }) => {
 					<Timeline data={TIMELINE()} />
 				</div>
 
-				<div className="section about-me">
+				<div className="section achievement">
 					<h2 className="title">
 						<i className="icon-profile"></i>
-						<span>{$$`_cv.about-me`}</span>
+						<span>{$$`_cv.achievement`}</span>
 					</h2>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore ex quasi quisquam saepe nihil! Beatae modi, fugiat sed aliquid dolorem laborum blanditiis deleniti, magnam aspernatur repudiandae tenetur hic quas fuga sint! Impedit perferendis nulla quibusdam molestias eius
-						architecto corporis nostrum obcaecati laboriosam incidunt cumque odio rerum dolorum consequatur ea ratione eveniet debitis voluptas aspernatur, cum nobis, numquam asperiores! Maiores, praesentium.
-					</p>
+					<div className="content" dangerouslySetInnerHTML={{__html: $$`_cv._achievement`}}></div>
 				</div>
 
 				<Background />
