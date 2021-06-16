@@ -46,17 +46,17 @@
 				}
 			}
 
-			// [data-role='details'] {
-			// 	@include phone {
-			// 		position: absolute;
-			// 		transform: translateY(calc(-100% - 1rem));
-			// 		left: 0.5rem;
-			// 		width: calc(100% - 1rem);
-			// 		background-color: rgba(0, 0, 0, 0.5);
-			// 		text-align: center;
-			// 		padding: 0.5rem 0;
-			// 	}
-			// }
+			[data-role='details'] {
+				@media only screen and (max-width: 632px) and (min-width: 480px)  {
+					position: absolute;
+					transform: translateY(calc(-100% - 1rem));
+					left: 0.5rem;
+					width: calc(100% - 1rem);
+					background-color: rgba(0, 0, 0, 0.5);
+					text-align: center;
+					padding: 0.5rem 0;
+				}
+			}
 		}
 
 		.title {
