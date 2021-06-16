@@ -84,13 +84,68 @@
 			"profile": {
 				"pic": "https://media-exp1.licdn.com/dms/image/C4D03AQFvdiUw_oADyg/profile-displayphoto-shrink_800_800/0/1544174289520?e=1629331200&v=beta&t=1c0ut8xuaDvTsVBQeC2Dx44ym6glZjd7DzL82_Cf87c",
 				"name": "Hao Wu",
-				"title": "Frontend Engineer"
+				"title": "Senior Frontend Engineer",
+				"email": "acphun@gmail.com",
+				"phone": "+817043766865",
+				"github": "wheatup @ GitHub",
+				"codepen": "wheatup @ CodePen",
+				"stackoverflow": "Hao Wu @ StackOverflow",
+				"linkedin": "Hao Wu @ Linkedin",
+				"itchio": "wheatup @ Itch.io",
+				"homepage": "Hao Wu's Homepage"
 			},
+			"ui-ux-animation": "UI/UX/Animation",
 			"contact": "contact",
 			"programming-language": "programming languange",
 			"skill-techniques": "skills & techniques",
 			"languages": "languages",
-			"about-me": "about me"
+			"about-me": "about me",
+			"_about-me": "Born in 1992/10, Anhui, China. Senior front-end engineer, also experienced for back-end engineering/game development. Veratile, creative, efficient and adaptive developer. Fast learner, curious. Interested in games, math, computer science, AI and many more.",
+			"timeline": "timeline",
+			"_timeline": {
+				"exp1": {
+					"date": "2019/02 - Present",
+					"icon": "business_center",
+					"institution": "Evolany Co., Ltd.",
+					"title": "Lead Frontend Engineer",
+					"url": "https://evolany.com",
+					"content": "<ul><li>Take major part of developing main B2B product <a href=\"https://anybot.me/\" target=\"_blank\">AnyBot&trade;</a> using vanilla JavaScript/SCSS/PHP.</li><li>Singlehandedly created <a href=\"https://apps.apple.com/us/app/anybot/id1500356511\" target=\"_blank\">AnyBot&trade; App</a> using React Native.</li><li>Singlehandedly created <a href=\"https://admin.anyhook.me/dist/?app=14\" target=\"_blank\">Anyhook&trade; Chatbot</a> using Vue.js.</li><li>Write documentations for products and APIs.</li><li>In charge of training for frontend development.</li></ul>"
+				},
+				"exp2": {
+					"date": "2017/01 - 2019/02",
+					"icon": "business_center",
+					"institution": "Nisshin Technology Co., Ltd.",
+					"title": "Fullstack Engineer",
+					"url": "https://www.nisshin-sci.co.jp/",
+					"content": "<ul><li>HTML5 game development uing phaser/PIXI.</li><li>Web development using bootstrap/jQuery/React.js/SCSS.</li><li>Backend development using Node.js/Java associated with MySQL.</li><li>Image processing using PhotoShop.</li></ul>"
+				},
+				"exp3": {
+					"date": "2014/10 - 2017/01",
+					"icon": "business_center",
+					"institution": "G-bits Network Technology Xiamen Co., Ltd.",
+					"title": "Game Designer/Developer",
+					"url": "https://www.g-bits.com/",
+					"content": "<ul><li>Design & develop HTML5/mobile games with Unity/Phaser.</li><li>Third party API implementation (Wechat, QQ etc).</li></ul>"
+				},
+				"exp4": {
+					"date": "2014/06 - 2014/10",
+					"icon": "lightbulb",
+					"institution": "Aptech Technology Co., Ltd.",
+					"title": "Bootcamp",
+					"url": "",
+					"content": "<ul><li>Web(HTML/CSS/JavaScript) training.</li><li>Java programming training.</li></ul>"
+				},
+				"exp5": {
+					"date": "2010/09 - 2014/06",
+					"icon": "education",
+					"institution": "Electronic Engineering Institute of PLA",
+					"title": "Bachelor Degree",
+					"url": "",
+					"content": "<ul><li>Information Technology Major.</li></ul>"
+				}
+			},
+			"achievement": "achievement & portfolio",
+			"_achievement": "<ul><li>Have more than 10k reputation on <a target=\"_blank\" href=\"https://stackoverflow.com/users/10289265/hao-wu\">StackOverflow</a> by answering questions.</li><li>Have 50+ followers on <a href=\"https://codepen.io/wheatup\" target=\"_blank\">CodePen</a> and have multiple popular pens have hundreds of likes.</li><li>Have around 100 followers on <a href=\"https://github.com/wheatup\" target=\"blank\">GitHub</a> and have mulitple repository over 100 stars.</li><li>Participated several open source project with post requests being merged.</li><li>Created a Chrome extension called <a href=\"https://chrome.google.com/webstore/detail/twitch-chat-danmaku/koiphfkghjgmncbkcpfnegnbcbomlchg\" target=\"_blank\">Twitch Chat Danmaku</a>, has 10k+ weekly users with ranting of 4.5+ stars.<li>Created an indie multiplayer game called <a href=\"http://wtfgame.gaygay.me/\" target=\"_blank\">the WTFGame</a>(2016) with thousands of players online at the sametime.</li></ul>"
 		}
 	}
 }
