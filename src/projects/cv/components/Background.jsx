@@ -30,7 +30,7 @@ const Background = props => {
 	const particles = useMemo(
 		() => [
 			...(function* () {
-				for (let i = 0; i < 12; i++) {
+				for (let i = 0; i < 18; i++) {
 					const startingX = Math.random();
 					const startingY = Math.random();
 					const moveDirection = Math.random() > 0.5 ? -1 : 1;
