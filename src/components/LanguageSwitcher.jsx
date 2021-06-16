@@ -4,13 +4,15 @@ import { LANG } from '../utils/store';
 import whi18n, { init } from 'whi18n';
 import http from '../utils/http';
 
-const LanguageSwitcher = props => {
+const LanguageSwitcher = ({ location }) => {
+	console.log(location);
 	const lang = useData(LANG);
 
 	const switchLanguage = useCallback(async () => {
 		const target = lang === 'en-US' ? 'zh-CN' : 'en-US';
 		setData(LANG, target);
 		await init(target, async lang => (await http.get(`/i18n/${lang}.json`)).data);
+		window.location.href = window.location.href.replace(/lang=[\w-]+&?/g, '').replace(/\?$/g, '');
 		window.location.reload();
 	}, [lang]);
 

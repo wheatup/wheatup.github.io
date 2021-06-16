@@ -20,6 +20,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useData } from 'wherehouse';
 import { CV as ViewCV, FULLSCREEN } from './utils/store';
 import CV from './projects/cv/CV';
+import GlobalRouteHandler from './components/GlobalRouteHandler';
 
 const App = () => {
 	useMaxHeight();
@@ -55,6 +56,9 @@ const App = () => {
 						<Route path="/games" component={Games} />
 						<Route path="/cv" component={CV} />
 						<Route path="/" component={Home} exact />
+					</Switch>
+					<Switch>
+						<Route component={GlobalRouteHandler} />
 					</Switch>
 				</main>
 				{!fullscreen &&

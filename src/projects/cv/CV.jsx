@@ -74,10 +74,10 @@ const CV = ({ location }) => {
 	useTitle(name);
 
 	const validate = useCallback(() => {
-		if(myName.current.innerText !== name) {
+		if(myName.current && myName.current.innerText !== name) {
 			document.body.innerHTML = '<h1>Copyrighted content, please do not modify this page!</h1>';
 		}
-		requestAnimationFrame(validate);
+		setTimeout(validate, 1000);
 	}, []);
 
 	useEffect(() => {
@@ -88,7 +88,6 @@ const CV = ({ location }) => {
 
 	useEffect(() => {
 		const search = new URLSearchParams(location.search);
-		console.log(search.get('fullscreen'));
 		if (search.get('fullscreen')) {
 			setData(FULLSCREEN, true);
 		}

@@ -64,7 +64,7 @@ const Background = props => {
 	useEffect(() => {
 		document.querySelector('main').addEventListener('scroll', onScroll);
 		return () => {
-			document.querySelector('main').removeEventListener('scroll'.onScroll);
+			document.querySelector('main').removeEventListener('scroll', onScroll);
 		};
 	}, []);
 
