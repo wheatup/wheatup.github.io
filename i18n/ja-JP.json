@@ -1,0 +1,152 @@
+{
+	"version": 1,
+	"texts": {
+		"wip": "WIP, please come again later!",
+		"switch-language": "切换至中文",
+		"home": "Home",
+		"forum": "Forum",
+		"hexie-encoder": "Hexie Encoder",
+		"error": "Error",
+		"post-failed": "Post Failed!",
+		"please-enter-title": "Please enter the title!",
+		"post-failed-try-again": "Post failed, please try again!",
+		"please-enter-comment": "Please enter the comment!",
+		"all-rights-reserved": "All rights are reserved.",
+		"hexie": {
+			"encode": "Encode",
+			"decode": "Decode",
+			"copied": "Copied!",
+			"custom-dict": "Custom Dictionary"
+		},
+		"auth": {
+			"auth-failed": "Authorization Failed!",
+			"auth-failed-detail": "<p>Authorization has failed, this website requires authentication from <a target=\"_blank\" href=\"https://cors-anywhere.herokuapp.com/\">cors-anywhere</a>. Click \"Grant Authentication\" to redirect and grant authentication!</p>",
+			"auth-expired-detail": "Authrizaition has expired, please try again!",
+			"grant-auth": "Grant Authentication",
+			"cancel": "Cancel"
+		},
+		"posted": "posted ",
+		"time-diff": {
+			"before": "before",
+			"ago": "ago",
+			"just-now": "just now",
+			"second": "${1} second ${2}",
+			"seconds": "${1} seconds ${2}",
+			"minute": "${1} minute ${2}",
+			"minutes": "${1} minutes ${2}",
+			"hour": "${1} hour ${2}",
+			"hours": "${1} hours ${2}",
+			"day": "${1} day ${2}",
+			"days": "${1} days ${2}",
+			"week": "${1} week ${2}",
+			"weeks": "${1} weeks ${2}",
+			"month": "${1} month ${2}",
+			"months": "${1} months ${2}",
+			"year": "${1} year ${2}",
+			"years": "${1} years ${2}"
+		},
+		"idioms": "Idioms",
+		"_idioms": {
+			"title": "Chinese Idiom Query Tool",
+			"initial": "initial",
+			"homophone": "homophone",
+			"tone": "tone",
+			"placeholder": "Please enter idiom, character or pinyin(yuan, san1 etc.)",
+			"copied": "Idiom has been copied to the clipboard!"
+		},
+		"web-color-picker": "Web Color Picker",
+		"_web-color-picker": {
+			"title": "Web Color Picker",
+			"copied": "Color text has been copied to the clipboard!"
+		},
+		"labs": "Labs",
+		"games": "Games",
+		"_games": {
+			"emoji-spin": "Emoji Spin"
+		},
+		"blog": "Blog",
+		"_blog": {
+			"blogs": "Wheatup's Blogs",
+			"empty": "Nothing to see here."
+		},
+
+		"regex-dictionary": "Regex Dictionary",
+		"_regex-dictionary": {
+			"title": "Regex Dictionary",
+			"anchored": "anchored",
+			"copied": "Word has been copied to the clipboard!",
+			"no-results": "no results",
+			"illegal": "regex syntax error"
+		},
+
+		"cv": "CV",
+		"_cv": {
+			"profile": {
+				"pic": "/images/me.png",
+				"name": "呉昊",
+				"kata": "ゴ　ハオ",
+				"title": "シニアフロントエンジニア",
+				"email": "acphun@gmail.com",
+				"phone": "+817043766865",
+				"github": "wheatup @ GitHub",
+				"codepen": "wheatup @ CodePen",
+				"stackoverflow": "Hao Wu @ StackOverflow",
+				"linkedin": "Hao Wu @ Linkedin",
+				"itchio": "wheatup @ Itch.io",
+				"homepage": "呉昊のホームページ"
+			},
+			"ui-ux-animation": "UI/UX",
+			"contact": "連絡先",
+			"programming-language": "プログラミング言語",
+			"skill-techniques": "スキル",
+			"languages": "言語",
+			"about-me": "自己PR",
+			"_about-me": "私は1992年10月生まれ、中国安徽省出身です。リードフロントエンジニアでありながら、バックエンドの開発やゲーム開発にも興味がもっています。私はいろんな分野の知識に興味があり、ゲームや数学、コンピューターサイエンスやAIにも深く興味をもっています。また、私は学習効率が高く、好奇心旺盛で、創造力と高い効率性と柔軟性を持つ開発者です。",
+			"timeline": "タイムライン",
+			"_timeline": {
+				"exp1": {
+					"date": "2019/02 - 現在",
+					"icon": "business_center",
+					"institution": "エボラニ株式会社",
+					"title": "リードエンジニア",
+					"url": "https://evolany.com",
+					"content": "<ul><li>JavaScript/SCSSとPHPでB2Bプロジェクト<a href=\"https://anybot.me/\" target=\"_blank\">AnyBot&trade;</a>を共同開発。</li><li>React Nativeで<a href=\"https://apps.apple.com/us/app/anybot/id1500356511\" target=\"_blank\">AnyBot&trade;アプリ</a>を独立開発。</li><li>Vue.jsで<a href=\"https://admin.anyhook.me/dist/?app=14\" target=\"_blank\">Anyhook&trade;チャットボット</a>を独立開発。</li><li>製品与APIのマニュアルおよび仕様書作成(英語)。</li><li>新人フロントエンジニアの研修を担当。</li></ul>"
+				},
+				"exp2": {
+					"date": "2017/01 - 2019/02",
+					"icon": "business_center",
+					"institution": "日進サイエンティア",
+					"title": "エンジニア",
+					"url": "https://www.nisshin-sci.co.jp/",
+					"content": "<ul><li>Phaser/PIXIでHTML5ゲームを開発。</li><li>Bootstrap/jQuery/React.js/SCSSでのウェブページ開発。</li><li>Node.js/Java/MySQLでバックエンドの開発。</li><li>PhotoShopでの画像編集。</li></ul>"
+				},
+				"exp3": {
+					"date": "2014/10 - 2017/01",
+					"icon": "business_center",
+					"institution": "株式会社G-bitsネットワークテクノロジー（中国）",
+					"title": "ゲームデザイン/開発",
+					"url": "https://www.g-bits.com/",
+					"content": "<ul><li>ゲームデザイン及びUnity/Phaserを利用したHTMLとスマホゲームの開発。</li><li>外部APIとの連携（WeChat、QQ等）。</li></ul>"
+				},
+				"exp4": {
+					"date": "2014/06 - 2014/10",
+					"icon": "lightbulb",
+					"institution": "Aptech情報技術株式会社",
+					"title": "研修",
+					"url": "",
+					"content": "<ul><li>Web開発(HTML/CSS/JavaScript)研修。</li><li>JJava開発研修。</li></ul>"
+				},
+				"exp5": {
+					"date": "2010/09 - 2014/06",
+					"icon": "education",
+					"institution": "中国人民解放軍電子工程学院",
+					"title": "大学卒業",
+					"url": "",
+					"content": "<ul><li>情報安全とネットワーク管理　専攻。</li></ul>"
+				}
+			},
+			"achievement": "成果と作品",
+			"_achievement": "<ul><li><a target=\"_blank\" href=\"https://stackoverflow.com/users/10289265/hao-wu\">StackOverflow</a>上での回答が12000以上のREPUTATIONを獲得。</li><li><a href=\"https://codepen.io/wheatup\" target=\"_blank\">CodePen</a>上で50+のpenを作成しており、100以上LIKEがもつ。</li><li><a href=\"https://github.com/wheatup\" target=\"blank\">GitHub</a>で100以上のフォロワーさらに複数のrepo(forkではないもの)で100以上の☆がえっている。</li><li>PRから複数のオープンソースプロジェクトの開発にも参加。</li><li>Chromeブラウザの拡張機能「<a href=\"https://chrome.google.com/webstore/detail/twitch-chat-danmaku/koiphfkghjgmncbkcpfnegnbcbomlchg\" target=\"_blank\">Twitchチャット弾幕</a>」を開発、1万アクティブユーザーと4.5ポイントの高評価を得ている。<li>オンライン独立ゲーム「<a href=\"http://wtfgame.gaygay.me/\" target=\"_blank\">WTFGame</a>」を開発、数千人同時オンラインでのプレイを実現(2016)。</li></ul>"
+		}
+	}
+}
