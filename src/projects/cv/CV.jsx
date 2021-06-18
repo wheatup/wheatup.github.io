@@ -223,7 +223,7 @@ const CV = ({ location }) => {
 
 				<div className="section achievement">
 					<h2 className="title">
-						<i className="icon-profile"></i>
+						<i className="icon-trophy"></i>
 						<span>{$$`_cv.achievement`}</span>
 					</h2>
 					<div className="content" dangerouslySetInnerHTML={{__html: $$`_cv._achievement`}}></div>
