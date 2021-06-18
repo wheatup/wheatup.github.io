@@ -100,6 +100,7 @@
 			"programming-language": "プログラミング言語",
 			"skill-techniques": "スキル",
 			"languages": "言語",
+			"regex": "正規表現",
 			"about-me": "自己PR",
 			"_about-me": "私は1992年10月生まれ、中国安徽省出身です。リードフロントエンジニアでありながら、バックエンドの開発やゲーム開発にも興味がもっています。私はいろんな分野の知識に興味があり、ゲームや数学、コンピューターサイエンスやAIにも深く興味をもっています。また、私は学習効率が高く、好奇心旺盛で、創造力と高い効率性と柔軟性を持つ開発者です。",
 			"timeline": "タイムライン",
@@ -134,7 +135,7 @@
 					"institution": "Aptech情報技術株式会社",
 					"title": "研修",
 					"url": "",
-					"content": "<ul><li>Web開発(HTML/CSS/JavaScript)研修。</li><li>JJava開発研修。</li></ul>"
+					"content": "<ul><li>Web開発(HTML/CSS/JavaScript)研修。</li><li>Java開発研修。</li></ul>"
 				},
 				"exp5": {
 					"date": "2010/09 - 2014/06",
