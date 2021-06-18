@@ -21,10 +21,10 @@ const Stars = ({ value }) => {
 	);
 };
 
-const PROGRAMMING_LANGUAGES = [
+const PROGRAMMING_LANGUAGES = () => [
 	{ name: 'JavaScript', value: 10 },
 	{ name: 'CSS', value: 10 },
-	{ name: 'Regex', value: 10 },
+	{ name: $$`_cv.regex`, value: 10 },
 	{ name: 'HTML', value: 9 },
 	{ name: 'TypeScript', value: 7 },
 	{ name: 'Java', value: 6 },
@@ -170,7 +170,7 @@ const CV = ({ location }) => {
 				<div className="section programming-language">
 					<h2 className="title">{$$`_cv.programming-language`}</h2>
 					<ul className="list skill-list" data-role="programming-language">
-						{PROGRAMMING_LANGUAGES.map(({ name, value }) => (
+						{PROGRAMMING_LANGUAGES().map(({ name, value }) => (
 							<li key={name}>
 								<label>{name}</label>
 								<Stars value={value} />
