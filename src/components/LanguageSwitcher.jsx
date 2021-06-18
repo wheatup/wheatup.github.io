@@ -18,7 +18,7 @@ const LanguageSwitcher = ({ location }) => {
 
 	return (
 		<a className="LanguageSwitcher" href="javascript: void(0)" title={whi18n`switch-language`} onClick={switchLanguage}>
-			<img src={`/images/i18n/${lang}.svg`} alt={whi18n`switch-language`} />
+			<img src={`/images/i18n/${lang}.${lang === 'ja-JP' ? 'png' : 'svg'}`} alt={whi18n`switch-language`} />
 		</a>
 	);
 };

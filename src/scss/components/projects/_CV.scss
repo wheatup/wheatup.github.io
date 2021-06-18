@@ -36,6 +36,14 @@
 			[data-role='name'] {
 				font-size: 2.4rem;
 				font-weight: bold;
+				display: flex;
+				flex-direction: column;
+
+				.kata {
+					font-size: 1.2rem;
+					font-weight: normal;
+					line-height: 1.2rem;
+				}
 			}
 
 			[data-role='title'] {

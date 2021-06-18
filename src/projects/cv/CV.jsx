@@ -24,6 +24,7 @@ const Stars = ({ value }) => {
 const PROGRAMMING_LANGUAGES = [
 	{ name: 'JavaScript', value: 10 },
 	{ name: 'CSS', value: 10 },
+	{ name: 'Regex', value: 10 },
 	{ name: 'HTML', value: 9 },
 	{ name: 'TypeScript', value: 7 },
 	{ name: 'Java', value: 6 },
@@ -33,7 +34,6 @@ const PROGRAMMING_LANGUAGES = [
 ];
 
 const SKILL_TECHNEQUES = () => [
-	{ name: 'Regex', value: 10 },
 	{ name: 'Vue', value: 9 },
 	{ name: 'React', value: 9 },
 	{ name: $$`_cv.ui-ux-animation`, value: 9 },
@@ -66,8 +66,8 @@ const TIMELINE = () => [
 ];
 
 const CV = ({ location }) => {
-	const { pic, name, title, email, phone, github, codepen, stackoverflow, linkedin, itchio, homepage } = useMemo(() => {
-		const keys = ['pic', 'name', 'title', 'email', 'phone', 'github', 'codepen', 'stackoverflow', 'linkedin', 'itchio', 'homepage'];
+	const { pic, name, kata, title, email, phone, github, codepen, stackoverflow, linkedin, itchio, homepage } = useMemo(() => {
+		const keys = ['pic', 'name', 'kata', 'title', 'email', 'phone', 'github', 'codepen', 'stackoverflow', 'linkedin', 'itchio', 'homepage'];
 		return keys.reduce((acc, key) => ({ ...acc, [key]: $$`_cv.profile.${key}` }), {});
 	}, []);
 
@@ -105,7 +105,10 @@ const CV = ({ location }) => {
 				<div className="section profile">
 					<img data-role="pic" src={pic} alt={name} />
 					<div data-role="details">
-						<p data-role="name" ref={myName}>{name}</p>
+						<p data-role="name">
+							{kata && <span className="kata">{kata}</span>}
+							<span ref={myName} className="name">{name}</span>
+						</p>
 						<p data-role="title">{title}</p>
 					</div>
 				</div>
