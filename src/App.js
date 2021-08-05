@@ -18,7 +18,7 @@ import Blog from './projects/blog/components/Blog';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { setData, useData } from 'wherehouse';
-import { CV as ViewCV, FULLSCREEN } from './utils/store';
+import { CV as ViewCV, FULLSCREEN, LANG } from './utils/store';
 import CV from './projects/cv/CV';
 import GlobalRouteHandler from './components/GlobalRouteHandler';
 
@@ -28,10 +28,19 @@ const App = () => {
 	const fullscreen = useData(FULLSCREEN);
 	useEffect(() => {
 		const search = new URLSearchParams(window.location.search);
+		if (search.get('lang')) {
+			const lang = search.get('lang');
+			window.localStorage.setItem('lang', lang);
+			search.delete('lang');
+			if (!search.get('redirect')) {
+				const url = window.location.href.replace(/lang=[\w-]+&?/g, '').replace(/\?$/g, '');
+				window.location.href = url;
+			}
+		}
 		if (search.get('redirect')) {
 			let url = `/${search.get('redirect')}`;
 			if ([...search.entries()].length > 1) {
-				url += `?${[...search.entries()].filter(([key]) => key !== 'redirect').map(e => e.join('=')).join('&')}`;
+				url += `?${[...search.entries()].filter(([key]) => ['redirect', 'lang'].includes(key)).map(e => e.join('=')).join('&')}`;
 			}
 			window.location.href = url;
 		}
