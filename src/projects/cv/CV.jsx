@@ -72,20 +72,10 @@ const CV = ({ location }) => {
 	}, []);
 
 	useTitle(name);
-
-	const validate = useCallback(() => {
-		if(myName.current && myName.current.innerText !== name) {
-			document.body.innerHTML = '<h1>Copyrighted content, please do not modify this page!</h1>';
-		}
-		setTimeout(validate, 1000);
-	}, []);
-
 	useEffect(() => {
 		setData(CV_VIEW, true);
 		window.localStorage.setItem('cv', '1');
-		validate();
 	}, []);
-
 	useEffect(() => {
 		const search = new URLSearchParams(location.search);
 		if (search.get('fullscreen')) {
@@ -96,8 +86,6 @@ const CV = ({ location }) => {
 	}, [location]);
 
 	const myName = useRef(null);
-
-
 
 	return (
 		<section className="CV">
