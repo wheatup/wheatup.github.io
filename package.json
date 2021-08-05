@@ -1,6 +1,6 @@
 {
 	"name": "homepage",
-	"version": "0.1.2",
+	"version": "0.2.0",
 	"private": true,
 	"homepage": "https://wheatup.github.io/",
 	"dependencies": {

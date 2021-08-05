@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import {
-	HashRouter as Router,
+	BrowserRouter as Router,
 	Switch,
 	Route,
 	NavLink,
@@ -17,7 +17,7 @@ import Games from './projects/games/Games';
 import Blog from './projects/blog/components/Blog';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useData } from 'wherehouse';
+import { setData, useData } from 'wherehouse';
 import { CV as ViewCV, FULLSCREEN } from './utils/store';
 import CV from './projects/cv/CV';
 import GlobalRouteHandler from './components/GlobalRouteHandler';
@@ -26,8 +26,15 @@ const App = () => {
 	useMaxHeight();
 	const cv = useData(ViewCV);
 	const fullscreen = useData(FULLSCREEN);
+	useEffect(() => {
+		const search = new URLSearchParams(window.location.search);
+		if(search.get('redirect')) {
+			window.location.href = `/${search.get('redirect')}?${[...search.entries()].filter(([key]) => key !== 'redirect').map(e => e.join('=')).join('&')}`;
+		}
+	}, []);
+	
 	return (
-		<Router>
+		<Router path={process.env.PUBLIC_URL + '/'}>
 			<div className="App">
 				{!fullscreen &&
 					<nav>
