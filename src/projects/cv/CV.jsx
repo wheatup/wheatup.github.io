@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { setData } from 'wherehouse';
-import { CV as CV_VIEW, FULLSCREEN } from '../../utils/store';
+import { getData, setData, useData } from 'wherehouse';
+import { CV as CV_VIEW, FULLSCREEN, LANG } from '../../utils/store';
 import $$ from 'whi18n';
 import { useTitle } from '../../hooks/misc';
 import Background from './components/Background';
 import Timeline from './components/Timeline';
 import { useRef } from 'react';
+import { LANGUAGES as AVAILABLE_LANGUAGES } from '../../utils/store';
 
 const Stars = ({ value }) => {
 	return (
@@ -74,7 +75,10 @@ const CV = ({ location }) => {
 	useTitle(name);
 	useEffect(() => {
 		setData(CV_VIEW, true);
+		setData(AVAILABLE_LANGUAGES, ['en-US', 'zh-CN', 'ja-JP']);
 		window.localStorage.setItem('cv', '1');
+
+		return () => setData(AVAILABLE_LANGUAGES, ['en-US', 'zh-CN']);
 	}, []);
 	useEffect(() => {
 		const search = new URLSearchParams(location.search);
@@ -85,6 +89,7 @@ const CV = ({ location }) => {
 		return () => setData(FULLSCREEN, false);
 	}, [location]);
 
+	const lang = useData(LANG);
 	const myName = useRef(null);
 
 	return (
@@ -94,7 +99,7 @@ const CV = ({ location }) => {
 					<img data-role="pic" src={pic} alt={name} />
 					<div data-role="details">
 						<p data-role="name">
-							{kata && <span className="kata">{kata}</span>}
+							{lang === 'ja-JP' && kata && <span className="kata">{kata}</span>}
 							<span ref={myName} className="name">{name}</span>
 						</p>
 						<p data-role="title">{title}</p>

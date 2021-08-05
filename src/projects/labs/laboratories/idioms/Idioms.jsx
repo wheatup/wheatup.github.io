@@ -8,6 +8,7 @@ import { useTitle } from '../../../../hooks/misc';
 import $$ from 'whi18n';
 import { toast } from 'react-toastify';
 
+let timer;
 const Idioms = ({ location }) => {
 	const dictionary = useDictionary();
 	const history = useHistory();
@@ -25,7 +26,7 @@ const Idioms = ({ location }) => {
 	const [query, setQuery] = useState(q);
 	const [results, setResults] = useState([]);
 
-	const search = useMemo(() => debounce(() => setShouldUpdate(true), 200), [setShouldUpdate]);
+	const search = useCallback(() => setShouldUpdate(true), []);
 
 	useEffect(() => {
 		const searchString = new URLSearchParams(location?.search ?? '');
@@ -86,10 +87,8 @@ const Idioms = ({ location }) => {
 		if (!shouldUpdate) return;
 		setShouldUpdate(false);
 
-		console.log('update');
-
 		history.push(location.pathname + `?q=${encodeURI(query)}&initial=${+options.initial}&pron=${+options.pron}&tone=${+options.tone}`);
-	}, [shouldUpdate, options, setResults, dictionary, location]);
+	}, [shouldUpdate, ...[Object.values(options)], location]);
 
 	useEffect(() => {
 		if (!dictionary?.length) return;
@@ -99,16 +98,13 @@ const Idioms = ({ location }) => {
 		}
 
 		search();
-	}, [query, setQuery, options, dictionary, setResults]);
+	}, [query, options.pron, options.tone, options.initial, dictionary]);
 
-	const onClickWord = useCallback(
-		text => {
-			toast($$`_idioms.copied`);
-			copy(text);
-			setQuery(text);
-		},
-		[setQuery]
-	);
+	const onClickWord = useCallback(text => {
+		toast($$`_idioms.copied`);
+		copy(text);
+		setQuery(text);
+	}, []);
 
 	return (
 		<div className="Idioms">
