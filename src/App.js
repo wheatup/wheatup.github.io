@@ -28,11 +28,15 @@ const App = () => {
 	const fullscreen = useData(FULLSCREEN);
 	useEffect(() => {
 		const search = new URLSearchParams(window.location.search);
-		if(search.get('redirect')) {
-			window.location.href = `/${search.get('redirect')}?${[...search.entries()].filter(([key]) => key !== 'redirect').map(e => e.join('=')).join('&')}`;
+		if (search.get('redirect')) {
+			let url = `/${search.get('redirect')}`;
+			if ([...search.entries()].length > 1) {
+				url += `?${[...search.entries()].filter(([key]) => key !== 'redirect').map(e => e.join('=')).join('&')}`;
+			}
+			window.location.href = url;
 		}
 	}, []);
-	
+
 	return (
 		<Router path={process.env.PUBLIC_URL + '/'}>
 			<div className="App">
