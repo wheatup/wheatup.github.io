@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { getData, setData, useData } from 'wherehouse';
-import { CV as CV_VIEW, FULLSCREEN, LANG } from '../../utils/store';
+import { CV as CV_VIEW, FULLSCREEN, IS_CV, LANG } from '../../utils/store';
 import $$ from 'whi18n';
 import { useTitle } from '../../hooks/misc';
 import Background from './components/Background';
@@ -71,14 +71,19 @@ const CV = ({ location }) => {
 		const keys = ['pic', 'name', 'kata', 'title', 'email', 'phone', 'github', 'codepen', 'stackoverflow', 'linkedin', 'itchio', 'homepage'];
 		return keys.reduce((acc, key) => ({ ...acc, [key]: $$`_cv.profile.${key}` }), {});
 	}, []);
+	
 
 	useTitle(name);
 	useEffect(() => {
 		setData(CV_VIEW, true);
+		setData(IS_CV, true);
 		setData(AVAILABLE_LANGUAGES, ['en-US', 'zh-CN', 'ja-JP']);
 		window.localStorage.setItem('cv', '1');
 
-		return () => setData(AVAILABLE_LANGUAGES, ['en-US', 'zh-CN']);
+		return () => {
+			setData(AVAILABLE_LANGUAGES, ['en-US', 'zh-CN']);
+			setData(IS_CV, false);
+		};
 	}, []);
 	useEffect(() => {
 		const search = new URLSearchParams(location.search);

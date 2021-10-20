@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -18,13 +18,16 @@ import Blog from './projects/blog/components/Blog';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { setData, useData } from 'wherehouse';
-import { CV as ViewCV, FULLSCREEN, LANG } from './utils/store';
+import { CV as ViewCV, FULLSCREEN, IS_CV, LANG } from './utils/store';
 import CV from './projects/cv/CV';
 import GlobalRouteHandler from './components/GlobalRouteHandler';
+import Button from './components/common/Button';
+import html2canvas from 'html2canvas';
 
 const App = () => {
 	useMaxHeight();
 	const cv = useData(ViewCV);
+	const isCV = useData(IS_CV);
 	const fullscreen = useData(FULLSCREEN);
 	useEffect(() => {
 		const search = new URLSearchParams(window.location.search);
@@ -46,6 +49,20 @@ const App = () => {
 		}
 	}, []);
 
+	const onClickDownloadAsPDF = useCallback(() => {
+		html2canvas(document.querySelector('.CV'), {
+			windowWidth: 3508,
+			windowHeight: 2480
+		}).then(function (canvas) {
+			var a = document.createElement('a');
+			// toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+			a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+			a.download = 'CV_HAOWU.jpg';
+			a.click();
+			a.remove();
+		});
+	}, []);
+
 	return (
 		<Router path={process.env.PUBLIC_URL + '/'}>
 			<div className="App">
@@ -61,6 +78,7 @@ const App = () => {
 								{cv && <NavLink to="/cv" title={$$`cv`}><i className="icon-profile"></i></NavLink>}
 								{/* <NavLink to="/games" title={$$`games`}><i className="icon-pacman"></i></NavLink> */}
 							</div>
+							{isCV && <Button onClick={onClickDownloadAsPDF}>{$$`download`}</Button>}
 							<LanguageSwitcher />
 							<User />
 						</div>

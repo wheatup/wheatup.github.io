@@ -4,6 +4,7 @@ export const LOADING = Symbol();
 export const ME = Symbol();
 export const LANG = Symbol();
 export const CV = Symbol();
+export const IS_CV = Symbol();
 export const FULLSCREEN = Symbol();
 export const LANGUAGES = Symbol();
 
@@ -29,6 +30,7 @@ export const setup = () => init({
 	[LANG]: window.localStorage.getItem('lang') || ({ en: 'en-US', 'en-BR': 'en-US', 'zh-CN': 'zh-CN', 'zh-TW': 'zh-CN' })[navigator.language] || 'en-US',
 	[LANGUAGES]: ['en-US', 'zh-CN'],
 	[CV]: !!window.localStorage.getItem('cv'),
+	[IS_CV]: false,
 	[FULLSCREEN]: false,
 
 	[EmojiSpin.COINS]: 0,

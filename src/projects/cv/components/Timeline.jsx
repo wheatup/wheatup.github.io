@@ -20,7 +20,7 @@ const Timeline = ({ data }) => {
 										{institution}
 									</a>
 								) : (
-									<p className="institution">{institution}</p>
+									<a href="javascript: void(0)" className="institution">{institution}</a>
 								)}
 							</div>
 							<div className="content" dangerouslySetInnerHTML={{ __html: content }}></div>

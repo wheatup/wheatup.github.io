@@ -55,7 +55,7 @@
 			}
 
 			[data-role='details'] {
-				@media only screen and (max-width: 632px) and (min-width: 480px)  {
+				@media only screen and (max-width: 632px) and (min-width: 480px) {
 					position: absolute;
 					transform: translateY(calc(-100% - 1rem));
 					left: 0.5rem;
@@ -181,7 +181,23 @@
 				p {
 					font-size: 1.8rem;
 				}
+
+				@include pc {
+					.title {
+						min-height: 16rem;
+					}
+				}
 			}
+
+			@include pc {
+				&.timeline {
+					.title {
+						margin-right: 0rem;
+						margin-left: 1rem;
+					}
+				}
+			}
+
 
 			@include phone {
 				flex-direction: column !important;
@@ -194,12 +210,28 @@
 			.title {
 				background-color: var(--bg1);
 				color: var(--bg2);
-				direction: ltr;
-				writing-mode: vertical-rl;
 				display: flex;
 				align-items: center;
 				font-size: 2rem;
 				padding: 2rem 1rem;
+				flex-direction: column;
+
+				@include pc {
+					margin-right: 1rem;
+				}
+
+				i {
+					margin-block-end: 1rem;
+				}
+
+				@include pc {
+					span {
+						display: block;
+						position: absolute;
+						white-space: nowrap;
+						transform: rotate(90deg) translateX(calc(50% + 2rem));
+					}
+				}
 
 				@include phone {
 					writing-mode: initial;
@@ -211,12 +243,13 @@
 					color: var(--bg1);
 					border-bottom: solid 2px currentColor;
 					font-size: 2.4rem;
+					flex-direction: row;
+
+					i {
+						margin-inline-end: 1rem;
+					}
 				}
 
-				i {
-					margin-inline-end: 1rem;
-				}
-				margin-block-start: 1rem;
 				border-bottom: none;
 			}
 
@@ -250,9 +283,9 @@
 			}
 
 			ul {
-				list-style-position: inside;
 				list-style-type: disc;
-		
+				padding-left: 2rem;
+
 				li {
 					&:not(:first-child) {
 						margin-top: 0.5rem;
@@ -434,7 +467,6 @@
 					}
 
 					ul {
-						list-style-position: inside;
 						list-style-type: disc;
 
 						li {

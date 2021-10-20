@@ -11,7 +11,8 @@
 		"please-enter-title": "Please enter the title!",
 		"post-failed-try-again": "Post failed, please try again!",
 		"please-enter-comment": "Please enter the comment!",
-		"all-rights-reserved": "All rights are reserved.",
+		"all-rights-reserved": "All rights reserved.",
+		"download": "Download",
 		"hexie": {
 			"encode": "Encode",
 			"decode": "Decode",
@@ -146,7 +147,7 @@
 					"content": "<ul><li>Information Technology Major.</li></ul>"
 				}
 			},
-			"achievement": "achievement & portfolio",
+			"achievement": "achievements",
 			"_achievement": "<ul><li>Has more than 10k reputation on <a target=\"_blank\" href=\"https://stackoverflow.com/users/10289265/hao-wu\">StackOverflow</a> by answering questions.</li><li>Has 100+ followers on <a href=\"https://codepen.io/wheatup\" target=\"_blank\">CodePen</a> and has multiple popular pens with hundreds of likes.</li><li>Has around 100 followers on <a href=\"https://github.com/wheatup\" target=\"blank\">GitHub</a> and multiple repositories with over 100 stars.</li><li>Participated in several open source projects with post requests being merged.</li><li>Created a Chrome extension called <a href=\"https://chrome.google.com/webstore/detail/twitch-chat-danmaku/koiphfkghjgmncbkcpfnegnbcbomlchg\" target=\"_blank\">Twitch Chat Danmaku</a>, has 10k+ weekly users with ranting of 4.5+ stars.<li>Created an indie multiplayer game called <a href=\"http://wtfgame.gaygay.me/\" target=\"_blank\">the WTFGame</a>(2016) with thousands of players online at the same time.</li></ul>"
 		}
 	}
