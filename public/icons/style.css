@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?6hooil');
-  src:  url('fonts/icomoon.eot?6hooil#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?6hooil') format('truetype'),
-    url('fonts/icomoon.woff?6hooil') format('woff'),
-    url('fonts/icomoon.svg?6hooil#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?np58hs');
+  src:  url('fonts/icomoon.eot?np58hs#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?np58hs') format('truetype'),
+    url('fonts/icomoon.woff?np58hs') format('woff'),
+    url('fonts/icomoon.svg?np58hs#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,38 +25,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-itchio-textless-white:before {
-  content: "\e91c";
-}
-.icon-codepen:before {
-  content: "\e910";
-}
-.icon-education:before {
-  content: "\e919";
-}
-.icon-phone:before {
-  content: "\e911";
-}
-.icon-envelope:before {
-  content: "\e912";
-}
-.icon-exchange:before {
-  content: "\e905";
-}
-.icon-paper-plane:before {
-  content: "\e904";
-}
-.icon-lightbulb:before {
-  content: "\e91b";
-}
-.icon-business_center:before {
-  content: "\e91a";
-}
-.icon-forum:before {
-  content: "\e906";
-}
-.icon-question_answer:before {
-  content: "\e906";
+.icon-arrow-down:before {
+  content: "\e91e";
 }
 .icon-trophy:before {
   content: "\e91d";
@@ -147,6 +117,48 @@
 }
 .icon-user:before {
   content: "\e901";
+}
+.icon-itchio-textless-white:before {
+  content: "\e91c";
+}
+.icon-codepen:before {
+  content: "\e910";
+}
+.icon-envelope:before {
+  content: "\e912";
+}
+.icon-education:before {
+  content: "\e919";
+}
+.icon-phone:before {
+  content: "\e911";
+}
+.icon-envelope:before {
+  content: "\e912";
+}
+.icon-exchange:before {
+  content: "\e905";
+}
+.icon-paper-plane:before {
+  content: "\e904";
+}
+.icon-forum:before {
+  content: "\e906";
+}
+.icon-question_answer:before {
+  content: "\e906";
+}
+.icon-lightbulb:before {
+  content: "\e91b";
+}
+.icon-business_center:before {
+  content: "\e91a";
+}
+.icon-forum:before {
+  content: "\e906";
+}
+.icon-question_answer:before {
+  content: "\e906";
 }
 .icon-pictures:before {
   content: "\e903";

@@ -22,7 +22,7 @@ import { CV as ViewCV, FULLSCREEN, IS_CV, LANG } from './utils/store';
 import CV from './projects/cv/CV';
 import GlobalRouteHandler from './components/GlobalRouteHandler';
 import Button from './components/common/Button';
-import html2canvas from 'html2canvas';
+// import html2canvas from 'html2canvas';
 
 const App = () => {
 	useMaxHeight();
@@ -49,19 +49,19 @@ const App = () => {
 		}
 	}, []);
 
-	const onClickDownloadAsPDF = useCallback(() => {
-		html2canvas(document.querySelector('.CV'), {
-			windowWidth: 3508,
-			windowHeight: 2480
-		}).then(function (canvas) {
-			var a = document.createElement('a');
-			// toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
-			a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
-			a.download = 'CV_HAOWU.jpg';
-			a.click();
-			a.remove();
-		});
-	}, []);
+	// const onClickDownloadAsPDF = useCallback(() => {
+	// 	html2canvas(document.querySelector('.CV'), {
+	// 		windowWidth: 3508,
+	// 		windowHeight: 2480
+	// 	}).then(function (canvas) {
+	// 		var a = document.createElement('a');
+	// 		// toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+	// 		a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+	// 		a.download = 'CV_HAOWU.jpg';
+	// 		a.click();
+	// 		a.remove();
+	// 	});
+	// }, []);
 
 	return (
 		<Router path={process.env.PUBLIC_URL + '/'}>
@@ -78,7 +78,8 @@ const App = () => {
 								{cv && <NavLink to="/cv" title={$$`cv`}><i className="icon-profile"></i></NavLink>}
 								{/* <NavLink to="/games" title={$$`games`}><i className="icon-pacman"></i></NavLink> */}
 							</div>
-							{isCV && <Button onClick={onClickDownloadAsPDF}>{$$`download`}</Button>}
+							{isCV && <a target="_blank" href="/data/CV_HAOWU.pdf" download><i className="icon-arrow-down" style={{fontSize: '2rem'}}></i><span style={{marginLeft: '0.5rem'}} className="pc-only">{$$`download`}</span></a>}
+							{/* {isCV && <Button onClick={onClickDownloadAsPDF}>{$$`download`}</Button>} */}
 							<LanguageSwitcher />
 							<User />
 						</div>
