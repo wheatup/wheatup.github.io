@@ -53,7 +53,7 @@ const LANGUAGES = [
 
 const TIMELINE = () => [
 	...(function* () {
-		for (let i = 1; i <= 5; i++) {
+		for (let i = 6; i > 0; i--) {
 			yield {
 				time: $$`_cv._timeline.exp${i}.date`,
 				icon: $$`_cv._timeline.exp${i}.icon`,

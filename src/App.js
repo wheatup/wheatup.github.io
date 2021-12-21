@@ -78,7 +78,7 @@ const App = () => {
 								{cv && <NavLink to="/cv" title={$$`cv`}><i className="icon-profile"></i></NavLink>}
 								{/* <NavLink to="/games" title={$$`games`}><i className="icon-pacman"></i></NavLink> */}
 							</div>
-							{isCV && <a target="_blank" href="/data/CV_HAOWU.pdf" download><i className="icon-arrow-down" style={{fontSize: '2rem'}}></i><span style={{marginLeft: '0.5rem'}} className="pc-only">{$$`download`}</span></a>}
+							{/* {isCV && <a target="_blank" href="/data/CV_HAOWU.pdf" download><i className="icon-arrow-down" style={{fontSize: '2rem'}}></i><span style={{marginLeft: '0.5rem'}} className="pc-only">{$$`download`}</span></a>} */}
 							{/* {isCV && <Button onClick={onClickDownloadAsPDF}>{$$`download`}</Button>} */}
 							<LanguageSwitcher />
 							<User />
