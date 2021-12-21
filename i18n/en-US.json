@@ -106,15 +106,23 @@
 			"_about-me": "Born in 1992 (Anhui, China). Senior front-end engineer. Experienced in back-end engineering/game development. Versatile, creative, efficient, and adaptive developer. Fast learner, curious. Interested in games, math, computer science, AI, etc.",
 			"timeline": "timeline",
 			"_timeline": {
-				"exp1": {
-					"date": "2019/02 - Present",
+				"exp6": {
+					"date": "2021/12 - Present",
+					"icon": "business_center",
+					"institution": "ByteDance Co., Ltd.",
+					"title": "Front-end Engineer",
+					"url": "https://bytedance.com",
+					"content": "<ul><li>Department: Enterprise IT Solution RD</li></ul>"
+				},
+				"exp5": {
+					"date": "2019/02 - 2021/12",
 					"icon": "business_center",
 					"institution": "Evolany Co., Ltd.",
 					"title": "Lead Front-end Engineer",
 					"url": "https://evolany.com",
 					"content": "<ul><li>Played a major part in developing main B2B product <a href=\"https://anybot.me/\" target=\"_blank\">AnyBot&trade;</a> using vanilla JavaScript/SCSS/PHP.</li><li>Singlehandedly created <a href=\"https://apps.apple.com/us/app/anybot/id1500356511\" target=\"_blank\">AnyBot&trade; App</a> using React Native.</li><li>Singlehandedly created <a href=\"https://admin.anyhook.me/dist/?app=14\" target=\"_blank\">Anyhook&trade; Chatbot</a> using Vue.js.</li><li>Wrote documentations for products and APIs.</li><li>In charge of front-end developer training.</li></ul>"
 				},
-				"exp2": {
+				"exp4": {
 					"date": "2017/01 - 2019/02",
 					"icon": "business_center",
 					"institution": "Nisshin Technology Co., Ltd.",
@@ -130,7 +138,7 @@
 					"url": "https://www.g-bits.com/",
 					"content": "<ul><li>Designed & developed HTML5/mobile games with Unity/Phaser.</li><li>Third party API(Wechat, QQ, etc) implementation.</li></ul>"
 				},
-				"exp4": {
+				"exp2": {
 					"date": "2014/06 - 2014/10",
 					"icon": "lightbulb",
 					"institution": "Aptech Technology Co., Ltd.",
@@ -138,7 +146,7 @@
 					"url": "",
 					"content": "<ul><li>Web(HTML/CSS/JavaScript) training.</li><li>Java programming training.</li></ul>"
 				},
-				"exp5": {
+				"exp1": {
 					"date": "2010/09 - 2014/06",
 					"icon": "education",
 					"institution": "Electronic Engineering Institute of PLA",

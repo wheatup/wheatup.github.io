@@ -106,15 +106,23 @@
 			"_about-me": "私は1992年10月生まれ、中国安徽省出身です。リードフロントエンジニアでありながら、バックエンドの開発やゲーム開発にも興味がもっています。私はいろんな分野の知識に興味があり、ゲームや数学、コンピューターサイエンスやAIにも深く興味をもっています。また、私は学習効率が高く、好奇心旺盛で、創造力と高い効率性と柔軟性を持つ開発者です。",
 			"timeline": "タイムライン",
 			"_timeline": {
-				"exp1": {
-					"date": "2019/02 - 現在",
+				"exp6": {
+					"date": "2021/12 - 現在",
+					"icon": "business_center",
+					"institution": "Bytedance株式会社",
+					"title": "エンジニア",
+					"url": "https://bytedance.com",
+					"content": "<ul><li>部門：Enterprise IT Solution RD</li></ul>"
+				},
+				"exp5": {
+					"date": "2019/02 - 2021/12",
 					"icon": "business_center",
 					"institution": "エボラニ株式会社",
 					"title": "リードエンジニア",
 					"url": "https://evolany.com",
 					"content": "<ul><li>JavaScript/SCSSとPHPでB2Bプロジェクト<a href=\"https://anybot.me/\" target=\"_blank\">AnyBot&trade;</a>を共同開発。</li><li>React Nativeで<a href=\"https://apps.apple.com/us/app/anybot/id1500356511\" target=\"_blank\">AnyBot&trade;アプリ</a>を独立開発。</li><li>Vue.jsで<a href=\"https://admin.anyhook.me/dist/?app=14\" target=\"_blank\">Anyhook&trade;チャットボット</a>を独立開発。</li><li>製品与APIのマニュアルおよび仕様書作成(英語)。</li><li>新人フロントエンジニアの研修を担当。</li></ul>"
 				},
-				"exp2": {
+				"exp4": {
 					"date": "2017/01 - 2019/02",
 					"icon": "business_center",
 					"institution": "日進サイエンティア",
@@ -130,7 +138,7 @@
 					"url": "https://www.g-bits.com/",
 					"content": "<ul><li>ゲームデザイン及びUnity/Phaserを利用したHTMLとスマホゲームの開発。</li><li>外部APIとの連携（WeChat、QQ等）。</li></ul>"
 				},
-				"exp4": {
+				"exp2": {
 					"date": "2014/06 - 2014/10",
 					"icon": "lightbulb",
 					"institution": "Aptech情報技術株式会社",
@@ -138,7 +146,7 @@
 					"url": "",
 					"content": "<ul><li>Web開発(HTML/CSS/JavaScript)研修。</li><li>Java開発研修。</li></ul>"
 				},
-				"exp5": {
+				"exp1": {
 					"date": "2010/09 - 2014/06",
 					"icon": "education",
 					"institution": "中国人民解放軍電子工程学院",

@@ -105,7 +105,15 @@
 			"_about-me": "1992年10月生于中国安徽。高级前端工程师，并且对于后端/游戏开发也有着丰富的涉猎。杂学、具有创造力、高效率、高适应能力的开发者。学习效率高，富有好奇心。对于游戏、数学、计算机科学与AI有着浓厚的兴趣。",
 			"timeline": "时间线",
 			"_timeline": {
-				"exp1": {
+				"exp6": {
+					"date": "2021/12 - 至今",
+					"icon": "business_center",
+					"institution": "字节跳动（日本）",
+					"title": "前端开发",
+					"url": "https://bytedance.com",
+					"content": "<ul><li>所属部门：Enterprise IT Solution RD</li></ul>"
+				},
+				"exp5": {
 					"date": "2019/02 - 至今",
 					"icon": "business_center",
 					"institution": "Evolany有限公司(日本)",
@@ -113,7 +121,7 @@
 					"url": "https://evolany.com",
 					"content": "<ul><li>使用原生JavaScript/SCSS与PHP协同开发了社内B2B项目<a href=\"https://anybot.me/\" target=\"_blank\">AnyBot&trade;</a>。</li><li>单人完成了<a href=\"https://apps.apple.com/us/app/anybot/id1500356511\" target=\"_blank\">AnyBot&trade; APP</a>，使用了React Native。</li><li>单人完成了<a href=\"https://admin.anyhook.me/dist/?app=14\" target=\"_blank\">Anyhook&trade;聊天页面</a>，使用了Vue.js。</li><li>为产品与API撰写手册与文档(英文)。</li><li>对新人前端工程师予以培训。</li></ul>"
 				},
-				"exp2": {
+				"exp4": {
 					"date": "2017/01 - 2019/02",
 					"icon": "business_center",
 					"institution": "日进科技有限公司(日本)",
@@ -129,7 +137,7 @@
 					"url": "https://www.g-bits.com/",
 					"content": "<ul><li>策划并使Unity/Phaser开发HTML与手机游戏。</li><li>第三方服务接入（微信、QQ等）。</li></ul>"
 				},
-				"exp4": {
+				"exp2": {
 					"date": "2014/06 - 2014/10",
 					"icon": "lightbulb",
 					"institution": "北京阿博泰克信息技术有限公司",
@@ -137,7 +145,7 @@
 					"url": "",
 					"content": "<ul><li>Web开发(HTML/CSS/JavaScript)培训。</li><li>Java开发培训。</li></ul>"
 				},
-				"exp5": {
+				"exp1": {
 					"date": "2010/09 - 2014/06",
 					"icon": "education",
 					"institution": "中国人民解放军电子工程学院",
