@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect, Route, Switch } from 'react-router';
+import { Route, Routes } from 'react-router';
 import { NavLink } from 'react-router-dom';
 // import LinearRegression from './laboratories/linearRegression/LinearRegression';
 // import TensorFlow from './laboratories/linearRegression/TensorFlow';
@@ -23,15 +23,14 @@ const Labs = props => {
 				</div>
 			</div>
 			<div className="laboratory">
-				<Switch>
+				<Routes>
 					{/* <Route path="/labs/tensorflow" component={TensorFlow} /> */}
 					{/* <Route path="/labs/linear-regression" component={LinearRegression} /> */}
 					<Route path="/labs/hexie" component={HexieEncoder} />
 					<Route path="/labs/idioms" component={Idioms} />
 					<Route path="/labs/web-color-picker" component={WebColorPicker} />
 					<Route path="/labs/regex-dictionary" component={RegexDictionary} />
-					<Redirect to="/labs/idioms" />
-				</Switch>
+				</Routes>
 			</div>
 		</section>
 	);

@@ -3,7 +3,7 @@ import { debounce } from '../../../../utils/misc';
 import { useDictionary } from './hooks/dictionary';
 import { pinyin } from 'pinyin-pro';
 import copy from 'copy-to-clipboard';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTitle } from '../../../../hooks/misc';
 import $$ from 'whi18n';
 import { toast } from 'react-toastify';
@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 let timer;
 const Idioms = ({ location }) => {
 	const dictionary = useDictionary();
-	const history = useHistory();
+	const navigate = useNavigate()();
 	useTitle($$`_idioms.title`);
 
 	const [shouldUpdate, setShouldUpdate] = useState(false);
@@ -81,13 +81,13 @@ const Idioms = ({ location }) => {
 		} else {
 			setResults([]);
 		}
-	}, [location, history, dictionary]);
+	}, [location, navigate, dictionary]);
 
 	useEffect(() => {
 		if (!shouldUpdate) return;
 		setShouldUpdate(false);
 
-		history.push(location.pathname + `?q=${encodeURI(query)}&initial=${+options.initial}&pron=${+options.pron}&tone=${+options.tone}`);
+		navigate(location.pathname + `?q=${encodeURI(query)}&initial=${+options.initial}&pron=${+options.pron}&tone=${+options.tone}`);
 	}, [shouldUpdate, ...[Object.values(options)], location]);
 
 	useEffect(() => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import EmojiSpin from './games/emojiSpin/EmojiSpin';
-import { Redirect, Route, Switch } from 'react-router';
+import { Route, Routes } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import $$ from 'whi18n';
 
@@ -13,10 +13,9 @@ const Games = props => {
 				</div>
 			</div>
 			<div className="game">
-				<Switch>
+				<Routes>
 					<Route path="/games/emoji-spin" component={EmojiSpin} />
-					<Redirect to="/games/emoji-spin" />
-				</Switch>
+				</Routes>
 			</div>
 		</section>
 	);

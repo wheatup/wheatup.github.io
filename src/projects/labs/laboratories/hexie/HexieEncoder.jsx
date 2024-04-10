@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import Button from '../../../../components/common/Button';
 import { encode, decode } from 'hexie-encode';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTitle } from '../../../../hooks/misc';
 import $$ from 'whi18n';
 
@@ -12,7 +12,7 @@ const HexieEncoder = ({ location }) => {
 	const [customDict, setCustomDict] = useState('');
 	const [output, setOutput] = useState('');
 	const [copied, setCopied] = useState(false);
-	const history = useHistory();
+	const navigate = useNavigate()();
 	const outputComp = useRef(null);
 	const inputComp = useRef(null);
 
@@ -34,12 +34,12 @@ const HexieEncoder = ({ location }) => {
 	}, [customDict, dict]);
 
 	const onClickEncode = useCallback(() => {
-		history.replace(location.pathname + '?act=encode' + (customDict ? `&dict=${encodeURI(customDict)}` : '') + (input ? `&txt=${encodeURI(input)}` : ''));
-	}, [input, customDict, history, location]);
+		navigate(location.pathname + '?act=encode' + (customDict ? `&dict=${encodeURI(customDict)}` : '') + (input ? `&txt=${encodeURI(input)}` : ''), { replace: true });
+	}, [input, customDict, navigate, location]);
 
 	const onClickDecode = useCallback(() => {
-		history.replace(location.pathname + '?act=decode' + (customDict ? `&dict=${encodeURI(customDict)}` : '') + (input ? `&txt=${encodeURI(input)}` : ''));
-	}, [input, customDict, history, location]);
+		navigate(location.pathname + '?act=decode' + (customDict ? `&dict=${encodeURI(customDict)}` : '') + (input ? `&txt=${encodeURI(input)}` : '', { replace: true }));
+	}, [input, customDict, navigate, location]);
 
 	const doEncode = useCallback(
 		(txt, dict) => {
