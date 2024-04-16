@@ -109,9 +109,9 @@
 					"date": "2021/12 - 至今",
 					"icon": "business_center",
 					"institution": "字节跳动（日本）",
-					"title": "前端开发",
+					"title": "前端开发/项目负责人",
 					"url": "https://bytedance.com",
-					"content": "<ul><li>所属部门：Enterprise IT Solution RD</li></ul>"
+					"content": "<ul><li>负责“共享工位”项目的前端开发与项目管理工作，使用技术栈：Vue.js、飞书小程序。</li><li>负责“智能通知平台”项目的前端开发与项目管理工作，使用技术栈：React.js、TypeScript、Vite、Vitest等。</li><li>加入团队半年内因快速上手与紧急需求的支持，获得IT团队内Spot Bonus。</li><li>主持了200+场前端工程师岗位的技术面试。</li><li>以导师身份，指导2名前端同学成功进行日常的开发与维护工作。</li></ul>"
 				},
 				"exp5": {
 					"date": "2019/02 - 至今",
