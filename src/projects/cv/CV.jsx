@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { getData, setData, useData } from 'wherehouse';
+import { useLocation } from 'react-router-dom';
 import { CV as CV_VIEW, FULLSCREEN, IS_CV, LANG } from '../../utils/store';
 import $$ from 'whi18n';
 import { useTitle } from '../../hooks/misc';
@@ -66,12 +67,12 @@ const TIMELINE = () => [
 	})()
 ];
 
-const CV = ({ location }) => {
+const CV = () => {
+	const location = useLocation();
 	const { pic, name, kata, title, email, phone, github, codepen, stackoverflow, linkedin, itchio, homepage } = useMemo(() => {
 		const keys = ['pic', 'name', 'kata', 'title', 'email', 'phone', 'github', 'codepen', 'stackoverflow', 'linkedin', 'itchio', 'homepage'];
 		return keys.reduce((acc, key) => ({ ...acc, [key]: $$`_cv.profile.${key}` }), {});
 	}, []);
-	
 
 	useTitle(name);
 	useEffect(() => {

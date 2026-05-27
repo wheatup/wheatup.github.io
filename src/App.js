@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -10,7 +10,7 @@ import { useMaxHeight } from './hooks/misc';
 import Forum from './projects/forum/components/Forum';
 import User from './components/common/User';
 import LanguageSwitcher from './components/LanguageSwitcher';
-import $$ from 'whi18n';
+import $ from 'whi18n';
 import Labs from './projects/labs/Labs';
 import Games from './projects/games/Games';
 import Blog from './projects/blog/components/Blog';
@@ -63,47 +63,46 @@ const App = () => {
   // }, []);
 
   return (
-    <div className="App">
-      {!fullscreen &&
-        <nav>
-          <div className="nav">
-            <NavLink exact to="/" className="logo pc-only"></NavLink>
-            <div className="nav-links">
-              <NavLink exact to="/" title={$$`home`}><i className="icon-home"></i></NavLink>
-              <NavLink to="/blog" title={$$`blog`}><i className="icon-pencil"></i></NavLink>
-              <NavLink to="/forum" title={$$`forum`}><i className="icon-forum"></i></NavLink>
-              <NavLink to="/labs" title={$$`labs`}><i className="icon-lab"></i></NavLink>
-              {cv && <NavLink to="/cv" title={$$`cv`}><i className="icon-profile"></i></NavLink>}
-              {/* <NavLink to="/games" title={$$`games`}><i className="icon-pacman"></i></NavLink> */}
+    <Router>
+      <div className="App">
+        {!fullscreen &&
+          <nav>
+            <div className="nav">
+              <NavLink to="/" end className="logo pc-only"></NavLink>
+              <div className="nav-links">
+                <NavLink to="/" end title={$`home`}><i className="icon-home"></i></NavLink>
+                <NavLink to="/blog" title={$`blog`}><i className="icon-pencil"></i></NavLink>
+                <NavLink to="/forum" title={$`forum`}><i className="icon-forum"></i></NavLink>
+                <NavLink to="/labs" title={$`labs`}><i className="icon-lab"></i></NavLink>
+                {cv && <NavLink to="/cv" title={$`cv`}><i className="icon-profile"></i></NavLink>}
+                {/* <NavLink to="/games" title={$`games`}><i className="icon-pacman"></i></NavLink> */}
+              </div>
+              {/* {isCV && <a target="_blank" href="/data/CV_HAOWU.pdf" download><i className="icon-arrow-down" style={{fontSize: '2rem'}}></i><span style={{marginLeft: '0.5rem'}} className="pc-only">{$`download`}</span></a>} */}
+              {/* {isCV && <Button onClick={onClickDownloadAsPDF}>{$`download`}</Button>} */}
+              <LanguageSwitcher />
+              <User />
             </div>
-            {/* {isCV && <a target="_blank" href="/data/CV_HAOWU.pdf" download><i className="icon-arrow-down" style={{fontSize: '2rem'}}></i><span style={{marginLeft: '0.5rem'}} className="pc-only">{$$`download`}</span></a>} */}
-            {/* {isCV && <Button onClick={onClickDownloadAsPDF}>{$$`download`}</Button>} */}
-            <LanguageSwitcher />
-            <User />
-          </div>
-        </nav>
-      }
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route path="forum" element={<Forum />} />
-            <Route path="blog" element={<Blog />} />
-            <Route path="labs" element={<Labs />} />
-            <Route path="games" element={<Games />} />
-            <Route path="cv" element={<CV />} />
-          </Route>
-        </Routes>
-        {/* <Routes>
-              <Route component={GlobalRouteHandler} />
-            </Routes> */}
-      </main>
-      {!fullscreen &&
-        <footer>
-          &copy;&nbsp;<a href="https://github.com/wheatup/" target="_blank" rel="noopener noreferrer">wheatup</a>&nbsp;<a target="_blank" href="https://github.com/wheatup/wheatup.github.io/blob/master/LICENSE">@{new Date().getFullYear()} {$$`all-rights-reserved`}</a>
-        </footer>
-      }
-      <ToastContainer hideProgressBar closeOnClick autoClose={3000} />
-    </div>
+          </nav>
+        }
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/blog/*" element={<Blog />} />
+            <Route path="/forum/*" element={<Forum />} />
+            <Route path="/labs/*" element={<Labs />} />
+            <Route path="/games/*" element={<Games />} />
+            <Route path="/cv" element={<CV />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
+        </main>
+        {!fullscreen &&
+          <footer>
+            &copy;&nbsp;<a href="https://github.com/wheatup/" target="_blank" rel="noopener noreferrer">wheatup</a>&nbsp;<a target="_blank" href="https://github.com/wheatup/wheatup.github.io/blob/master/LICENSE">@{new Date().getFullYear()} {$`all-rights-reserved`}</a>
+          </footer>
+        }
+        <ToastContainer hideProgressBar closeOnClick autoClose={3000} />
+      </div>
+    </Router>
   );
 }
 

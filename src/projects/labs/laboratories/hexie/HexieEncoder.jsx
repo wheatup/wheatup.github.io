@@ -1,45 +1,56 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import Button from '../../../../components/common/Button';
 import { encode, decode } from 'hexie-encode';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useTitle } from '../../../../hooks/misc';
 import $$ from 'whi18n';
 
-const HexieEncoder = ({ location }) => {
+const HexieEncoder = () => {
 	useTitle($$`hexie-encoder`);
 
 	const [input, setInput] = useState('');
 	const [customDict, setCustomDict] = useState('');
 	const [output, setOutput] = useState('');
 	const [copied, setCopied] = useState(false);
-	const navigate = useNavigate()();
+	const navigate = useNavigate();
+	const location = useLocation();
 	const outputComp = useRef(null);
 	const inputComp = useRef(null);
 
-	const search = new URLSearchParams(location?.search ?? '');
+	const search = useMemo(() => new URLSearchParams(location.search), [location.search]);
 	const act = search.get('act') || 'decode';
 	const dict = decodeURI(search.get('dict') || '');
 	const txt = decodeURI(search.get('txt') || '');
 
 	const dictArr = useMemo(() => {
 		let d = customDict || dict;
-		if (d) {
-			if(/^(?:[^\s,，]+[\s,，]){2,}/[Symbol.match](d)) {
-				d = dict.split(/[\s,，]/).map(e => e.trim());
-			} else {
-				d = dict.split('').map(e => e.trim());
-			}
-			return d;
+		if (!d) return undefined;
+
+		if (/^(?:[^\s,，]+[\s,，]){2,}/[Symbol.match](d)) {
+			return d.split(/[\s,，]/).map(e => e.trim()).filter(Boolean);
 		}
+		return d.split('').map(e => e.trim()).filter(Boolean);
 	}, [customDict, dict]);
 
 	const onClickEncode = useCallback(() => {
-		navigate(location.pathname + '?act=encode' + (customDict ? `&dict=${encodeURI(customDict)}` : '') + (input ? `&txt=${encodeURI(input)}` : ''), { replace: true });
-	}, [input, customDict, navigate, location]);
+		navigate(
+			location.pathname +
+				'?act=encode' +
+				(customDict ? `&dict=${encodeURI(customDict)}` : '') +
+				(input ? `&txt=${encodeURI(input)}` : ''),
+			{ replace: true }
+		);
+	}, [customDict, input, location.pathname, navigate]);
 
 	const onClickDecode = useCallback(() => {
-		navigate(location.pathname + '?act=decode' + (customDict ? `&dict=${encodeURI(customDict)}` : '') + (input ? `&txt=${encodeURI(input)}` : '', { replace: true }));
-	}, [input, customDict, navigate, location]);
+		navigate(
+			location.pathname +
+				'?act=decode' +
+				(customDict ? `&dict=${encodeURI(customDict)}` : '') +
+				(input ? `&txt=${encodeURI(input)}` : ''),
+			{ replace: true }
+		);
+	}, [customDict, input, location.pathname, navigate]);
 
 	const doEncode = useCallback(
 		(txt, dict) => {

@@ -15,8 +15,8 @@ const Post = props => {
 	useEffect(() => {
 		whevent.on('REFRESH_COMMENTS', loadComments);
 
-		return () => whevent.off('COMMENTS', loadComments);
-	}, []);
+		return () => whevent.off('REFRESH_COMMENTS', loadComments);
+	}, [loadComments]);
 
 	return (
 		<div className="Post">

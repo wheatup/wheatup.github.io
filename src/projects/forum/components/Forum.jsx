@@ -4,13 +4,13 @@ import PostList from './PostList';
 import Post from './Post';
 import { useTitle } from '../../../hooks/misc';
 
-const Forum = props => {
+const Forum = () => {
 	useTitle('wheatup');
 	return (
 		<div className="Forum">
 			<Routes>
-				<Route path="/forum/post/:id" component={Post} />
-				<Route path="/forum/" component={PostList} exact />
+				<Route index element={<PostList />} />
+				<Route path="post/:id" element={<Post />} />
 			</Routes>
 		</div>
 	);
