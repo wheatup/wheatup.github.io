@@ -1,27 +1,25 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import {
+  NavLink,
+  Route,
   BrowserRouter as Router,
   Routes,
-  Route,
-  NavLink,
 } from "react-router-dom";
-import Home from './projects/home/Home';
-import { useMaxHeight } from './hooks/misc';
-import Forum from './projects/forum/components/Forum';
-import User from './components/common/User';
-import LanguageSwitcher from './components/LanguageSwitcher';
-import $ from 'whi18n';
-import Labs from './projects/labs/Labs';
-import Games from './projects/games/Games';
-import Blog from './projects/blog/components/Blog';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { setData, useData } from 'wherehouse';
-import { CV as ViewCV, FULLSCREEN, IS_CV, LANG } from './utils/store';
+import { useData } from 'wherehouse';
+import $ from 'whi18n';
+import User from './components/common/User';
+import LanguageSwitcher from './components/LanguageSwitcher';
+import { useMaxHeight } from './hooks/misc';
+import Blog from './projects/blog/components/Blog';
 import CV from './projects/cv/CV';
-import GlobalRouteHandler from './components/GlobalRouteHandler';
-import Button from './components/common/Button';
-// import html2canvas from 'html2canvas';
+import Forum from './projects/forum/components/Forum';
+import Games from './projects/games/Games';
+import Home from './projects/home/Home';
+import Labs from './projects/labs/Labs';
+import { FULLSCREEN, IS_CV, CV as ViewCV } from './utils/store';
+import CopyPasta from './projects/copyPasta';
 
 const App = () => {
   useMaxHeight();
@@ -75,6 +73,7 @@ const App = () => {
                 <NavLink to="/forum" title={$`forum`}><i className="icon-forum"></i></NavLink>
                 <NavLink to="/labs" title={$`labs`}><i className="icon-lab"></i></NavLink>
                 {cv && <NavLink to="/cv" title={$`cv`}><i className="icon-profile"></i></NavLink>}
+                <NavLink to="/copy-pasta" title={$`copy-pasta`}><i className="icon-paste"></i></NavLink>
                 {/* <NavLink to="/games" title={$`games`}><i className="icon-pacman"></i></NavLink> */}
               </div>
               {/* {isCV && <a target="_blank" href="/data/CV_HAOWU.pdf" download><i className="icon-arrow-down" style={{fontSize: '2rem'}}></i><span style={{marginLeft: '0.5rem'}} className="pc-only">{$`download`}</span></a>} */}
@@ -92,6 +91,7 @@ const App = () => {
             <Route path="/labs/*" element={<Labs />} />
             <Route path="/games/*" element={<Games />} />
             <Route path="/cv" element={<CV />} />
+            <Route path="/copy-pasta" element={<CopyPasta />} />
             <Route path="*" element={<Home />} />
           </Routes>
         </main>
