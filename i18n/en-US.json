@@ -109,10 +109,10 @@
 				"exp6": {
 					"date": "2021/12 - Present",
 					"icon": "business_center",
-					"institution": "ByteDance Ltd. (Owner of TikTok)",
-					"title": "Front-end Engineer/Project Owner",
+					"institution": "ByteDance Co., Ltd.",
+					"title": "Front-end Engineer",
 					"url": "https://bytedance.com",
-					"content": "<ul><li>Responsible for front-end development and project management of the \"DeskSharing\" project, using technology stack: Vue.js, Lark MiniProgram.</li><li>Responsible for front-end development and project management of the \"Smart Notification Platform (Angelia)\" project, using technology stack: React.js, TypeScript, Vite, Vitest, etc.</li><li>Earned a Spot Bonus within the IT team 6 months after joining due to quick learning and support for urgent needs.</li><li>Conducted over 200 technical interviews for front-end engineer positions.</li><li>As a mentor, guided 2 front-end colleagues to successfully carry out daily development and maintenance tasks.</li></ul>"
+					"content": "<ul><li>Department: Enterprise IT Solution RD</li></ul>"
 				},
 				"exp5": {
 					"date": "2019/02 - 2021/12",
@@ -156,7 +156,8 @@
 				}
 			},
 			"achievement": "achievements",
-			"_achievement": "<ul><li>Has around 20k reputation on <a target=\"_blank\" href=\"https://stackoverflow.com/users/10289265/hao-wu\">StackOverflow</a> by answering questions.</li><li>Has 500+ followers on <a href=\"https://codepen.io/wheatup\" target=\"_blank\">CodePen</a> and has multiple popular pens with hundreds of likes.</li><li>Has around 300 followers on <a href=\"https://github.com/wheatup\" target=\"blank\">GitHub</a> and multiple repositories with over 100 stars.</li><li>Participated in several open source projects with post requests being merged.</li><li>Created a Chrome extension called <a href=\"https://chrome.google.com/webstore/detail/twitch-chat-danmaku/koiphfkghjgmncbkcpfnegnbcbomlchg\" target=\"_blank\">Twitch Chat Danmaku</a>, has 60k+ weekly users with ranting of 4.5+ stars.<li>Created an indie multiplayer game called <a href=\"http://wtfgame.gaygay.me/\" target=\"_blank\">the WTFGame</a>(2016) with thousands of players online at the same time.</li></ul>"
+			"_achievement": "<ul><li>Has more than 10k reputation on <a target=\"_blank\" href=\"https://stackoverflow.com/users/10289265/hao-wu\">StackOverflow</a> by answering questions.</li><li>Has 100+ followers on <a href=\"https://codepen.io/wheatup\" target=\"_blank\">CodePen</a> and has multiple popular pens with hundreds of likes.</li><li>Has around 100 followers on <a href=\"https://github.com/wheatup\" target=\"blank\">GitHub</a> and multiple repositories with over 100 stars.</li><li>Participated in several open source projects with post requests being merged.</li><li>Created a Chrome extension called <a href=\"https://chrome.google.com/webstore/detail/twitch-chat-danmaku/koiphfkghjgmncbkcpfnegnbcbomlchg\" target=\"_blank\">Twitch Chat Danmaku</a>, has 10k+ weekly users with ranting of 4.5+ stars.<li>Created an indie multiplayer game called <a href=\"http://wtfgame.gaygay.me/\" target=\"_blank\">the WTFGame</a>(2016) with thousands of players online at the same time.</li></ul>",
+      "copy-pasta": "CopyPasta"
 		}
 	}
 }

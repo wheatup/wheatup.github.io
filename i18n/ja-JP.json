@@ -109,10 +109,10 @@
 				"exp6": {
 					"date": "2021/12 - 現在",
 					"icon": "business_center",
-					"institution": "Bytedance株式会社(TikTok)",
-					"title": "エンジニア/プロジェクトオーナー",
+					"institution": "Bytedance株式会社",
+					"title": "エンジニア",
 					"url": "https://bytedance.com",
-					"content": "<ul><li>「デスクシェアリング」プロジェクトのフロントエンド開発とプロジェクト管理を担当し、技術スタック：Vue.js、Larkミニプログラムを使用。</li><li>「スマート通知プラットフォーム（Angelia）」プロジェクトのフロントエンド開発とプロジェクト管理を担当し、技術スタック：React.js、TypeScript、Vite、Vitestなどを使用。</li><li>チームに参加して半年以内に迅速なキャッチアップと緊急なニーズのサポートでITチーム内のスポットボーナスを獲得。</li><li>フロントエンドエンジニアのポジションに対して200回以上の技術面接を主催。</li><li>メンターとして、2名のフロントエンド同僚が日常的な開発とメンテナンス作業を成功させるよう指導。</li></ul>"
+					"content": "<ul><li>部門：Enterprise IT Solution RD</li></ul>"
 				},
 				"exp5": {
 					"date": "2019/02 - 2021/12",
@@ -156,7 +156,8 @@
 				}
 			},
 			"achievement": "成果と作品",
-			"_achievement": "<ul><li><a target=\"_blank\" href=\"https://stackoverflow.com/users/10289265/hao-wu\">StackOverflow</a>上での回答が20000以上のREPUTATIONを獲得。</li><li><a href=\"https://codepen.io/wheatup\" target=\"_blank\">CodePen</a>上で500+のフォロワーがいる、100以上LIKEのpenがもつ。</li><li><a href=\"https://github.com/wheatup\" target=\"blank\">GitHub</a>で300以上のフォロワーさらに複数のrepo(forkではないもの)で100以上の☆がえっている。</li><li>PRから複数のオープンソースプロジェクトの開発にも参加。</li><li>Chromeブラウザの拡張機能「<a href=\"https://chrome.google.com/webstore/detail/twitch-chat-danmaku/koiphfkghjgmncbkcpfnegnbcbomlchg\" target=\"_blank\">Twitchチャット弾幕</a>」を開発、6万アクティブユーザーと4.5ポイントの高評価を得ている。<li>オンライン独立ゲーム「<a href=\"http://wtfgame.gaygay.me/\" target=\"_blank\">WTFGame</a>」を開発、数千人同時オンラインでのプレイを実現(2016)。</li></ul>"
+			"_achievement": "<ul><li><a target=\"_blank\" href=\"https://stackoverflow.com/users/10289265/hao-wu\">StackOverflow</a>上での回答が12000以上のREPUTATIONを獲得。</li><li><a href=\"https://codepen.io/wheatup\" target=\"_blank\">CodePen</a>上で100+のフォロワーがいる、100以上LIKEのpenがもつ。</li><li><a href=\"https://github.com/wheatup\" target=\"blank\">GitHub</a>で100以上のフォロワーさらに複数のrepo(forkではないもの)で100以上の☆がえっている。</li><li>PRから複数のオープンソースプロジェクトの開発にも参加。</li><li>Chromeブラウザの拡張機能「<a href=\"https://chrome.google.com/webstore/detail/twitch-chat-danmaku/koiphfkghjgmncbkcpfnegnbcbomlchg\" target=\"_blank\">Twitchチャット弾幕</a>」を開発、1万アクティブユーザーと4.5ポイントの高評価を得ている。<li>オンライン独立ゲーム「<a href=\"http://wtfgame.gaygay.me/\" target=\"_blank\">WTFGame</a>」を開発、数千人同時オンラインでのプレイを実現(2016)。</li></ul>",
+      "copy-pasta": "CopyPasta"
 		}
 	}
 }
