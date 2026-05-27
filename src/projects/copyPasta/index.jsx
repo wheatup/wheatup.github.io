@@ -1,12 +1,13 @@
 import { useTitle } from '../../hooks/misc';
 import $$ from 'whi18n';
+import CopyPastaFrame from './copyPasta';
 
 const CopyPasta = () => {
   useTitle($$`copy-pasta`);
 
   return (
-    <section className="CopyPasta">
-      CopyPasta
+    <section data-component="CopyPasta">
+      <CopyPastaFrame />
     </section>
   );
 }

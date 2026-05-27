@@ -1,0 +1,242 @@
+[data-component='CopyPasta'] {
+  height: 100%;
+}
+
+.copypasta {
+  height: 100%;
+  color-scheme: light dark;
+  --copypasta-bg: #f7f8fb;
+  --copypasta-panel: #ffffff;
+  --copypasta-text: #17202a;
+  --copypasta-muted: #667085;
+  --copypasta-line: #d6dbe3;
+  --copypasta-accent: #146c63;
+  --copypasta-accent-soft: #dff4ef;
+  --copypasta-danger: #b42318;
+  --copypasta-shadow: 0 12px 32px rgba(16, 24, 40, 0.14);
+
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  width: 100%;
+  min-height: 560px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background: var(--copypasta-panel);
+  box-shadow: var(--copypasta-shadow);
+  color: var(--copypasta-text);
+  font: 14px/1.4 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  button,
+  input {
+    font: inherit;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .copypasta {
+    --copypasta-bg: #121417;
+    --copypasta-panel: #1c2026;
+    --copypasta-text: #edf1f6;
+    --copypasta-muted: #a4adba;
+    --copypasta-line: #363c46;
+    --copypasta-accent: #46c1ad;
+    --copypasta-accent-soft: #163d38;
+    --copypasta-danger: #ff8a80;
+    --copypasta-shadow: none;
+  }
+}
+
+.copypasta__topbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 16px 10px;
+  border-bottom: 1px solid var(--copypasta-line);
+}
+
+.copypasta__title {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.copypasta__sync-status {
+  margin: 4px 0 0;
+  color: var(--copypasta-muted);
+  font-size: 12px;
+
+  &.is-error {
+    color: var(--copypasta-danger);
+  }
+}
+
+.copypasta__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  border-bottom: 1px solid var(--copypasta-line);
+  background: color-mix(in srgb, var(--copypasta-panel), var(--copypasta-bg) 42%);
+  overflow-x: auto;
+}
+
+.copypasta__tool-button,
+.copypasta__icon-button {
+  display: inline-grid;
+  place-items: center;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  border: 1px solid var(--copypasta-line);
+  border-radius: 6px;
+  background: var(--copypasta-panel);
+  color: var(--copypasta-text);
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--copypasta-accent);
+    outline: 2px solid var(--copypasta-accent-soft);
+  }
+}
+
+.copypasta__tool-button:active {
+  background: var(--copypasta-accent-soft);
+}
+
+.copypasta__danger {
+  color: var(--copypasta-danger);
+}
+
+.copypasta__underline {
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.copypasta__file-tool {
+  position: relative;
+  overflow: hidden;
+
+  input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.copypasta__editor {
+  min-height: 430px;
+  padding: 18px;
+  overflow: auto;
+  outline: none;
+  word-break: break-word;
+
+  &:empty::before {
+    content: attr(data-placeholder);
+    color: var(--copypasta-muted);
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+    border-radius: 6px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0.8em 0 0.35em;
+    line-height: 1.18;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  blockquote {
+    margin: 10px 0;
+    padding: 2px 0 2px 12px;
+    border-left: 3px solid var(--copypasta-accent);
+    color: var(--copypasta-muted);
+  }
+
+  code {
+    padding: 2px 5px;
+    border-radius: 4px;
+    background: var(--copypasta-accent-soft);
+    font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+    font-size: 0.92em;
+  }
+
+  hr {
+    height: 1px;
+    margin: 14px 0;
+    border: 0;
+    background: var(--copypasta-line);
+  }
+
+  a[data-attachment] {
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    margin: 6px 0;
+    padding: 6px 8px;
+    border: 1px solid var(--copypasta-line);
+    border-radius: 6px;
+    color: var(--copypasta-accent);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+
+    &::before {
+      content: "File";
+      margin-right: 8px;
+      color: var(--copypasta-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.copypasta__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 12px;
+  border-top: 1px solid var(--copypasta-line);
+  color: var(--copypasta-muted);
+  font-size: 12px;
+
+  &.is-over-quota {
+    color: var(--copypasta-danger);
+  }
+}
+
+@media (max-width: 460px) {
+  .copypasta {
+    width: 100%;
+    min-height: 100dvh;
+  }
+}

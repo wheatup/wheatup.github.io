@@ -72,8 +72,8 @@ const App = () => {
                 <NavLink to="/blog" title={$`blog`}><i className="icon-pencil"></i></NavLink>
                 <NavLink to="/forum" title={$`forum`}><i className="icon-forum"></i></NavLink>
                 <NavLink to="/labs" title={$`labs`}><i className="icon-lab"></i></NavLink>
-                {cv && <NavLink to="/cv" title={$`cv`}><i className="icon-profile"></i></NavLink>}
                 <NavLink to="/copy-pasta" title={$`copy-pasta`}><i className="icon-paste"></i></NavLink>
+                {cv && <NavLink to="/cv" title={$`cv`}><i className="icon-profile"></i></NavLink>}
                 {/* <NavLink to="/games" title={$`games`}><i className="icon-pacman"></i></NavLink> */}
               </div>
               {/* {isCV && <a target="_blank" href="/data/CV_HAOWU.pdf" download><i className="icon-arrow-down" style={{fontSize: '2rem'}}></i><span style={{marginLeft: '0.5rem'}} className="pc-only">{$`download`}</span></a>} */}
