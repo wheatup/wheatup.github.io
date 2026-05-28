@@ -3,23 +3,23 @@ import {
   NavLink,
   Route,
   BrowserRouter as Router,
-  Routes,
+  Routes
 } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useData } from 'wherehouse';
+import { setData, useData } from 'wherehouse';
 import $ from 'whi18n';
 import User from './components/common/User';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import { useMaxHeight } from './hooks/misc';
 import Blog from './projects/blog/components/Blog';
+import CopyPasta from './projects/copyPasta';
 import CV from './projects/cv/CV';
 import Forum from './projects/forum/components/Forum';
 import Games from './projects/games/Games';
 import Home from './projects/home/Home';
 import Labs from './projects/labs/Labs';
 import { FULLSCREEN, IS_CV, CV as ViewCV } from './utils/store';
-import CopyPasta from './projects/copyPasta';
 
 const App = () => {
   useMaxHeight();
@@ -45,6 +45,16 @@ const App = () => {
       window.location.href = url;
     }
   }, []);
+
+  useEffect(() => {
+    const search = new URLSearchParams(window.location.search);
+    if (search.get('fullscreen')) {
+      setData(FULLSCREEN, true);
+    }
+
+    return () => setData(FULLSCREEN, false);
+  }, [window.location]);
+
 
   // const onClickDownloadAsPDF = useCallback(() => {
   // 	html2canvas(document.querySelector('.CV'), {

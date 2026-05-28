@@ -1,15 +1,23 @@
-import React from 'react';
-import { useTitle } from '../../hooks/misc';
+import { useEffect } from 'react';
 import $$ from 'whi18n';
+import { useTitle } from '../../hooks/misc';
+import { useNavigate } from 'react-router-dom';
 
 const Home = props => {
-	useTitle('wheatup');
+  useTitle('wheatup');
+  const navigate = useNavigate();
 
-	return (
-		<div className={`Home${window.CSS.registerProperty ? '' : ' not-support'}`}>
-			<h2 data-fallback={$$`wip`}></h2>
-		</div>
-	);
+  useEffect(() => {
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      navigate('/copy-pasta?fullscreen=1');
+    }
+  }, []);
+
+  return (
+    <div className={`Home${window.CSS.registerProperty ? '' : ' not-support'}`}>
+      <h2 data-fallback={$$`wip`}></h2>
+    </div>
+  );
 };
 
 export default Home;

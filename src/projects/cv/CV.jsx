@@ -1,13 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { getData, setData, useData } from 'wherehouse';
-import { useLocation } from 'react-router-dom';
-import { CV as CV_VIEW, FULLSCREEN, IS_CV, LANG } from '../../utils/store';
+import { useEffect, useMemo, useRef } from 'react';
+import { setData, useData } from 'wherehouse';
 import $$ from 'whi18n';
 import { useTitle } from '../../hooks/misc';
+import { LANGUAGES as AVAILABLE_LANGUAGES, CV as CV_VIEW, IS_CV, LANG } from '../../utils/store';
 import Background from './components/Background';
 import Timeline from './components/Timeline';
-import { useRef } from 'react';
-import { LANGUAGES as AVAILABLE_LANGUAGES } from '../../utils/store';
 
 const Stars = ({ value }) => {
 	return (
@@ -68,7 +65,6 @@ const TIMELINE = () => [
 ];
 
 const CV = () => {
-	const location = useLocation();
 	const { pic, name, kata, title, email, phone, github, codepen, stackoverflow, linkedin, itchio, homepage } = useMemo(() => {
 		const keys = ['pic', 'name', 'kata', 'title', 'email', 'phone', 'github', 'codepen', 'stackoverflow', 'linkedin', 'itchio', 'homepage'];
 		return keys.reduce((acc, key) => ({ ...acc, [key]: $$`_cv.profile.${key}` }), {});
@@ -86,14 +82,6 @@ const CV = () => {
 			setData(IS_CV, false);
 		};
 	}, []);
-	useEffect(() => {
-		const search = new URLSearchParams(location.search);
-		if (search.get('fullscreen')) {
-			setData(FULLSCREEN, true);
-		}
-
-		return () => setData(FULLSCREEN, false);
-	}, [location]);
 
 	const lang = useData(LANG);
 	const myName = useRef(null);

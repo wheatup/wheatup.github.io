@@ -1,18 +1,31 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const MAX_SYNC_BYTES = 95 * 1024;
+const GOOGLE_SYNC_BYTES = 1024 * 1024 * 1024;
 const SAVE_DELAY_MS = 500;
 const LOCAL_KEY = "copypasta:react-html";
 const LOCAL_META_KEY = "copypasta:react-meta";
+const GOOGLE_AUTH_KEY = "copypasta:google-auth";
 const PAGE_SOURCE = "copypasta:web";
 const EXTENSION_SOURCE = "copypasta:extension";
 const DEFAULT_BRIDGE_TIMEOUT_MS = 700;
+const GOOGLE_SCOPES = [
+  "https://www.googleapis.com/auth/userinfo.email",
+  "https://www.googleapis.com/auth/userinfo.profile",
+  "https://www.googleapis.com/auth/drive.appdata"
+].join(" ");
+const GOOGLE_NOTE_FILENAME = "copypasta-note.json";
+const GOOGLE_SCRIPT_URL = "https://accounts.google.com/gsi/client";
+const DRIVE_FILES_URL = "https://www.googleapis.com/drive/v3/files";
+const DRIVE_UPLOAD_URL = "https://www.googleapis.com/upload/drive/v3/files";
+const USERINFO_URL = "https://www.googleapis.com/oauth2/v3/userinfo";
 
 export default function CopyPasta({
   className = "",
   bridgeTimeoutMs = DEFAULT_BRIDGE_TIMEOUT_MS,
   localKey = LOCAL_KEY,
-  localMetaKey = LOCAL_META_KEY
+  localMetaKey = LOCAL_META_KEY,
+  googleClientId = "133784472430-qbls7751u3pjcs8tm196ssgrk8o1ba8b.apps.googleusercontent.com"
 }) {
   const editorRef = useRef(null);
   const fileInputRef = useRef(null);
@@ -25,12 +38,17 @@ export default function CopyPasta({
   const bridgeTimeoutRef = useRef(bridgeTimeoutMs);
   const localKeyRef = useRef(localKey);
   const localMetaKeyRef = useRef(localMetaKey);
+  const googleClientIdRef = useRef(googleClientId);
+  const googleTokenRef = useRef("");
+  const googleFileIdRef = useRef("");
+  const maxSyncBytesRef = useRef(MAX_SYNC_BYTES);
 
   const [syncStatus, setSyncStatus] = useState("Loading synced note...");
   const [isError, setIsError] = useState(false);
   const [quotaText, setQuotaText] = useState("0 KB synced");
   const [overQuota, setOverQuota] = useState(false);
   const [storageLabel, setStorageLabel] = useState("Extension sync");
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     bridgeTimeoutRef.current = bridgeTimeoutMs;
@@ -40,6 +58,10 @@ export default function CopyPasta({
     localKeyRef.current = localKey;
     localMetaKeyRef.current = localMetaKey;
   }, [localKey, localMetaKey]);
+
+  useEffect(() => {
+    googleClientIdRef.current = googleClientId;
+  }, [googleClientId]);
 
   useEffect(() => {
     let disposed = false;
@@ -52,16 +74,21 @@ export default function CopyPasta({
     };
 
     window.addEventListener("message", handleBridgeChanged);
+    const googlePoll = window.setInterval(() => {
+      if (googleTokenRef.current) void loadRemoteChange();
+    }, 5000);
     void loadInitialContent();
 
     return () => {
       disposed = true;
       window.clearTimeout(saveTimerRef.current);
+      window.clearInterval(googlePoll);
       window.removeEventListener("message", handleBridgeChanged);
     };
 
     async function loadInitialContent() {
       try {
+        restoreGoogleSession();
         const synced = await readSyncedHtml();
         if (disposed) return;
         applySyncedHtml(synced);
@@ -77,6 +104,7 @@ export default function CopyPasta({
 
       try {
         const synced = await readSyncedHtml();
+        setMaxSyncBytes(synced.maxBytes);
         if (synced.updatedAt && synced.updatedAt <= lastSavedUpdatedAtRef.current) return;
 
         const html = sanitizeHtml(synced.html);
@@ -107,16 +135,28 @@ export default function CopyPasta({
     applyingRemoteChangeRef.current = false;
     lastSavedHtmlRef.current = html;
     lastSavedUpdatedAtRef.current = synced.updatedAt;
+    setMaxSyncBytes(synced.maxBytes);
     updateQuota(html);
   }
 
   async function readSyncedHtml() {
+    if (googleTokenRef.current) {
+      modeRef.current = "google";
+      return {
+        ...await readGoogleDriveNote(),
+        maxBytes: GOOGLE_SYNC_BYTES,
+        readyMessage: "Synced with Google account",
+        footerLabel: "Google Drive"
+      };
+    }
+
     if (modeRef.current !== "local") {
       const bridged = await tryBridgeRead();
       if (bridged) {
         modeRef.current = "extension";
         return {
           ...bridged,
+          maxBytes: bridged.maxBytes || MAX_SYNC_BYTES,
           readyMessage: "Connected to extension sync",
           footerLabel: "Extension sync"
         };
@@ -126,12 +166,19 @@ export default function CopyPasta({
     modeRef.current = "local";
     return {
       ...readLocal(),
+      maxBytes: MAX_SYNC_BYTES,
       readyMessage: "Extension not detected. Saved in this browser.",
       footerLabel: "This browser"
     };
   }
 
   async function writeSyncedHtml(html) {
+    if (googleTokenRef.current) {
+      modeRef.current = "google";
+      setStorageLabel("Google Drive");
+      return writeGoogleDriveNote(html);
+    }
+
     if (modeRef.current !== "local") {
       const updatedAt = await tryBridgeWrite(html);
       if (updatedAt) {
@@ -144,6 +191,145 @@ export default function CopyPasta({
     modeRef.current = "local";
     setStorageLabel("This browser");
     return writeLocal(html);
+  }
+
+  async function requestGoogleAccessToken() {
+    if (!googleClientIdRef.current) {
+      throw new Error("Google OAuth client id is not configured");
+    }
+
+    await loadGoogleIdentityServices();
+
+    return new Promise((resolve, reject) => {
+      const tokenClient = window.google.accounts.oauth2.initTokenClient({
+        client_id: googleClientIdRef.current,
+        scope: GOOGLE_SCOPES,
+        prompt: "consent select_account",
+        callback: (response) => {
+          if (response?.access_token) {
+            resolve({
+              token: response.access_token,
+              expiresAt: Date.now() + Math.max(0, Number(response.expires_in || 3600) - 60) * 1000
+            });
+          } else {
+            reject(new Error(response?.error_description || response?.error || "Google sign-in failed"));
+          }
+        },
+        error_callback: () => {
+          reject(new Error("Google sign-in failed"));
+        }
+      });
+
+      tokenClient.requestAccessToken();
+    });
+  }
+
+  async function readGoogleUser() {
+    const response = await fetch(USERINFO_URL, {
+      headers: googleAuthHeaders()
+    });
+
+    if (!response.ok) throw new Error(await googleApiError(response, "Could not read Google profile"));
+
+    const profile = await response.json();
+    return {
+      name: profile.name || profile.email || "Google account",
+      email: profile.email || "",
+      picture: profile.picture || ""
+    };
+  }
+
+  async function readGoogleDriveNote() {
+    const file = await findGoogleDriveNote();
+    if (!file) return { html: "", updatedAt: 0, maxBytes: GOOGLE_SYNC_BYTES };
+
+    const response = await fetch(`${DRIVE_FILES_URL}/${encodeURIComponent(file.id)}?alt=media`, {
+      headers: googleAuthHeaders()
+    });
+
+    if (!response.ok) throw new Error(await googleApiError(response, "Could not read Google sync"));
+
+    const note = await response.json();
+    return {
+      html: typeof note.html === "string" ? note.html : "",
+      updatedAt: typeof note.updatedAt === "number" ? note.updatedAt : modifiedTimeMs(file.modifiedTime),
+      maxBytes: GOOGLE_SYNC_BYTES
+    };
+  }
+
+  async function writeGoogleDriveNote(html) {
+    const updatedAt = Date.now();
+    const body = JSON.stringify({ html, updatedAt });
+    const file = await findGoogleDriveNote();
+
+    if (file) {
+      const response = await fetch(`${DRIVE_UPLOAD_URL}/${encodeURIComponent(file.id)}?uploadType=media`, {
+        method: "PATCH",
+        headers: {
+          ...googleAuthHeaders(),
+          "Content-Type": "application/json"
+        },
+        body
+      });
+
+      if (!response.ok) throw new Error(await googleApiError(response, "Could not save Google sync"));
+      return updatedAt;
+    }
+
+    const boundary = `copypasta-${crypto.randomUUID()}`;
+    const response = await fetch(`${DRIVE_UPLOAD_URL}?uploadType=multipart&fields=id`, {
+      method: "POST",
+      headers: {
+        ...googleAuthHeaders(),
+        "Content-Type": `multipart/related; boundary=${boundary}`
+      },
+      body: [
+        `--${boundary}`,
+        "Content-Type: application/json; charset=UTF-8",
+        "",
+        JSON.stringify({
+          name: GOOGLE_NOTE_FILENAME,
+          parents: ["appDataFolder"]
+        }),
+        `--${boundary}`,
+        "Content-Type: application/json; charset=UTF-8",
+        "",
+        body,
+        `--${boundary}--`
+      ].join("\r\n")
+    });
+
+    if (!response.ok) throw new Error(await googleApiError(response, "Could not create Google sync"));
+
+    const created = await response.json();
+    googleFileIdRef.current = created.id || "";
+    return updatedAt;
+  }
+
+  async function findGoogleDriveNote() {
+    if (googleFileIdRef.current) return { id: googleFileIdRef.current };
+
+    const params = new URLSearchParams({
+      spaces: "appDataFolder",
+      fields: "files(id,modifiedTime)",
+      pageSize: "1",
+      q: `name='${GOOGLE_NOTE_FILENAME.replace(/'/g, "\\'")}' and trashed=false`
+    });
+    const response = await fetch(`${DRIVE_FILES_URL}?${params.toString()}`, {
+      headers: googleAuthHeaders()
+    });
+
+    if (!response.ok) throw new Error(await googleApiError(response, "Could not find Google sync"));
+
+    const result = await response.json();
+    const file = result.files?.[0] || null;
+    googleFileIdRef.current = file?.id || "";
+    return file;
+  }
+
+  function googleAuthHeaders() {
+    if (!googleTokenRef.current) throw new Error("Sign in with Google to sync this note");
+    return { Authorization: `Bearer ${googleTokenRef.current}` };
   }
 
   async function tryBridgeRead() {
@@ -224,12 +410,68 @@ export default function CopyPasta({
     setIsError(error);
   }
 
+  function restoreGoogleSession() {
+    const session = readStoredGoogleSession(googleClientIdRef.current);
+    if (!session) return;
+
+    googleTokenRef.current = session.token;
+    setUser(session.user);
+    modeRef.current = "google";
+  }
+
+  async function toggleGoogleLogin() {
+    try {
+      if (googleTokenRef.current) {
+        googleTokenRef.current = "";
+        googleFileIdRef.current = "";
+        clearStoredGoogleSession();
+        setUser(null);
+        modeRef.current = "unknown";
+        showStatus("Signed out. Using available browser sync.");
+        const synced = await readSyncedHtml();
+        applySyncedHtml(synced);
+        showStatus(synced.readyMessage);
+        setStorageLabel(synced.footerLabel);
+        return;
+      }
+
+      showStatus("Signing in...");
+      const auth = await requestGoogleAccessToken();
+      googleTokenRef.current = auth.token;
+      const profile = await readGoogleUser();
+      writeStoredGoogleSession({
+        token: auth.token,
+        expiresAt: auth.expiresAt,
+        clientId: googleClientIdRef.current,
+        user: profile
+      });
+      setUser(profile);
+      const synced = await readSyncedHtml();
+      setMaxSyncBytes(synced.maxBytes);
+      const currentHtml = sanitizeHtml(editorRef.current?.innerHTML || "");
+      if (!synced.html && currentHtml.trim()) {
+        lastSavedUpdatedAtRef.current = await writeSyncedHtml(currentHtml);
+        lastSavedHtmlRef.current = currentHtml;
+        updateQuota(currentHtml);
+        showStatus("Saved to Google account");
+      } else {
+        applySyncedHtml(synced);
+        showStatus(synced.readyMessage);
+      }
+      setStorageLabel(synced.footerLabel);
+    } catch (error) {
+      showStatus(errorMessage(error), true);
+    }
+  }
+
   function updateQuota(html) {
     const byteCount = bytesOf(html);
-    const usedKb = Math.ceil(byteCount / 1024);
-    const maxKb = Math.floor(MAX_SYNC_BYTES / 1024);
-    setQuotaText(`${usedKb} KB of ${maxKb} KB synced`);
-    setOverQuota(byteCount > MAX_SYNC_BYTES);
+    setQuotaText(`${formatBytes(byteCount, true)} of ${formatBytes(maxSyncBytesRef.current)} synced`);
+    setOverQuota(byteCount > maxSyncBytesRef.current);
+  }
+
+  function setMaxSyncBytes(value) {
+    maxSyncBytesRef.current = value || (googleTokenRef.current ? GOOGLE_SYNC_BYTES : MAX_SYNC_BYTES);
   }
 
   function queueSave(delay = SAVE_DELAY_MS) {
@@ -252,7 +494,7 @@ export default function CopyPasta({
 
     const byteCount = bytesOf(html);
     updateQuota(html);
-    if (byteCount > MAX_SYNC_BYTES) {
+    if (byteCount > maxSyncBytesRef.current) {
       showStatus("Too large for sync. Remove large images or files.", true);
       return;
     }
@@ -285,6 +527,15 @@ export default function CopyPasta({
   function handleInput() {
     applyMarkdownShortcut();
     queueSave();
+  }
+
+  function handleEditorClick(event) {
+    const link = event.target?.closest?.("a[data-attachment]");
+    const editor = editorRef.current;
+    if (!link || !editor?.contains(link)) return;
+
+    event.preventDefault();
+    downloadAttachmentLink(link);
   }
 
   async function handlePaste(event) {
@@ -378,6 +629,7 @@ export default function CopyPasta({
   const rootClassName = ["copypasta", className].filter(Boolean).join(" ");
   const statusClassName = ["copypasta__sync-status", isError ? "is-error" : ""].filter(Boolean).join(" ");
   const footerClassName = ["copypasta__footer", overQuota ? "is-over-quota" : ""].filter(Boolean).join(" ");
+  const userButtonClassName = ["copypasta__icon-button", "copypasta__user-button", user ? "is-signed-in" : ""].filter(Boolean).join(" ");
 
   return (
     <main className={rootClassName}>
@@ -386,9 +638,24 @@ export default function CopyPasta({
           <h1 className="copypasta__title">CopyPasta</h1>
           <p className={statusClassName}>{syncStatus}</p>
         </div>
-        <button className="copypasta__icon-button copypasta__danger" type="button" title="Clear note" aria-label="Clear note" onClick={clearEditor}>
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <div className="copypasta__topbar-actions">
+          <button
+            className={userButtonClassName}
+            type="button"
+            title={user ? `Signed in as ${user.email || user.name}. Click to sign out.` : "Sign in with Google"}
+            aria-label={user ? `Signed in as ${user.email || user.name}. Sign out` : "Sign in with Google"}
+            onClick={toggleGoogleLogin}
+          >
+            {user?.picture ? (
+              <img className="copypasta__user-avatar" src={user.picture} alt="" />
+            ) : (
+              <span aria-hidden="true">G</span>
+            )}
+          </button>
+          <button className="copypasta__icon-button copypasta__danger" type="button" title="Clear note" aria-label="Clear note" onClick={clearEditor}>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
       </header>
 
       <section className="copypasta__toolbar" aria-label="Editor tools">
@@ -428,6 +695,7 @@ export default function CopyPasta({
         aria-multiline="true"
         spellCheck="true"
         data-placeholder="Paste text, screenshots, images, or small files here..."
+        onClick={handleEditorClick}
         onInput={handleInput}
         onPaste={handlePaste}
         onDragOver={(event) => event.preventDefault()}
@@ -631,6 +899,92 @@ function placeCaretAtEnd(element) {
   selection?.addRange(range);
 }
 
+function loadGoogleIdentityServices() {
+  if (window.google?.accounts?.oauth2) return Promise.resolve();
+
+  return new Promise((resolve, reject) => {
+    const existing = document.querySelector(`script[src="${GOOGLE_SCRIPT_URL}"]`);
+    if (existing) {
+      existing.addEventListener("load", () => resolve(), { once: true });
+      existing.addEventListener("error", () => reject(new Error("Could not load Google sign-in")), { once: true });
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = GOOGLE_SCRIPT_URL;
+    script.async = true;
+    script.defer = true;
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error("Could not load Google sign-in"));
+    document.head.append(script);
+  });
+}
+
+function readStoredGoogleSession(clientId) {
+  try {
+    const session = JSON.parse(localStorage.getItem(GOOGLE_AUTH_KEY) || "null");
+    if (!isStoredGoogleSession(session, clientId)) {
+      clearStoredGoogleSession();
+      return null;
+    }
+
+    if (session.expiresAt <= Date.now()) {
+      clearStoredGoogleSession();
+      return null;
+    }
+
+    return session;
+  } catch {
+    clearStoredGoogleSession();
+    return null;
+  }
+}
+
+function writeStoredGoogleSession(session) {
+  try {
+    localStorage.setItem(GOOGLE_AUTH_KEY, JSON.stringify(session));
+  } catch {
+    // Local persistence is best-effort; in-memory login still works.
+  }
+}
+
+function clearStoredGoogleSession() {
+  try {
+    localStorage.removeItem(GOOGLE_AUTH_KEY);
+  } catch {
+    // Ignore storage failures so sign-out can continue.
+  }
+}
+
+function isStoredGoogleSession(value, clientId) {
+  return Boolean(
+    value &&
+    typeof value === "object" &&
+    typeof value.token === "string" &&
+    typeof value.expiresAt === "number" &&
+    typeof value.clientId === "string" &&
+    value.clientId === clientId &&
+    value.user &&
+    typeof value.user === "object" &&
+    typeof value.user.name === "string" &&
+    typeof value.user.email === "string" &&
+    typeof value.user.picture === "string"
+  );
+}
+
+async function googleApiError(response, fallback) {
+  try {
+    const body = await response.json();
+    return body.error?.message || fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function modifiedTimeMs(value) {
+  return value ? Date.parse(value) || 0 : 0;
+}
+
 function markdownInlineHtml(text) {
   let html = escapeHtml(text);
 
@@ -678,6 +1032,31 @@ function isSyncedHtml(value) {
 
 function bytesOf(value) {
   return new Blob([value]).size;
+}
+
+function downloadAttachmentLink(link) {
+  const href = link.getAttribute("href");
+  if (!href) return;
+
+  const download = document.createElement("a");
+  download.href = href;
+  download.download = link.getAttribute("download") || link.textContent?.trim() || "attachment";
+  download.rel = "noopener";
+  document.body.append(download);
+  download.click();
+  download.remove();
+}
+
+function formatBytes(value, roundUp = false) {
+  if (value >= 1024 * 1024 * 1024) return `${formatUnit(value, 1024 * 1024 * 1024, roundUp)} GB`;
+  if (value >= 1024 * 1024) return `${formatUnit(value, 1024 * 1024, roundUp)} MB`;
+  return `${Math[roundUp ? "ceil" : "floor"](value / 1024)} KB`;
+}
+
+function formatUnit(value, unit, roundUp) {
+  const amount = value / unit;
+  const rounded = roundUp ? Math.ceil(amount * 10) / 10 : Math.floor(amount * 10) / 10;
+  return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(1);
 }
 
 function escapeHtml(value) {
