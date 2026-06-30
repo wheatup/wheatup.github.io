@@ -25,7 +25,7 @@ const PROGRAMMING_LANGUAGES = () => [
 	{ name: 'CSS', value: 10 },
 	{ name: $$`_cv.regex`, value: 10 },
 	{ name: 'HTML', value: 9 },
-	{ name: 'TypeScript', value: 7 },
+	{ name: 'TypeScript', value: 8 },
 	{ name: 'Java', value: 6 },
 	{ name: 'C#', value: 6 },
 	{ name: 'PHP', value: 5 },
@@ -33,13 +33,13 @@ const PROGRAMMING_LANGUAGES = () => [
 ];
 
 const SKILL_TECHNEQUES = () => [
-	{ name: 'Vue', value: 9 },
-	{ name: 'React', value: 9 },
+  { name: 'React', value: 9 },
 	{ name: $$`_cv.ui-ux-animation`, value: 9 },
-	{ name: 'Node.js', value: 8 },
-	{ name: 'Git', value: 8 },
-	// { name: 'Cocos Creator', value: 7 },
-	{ name: 'Linux', value: 7 }
+	{ name: 'Git', value: 9 },
+	{ name: 'Vue', value: 8 },
+	{ name: 'Linux', value: 7 },
+	{ name: 'AI', value: 7 },
+	{ name: 'Unity 3D', value: 5 }
 	// { name: 'Photoshop', value: 7 }
 ];
 
