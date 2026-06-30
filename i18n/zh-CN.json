@@ -109,9 +109,9 @@
 					"date": "2021/12 - 至今",
 					"icon": "business_center",
 					"institution": "字节跳动（日本）",
-					"title": "前端开发",
+					"title": "前端开发主程",
 					"url": "https://bytedance.com",
-					"content": "<ul><li>所属部门：Enterprise IT Solution RD</li></ul>"
+					"content": "<ul><li>使用 React/TypeScript/LESS 等技术栈开发了字节跳动包含MDM、安全、网络等多个项目。</li><li>带领前端团队，负责项目的技术方向规划、排期与交付。</li><li>使用AI工具（如TRAE、Codex等）撰写并沉淀SKILLS、进行代码提效与优化。</li></ul>"
 				},
 				"exp5": {
 					"date": "2019/02 - 至今",
