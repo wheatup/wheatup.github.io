@@ -169,12 +169,65 @@
     color: var(--copypasta-muted);
   }
 
+  .copypasta__image-shell {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    margin: 10px 0;
+    vertical-align: top;
+  }
+
   img {
     display: block;
     max-width: 100%;
     height: auto;
     margin: 10px 0;
     border-radius: 6px;
+  }
+
+  .copypasta__image-shell img {
+    margin: 0;
+  }
+
+  .copypasta__image-download {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(23, 32, 42, 0.76);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(16, 24, 40, 0.18);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(-2px);
+    transition: opacity 0.18s ease, transform 0.18s ease, background 0.18s ease;
+    touch-action: manipulation;
+  }
+
+  .copypasta__image-shell:hover .copypasta__image-download,
+  .copypasta__image-shell:focus-within .copypasta__image-download,
+  .copypasta__image-download:focus-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .copypasta__image-download:hover,
+  .copypasta__image-download:focus-visible {
+    background: rgba(20, 108, 99, 0.92);
+    outline: none;
+  }
+
+  @media (hover: none) {
+    .copypasta__image-download {
+      opacity: 1;
+      transform: none;
+    }
   }
 
   h1,

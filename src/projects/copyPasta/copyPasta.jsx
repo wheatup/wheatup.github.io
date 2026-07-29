@@ -113,6 +113,7 @@ export default function CopyPasta({
 
         applyingRemoteChangeRef.current = true;
         editor.innerHTML = html;
+        decorateEditorImages(editor);
         applyingRemoteChangeRef.current = false;
         lastSavedHtmlRef.current = html;
         lastSavedUpdatedAtRef.current = synced.updatedAt || Date.now();
@@ -132,6 +133,7 @@ export default function CopyPasta({
     const html = sanitizeHtml(synced.html);
     applyingRemoteChangeRef.current = true;
     editor.innerHTML = html;
+    decorateEditorImages(editor);
     applyingRemoteChangeRef.current = false;
     lastSavedHtmlRef.current = html;
     lastSavedUpdatedAtRef.current = synced.updatedAt;
@@ -486,9 +488,13 @@ export default function CopyPasta({
     const editor = editorRef.current;
     if (!editor) return;
 
-    const html = sanitizeHtml(editor.innerHTML);
-    if (html !== editor.innerHTML) {
+    const rawHtml = getEditorContentHtml(editor);
+    const html = sanitizeHtml(rawHtml);
+    if (html !== rawHtml) {
+      applyingRemoteChangeRef.current = true;
       editor.innerHTML = html;
+      decorateEditorImages(editor);
+      applyingRemoteChangeRef.current = false;
     }
     if (html === lastSavedHtmlRef.current) return;
 
@@ -526,16 +532,36 @@ export default function CopyPasta({
 
   function handleInput() {
     applyMarkdownShortcut();
+    decorateEditorImages(editorRef.current);
     queueSave();
   }
 
   function handleEditorClick(event) {
-    const link = event.target?.closest?.("a[data-attachment]");
     const editor = editorRef.current;
+    const button = event.target?.closest?.("button[data-image-download]");
+    if (button && editor?.contains(button)) {
+      const image = button.parentElement?.querySelector("img");
+      if (!image) return;
+      event.preventDefault();
+      event.stopPropagation();
+      void handleImageDownload(image);
+      return;
+    }
+
+    const link = event.target?.closest?.("a[data-attachment]");
     if (!link || !editor?.contains(link)) return;
 
     event.preventDefault();
     downloadAttachmentLink(link);
+  }
+
+  async function handleImageDownload(image) {
+    try {
+      const result = await downloadImageToDevice(image);
+      showStatus(result === "share" ? "Opened save menu" : "Image downloaded");
+    } catch (error) {
+      showStatus(errorMessage(error), true);
+    }
   }
 
   async function handlePaste(event) {
@@ -577,6 +603,7 @@ export default function CopyPasta({
       }
     }
 
+    decorateEditorImages(editor);
     return true;
   }
 
@@ -998,6 +1025,93 @@ function markdownInlineHtml(text) {
   html = html.replace(/(^|[\s(])_([^_\s][^_]*?)_/g, "$1<em>$2</em>");
 
   return html;
+}
+
+function createImageDownloadButton() {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "copypasta__image-download";
+  button.contentEditable = "false";
+  button.setAttribute("data-image-download", "true");
+  button.setAttribute("aria-label", "Download image");
+  button.setAttribute("title", "Download image");
+  button.innerHTML = '<span aria-hidden="true">⇩</span>';
+  return button;
+}
+
+function decorateEditorImages(editor) {
+  if (!editor) return;
+
+  editor.querySelectorAll(".copypasta__image-shell").forEach((shell) => {
+    if (!shell.querySelector("img")) {
+      shell.remove();
+      return;
+    }
+    if (!shell.querySelector(".copypasta__image-download")) {
+      shell.append(createImageDownloadButton());
+    }
+  });
+
+  editor.querySelectorAll("img").forEach((image) => {
+    if (image.closest(".copypasta__image-shell")) return;
+    const shell = document.createElement("span");
+    shell.className = "copypasta__image-shell";
+    image.replaceWith(shell);
+    shell.append(image, createImageDownloadButton());
+  });
+}
+
+function getEditorContentHtml(editor) {
+  const clone = editor.cloneNode(true);
+  clone.querySelectorAll(".copypasta__image-download").forEach((button) => button.remove());
+  clone.querySelectorAll(".copypasta__image-shell").forEach((shell) => {
+    const image = shell.querySelector("img");
+    if (image) shell.replaceWith(image);
+  });
+  return clone.innerHTML;
+}
+
+async function downloadImageToDevice(image) {
+  const src = image.getAttribute("src");
+  if (!src) throw new Error("Image source not found");
+
+  const response = await fetch(src);
+  if (!response.ok) throw new Error("Could not load image");
+
+  const blob = await response.blob();
+  const file = new File([blob], imageDownloadName(image, blob.type), { type: blob.type || "application/octet-stream" });
+  if (navigator.maxTouchPoints > 0 && navigator.canShare?.({ files: [file] }) && navigator.share) {
+    await navigator.share({ files: [file], title: file.name });
+    return "share";
+  }
+
+  const objectUrl = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = objectUrl;
+  link.download = file.name;
+  link.rel = "noopener";
+  document.body.append(link);
+  link.click();
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(objectUrl), 30000);
+  return "download";
+}
+
+function imageDownloadName(image, mimeType) {
+  const alt = sanitizeFileName(image.getAttribute("alt") || "image");
+  return /\.[a-z0-9]{2,8}$/i.test(alt) ? alt : `${alt}.${mimeExtension(mimeType)}`;
+}
+
+function sanitizeFileName(value) {
+  return String(value).trim().replace(/[\\/:*?"<>|]+/g, "-") || "image";
+}
+
+function mimeExtension(value) {
+  if (value === "image/png") return "png";
+  if (value === "image/webp") return "webp";
+  if (value === "image/gif") return "gif";
+  if (value === "image/svg+xml") return "svg";
+  return "jpg";
 }
 
 function readFileAsDataUrl(file) {
